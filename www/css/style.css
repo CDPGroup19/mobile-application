@@ -1,0 +1,174 @@
+<!------------ GENERAL ----------->
+input.ui-text-input{
+	background-color: whitesmoke;
+	}
+	
+.ui-btn, .ui-btn-inner{
+	border-radius: 5px;
+	}
+	
+.headerMenu a{
+	background-image: url("images/menu-icon.png");
+}
+.ui-header{
+	height: 50px;
+}
+.ui-header .ui-btn-inner{
+	border: none;
+	padding: 0;
+}
+.ui-header .ui-btn{
+	box-shadow: none;
+	padding:0;
+}
+
+.headerMenu a{
+	background: 0;
+	border: 0;
+	box-shadow: none;
+}
+
+.ui-footer{
+	position: absolute; 
+	bottom:0px; 
+	width: 100%;
+}
+
+<!----------- Log in ------------->
+
+#loginSignup .ui-content img{
+	margin-left: auto;
+}
+
+#logoFront img{
+	margin-left: 70px;
+	margin-top: 100px;
+}
+
+#loginSignup .ui-footer .ui-btn{
+	width: 40%;
+	}
+
+
+
+
+<!----------- Sign up ------------>
+#confirmPassword{
+	margin-bottom: 100px;
+}
+ 
+#createAccountButton a{
+	bottom: 5px;
+}
+<!----------- User info ---------->
+
+#userinfo h3{
+	margin-bottom: 40px;
+	
+}
+
+#birthYear{
+	margin-bottom: 40px;
+}
+
+#travelcard{
+	margin-bottom:50px;
+}
+
+/*-------------------------------------
+			TRACKING
+--------------------------------------*/
+div#trackingContent{
+	background: url(../images/Map.png) no-repeat center center!important;
+}
+	
+div#selectDestination{
+	width: 250px;
+	float:right;
+}
+div#trackingContent .ui-btn-inner{
+	border:none;
+}
+.startButton .ui-btn-up-a{
+	/*margin-left: auto;
+	margin-right:auto;*/
+	background: transparent;
+	background-image: url(../images/play.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+.startButton .ui-btn-down-a{
+	background-image: url(../images/play.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+.startButton .ui-btn-hover-a{
+	background-image: url(../images/play.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+
+.stopButton .ui-btn-up-a{
+	background: transparent;
+	background-image: url(../images/stop.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+.stopButton .ui-btn-down-a{
+	background-image: url(../images/stop.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+.stopButton .ui-btn-hover-a{
+	background-image: url(../images/stop.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+}
+
+div#start .ui-btn-inner{
+	padding: 0;
+	border: 0;
+}
+
+div#stop .ui-btn-inner{
+	padding: 0;
+	border: 0;
+}
+
+div#start .ui-btn-up-a{
+	background:0;
+}
+div#stop .ui-btn-up-a{
+	background:0;
+}
+div#start{
+	width: 147px;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+div#stop{
+	width: 140px;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+

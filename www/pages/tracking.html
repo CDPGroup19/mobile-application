@@ -1,0 +1,41 @@
+<script>
+$(document).on("pagebeforeshow", "#trackingContent", function(){
+	$("#start").on("click", function(){
+		$(this).toggleClass("stopButton");
+		});
+	});
+</script>
+</head>
+
+<div id="tracking" data-role="page" data-theme="a">
+    <div class="headerMenu" data-role="header" data-theme="a">
+        <a style="background: 0; padding:0;" href="#" class="showMenu">
+            <img src="../images/menu-icon.png"/>
+        </a>
+        
+	</div>
+    <div data-role="content" id="trackingContent" data-theme="a">
+      	
+      	<div id="start" onclick="app.startTracking()" class="startButton">
+      		<a data-role="button"></a>
+      	</div>
+        <div id="stop" onclick="app.stopTracking()" class="stopButton">
+        	<a data-role="button"></a>
+        </div>
+    	
+        <div id="selectDestination" data-role="fieldcontain" >
+	    	<!--<label for="destination" class="select"></label>-->
+	    	<select name="destination" id="destination">
+              <option value="Select">Select your destination...</option>
+              <option value="Work">Work</option>
+              <option value="Business">Business</option>
+              <option value="School">School</option>
+              <option value="Accompany">Accompany others</option>
+              <option value="Shopping">Shopping/service</option>
+              <option value="Leisure">Leisure</option>
+              <option value="Home">Home</option>
+        	</select>
+      	</div>
+        
+    </div>
+</div>

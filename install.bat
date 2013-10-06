@@ -1,0 +1,1 @@
+adb.exe install -r ./platforms/android/bin/HelloWorld-debug.apk
