@@ -1,11 +1,24 @@
 <script>
-$(document).on("pagebeforeshow", "#trackingContent", function(){
-	$("#start").on("click", function(){
-		$(this).toggleClass("stopButton");
-		});
-	});
+$(document).bind('pageinit', function(){	
+	var startButton = document.getElementById("start");
+	var stopButton = document.getElementById("stop");
+	
+	stopButton.style.display = "none";
+
+	startButton.addEventListener('click',showStop, false);
+	stopButton.addEventListener('click',showStart, false);
+	
+	function showStop() {
+        stopButton.style.display ="block";
+        startButton.style.display = "none";
+	}
+	function showStart(){
+       startButton.style.display = "block";
+       stopButton.style.display = "none";
+	}
+});
 </script>
-</head>
+
 
 <div id="tracking" data-role="page" data-theme="a">
     <div class="headerMenu" data-role="header" data-theme="a">
@@ -39,3 +52,7 @@ $(document).on("pagebeforeshow", "#trackingContent", function(){
         
     </div>
 </div>
+
+
+
+

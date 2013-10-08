@@ -84,31 +84,33 @@ div#trackingContent{
 	
 div#selectDestination{
 	width: 250px;
-	float:right;
+	margin-left:auto;
+	margin-right: auto;
 }
 div#trackingContent .ui-btn-inner{
 	border:none;
 }
-.startButton .ui-btn-up-a{
-	/*margin-left: auto;
-	margin-right:auto;*/
-	background: transparent;
+
+#start .ui-btn-down-a{
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;
             width: 146px;
             height: 146px;
             padding: 0px;
             border: none;
+
 }
-.startButton .ui-btn-down-a{
-	background-image: url(../images/play.png) !important;
+
+#stop .ui-btn-down-a{
+	background-image: url(../images/stop.png) !important;
 	border-radius: 100px;
             width: 146px;
             height: 146px;
             padding: 0px;
             border: none;
 }
-.startButton .ui-btn-hover-a{
+
+#start .ui-btn-hover-a{
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;
             width: 146px;
@@ -117,23 +119,8 @@ div#trackingContent .ui-btn-inner{
             border: none;
 }
 
-.stopButton .ui-btn-up-a{
-	background: transparent;
-	background-image: url(../images/stop.png) !important;
-	border-radius: 100px;
-            width: 146px;
-            height: 146px;
-            padding: 0px;
-            border: none;
-}
-.stopButton .ui-btn-down-a{
-	background-image: url(../images/stop.png) !important;
-	border-radius: 100px;
-            width: 146px;
-            height: 146px;
-            padding: 0px;
-            border: none;
-}
+
+
 .stopButton .ui-btn-hover-a{
 	background-image: url(../images/stop.png) !important;
 	border-radius: 100px;
@@ -147,7 +134,17 @@ div#start .ui-btn-inner{
 	padding: 0;
 	border: 0;
 }
-
+div#start a{
+	height: inherit;
+	box-shadow: none;
+	border: none;
+	}
+	
+div#stop a{
+	height: inherit;
+	box-shadow: none;
+	border: none;
+	}
 div#stop .ui-btn-inner{
 	padding: 0;
 	border: 0;
@@ -160,15 +157,31 @@ div#stop .ui-btn-up-a{
 	background:0;
 }
 div#start{
-	width: 147px;
+	
 	margin-left: auto;
 	margin-right:auto;
+	background: transparent;
+	background-image: url(../images/play.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+			box-shadow: none;
 }
 
 div#stop{
-	width: 140px;
+	
 	margin-left: auto;
 	margin-right:auto;
+	background: transparent;
+	background-image: url(../images/stop.png) !important;
+	border-radius: 100px;
+            width: 146px;
+            height: 146px;
+            padding: 0px;
+            border: none;
+			box-shadow: none;
 }
 
 
