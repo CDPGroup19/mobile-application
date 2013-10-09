@@ -184,4 +184,27 @@ div#stop{
 			box-shadow: none;
 }
 
+/*---------------------------------
+			TRACKING LIST
+-----------------------------------*/
+#trackingList h1{
+	font-size: 20px;
+}
+li#buttons{
+	padding:0;
+}
+div#uploadDeleteButtons, ui-controlgroup-controls{
+	width:100%;
+	margin: 0 auto; 
+	bottom:0;
+	text-align:center;
+}
+a#save, a#delete{
+	width: 112px;
+	}
+a#upload{
+	width: 220px;
+	}
+
+
 
