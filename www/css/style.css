@@ -1,4 +1,10 @@
-<!------------ GENERAL ----------->
+/*//////////////////////////////////////
+				GENERAL 
+//////////////////////////////////////*/
+body{
+	min-height: 100%;
+}
+
 input.ui-text-input{
 	background-color: whitesmoke;
 	}
@@ -28,13 +34,17 @@ input.ui-text-input{
 	box-shadow: none;
 }
 
+
 .ui-footer{
 	position: absolute; 
 	bottom:0px; 
 	width: 100%;
 }
 
-<!----------- Log in ------------->
+
+/*//////////////////////////////////////
+				LOG IN 
+//////////////////////////////////////*/
 
 #loginSignup .ui-content img{
 	margin-left: auto;
@@ -52,7 +62,9 @@ input.ui-text-input{
 
 
 
-<!----------- Sign up ------------>
+/*//////////////////////////////////////
+				SIGN UP 
+//////////////////////////////////////*/
 #confirmPassword{
 	margin-bottom: 100px;
 }
@@ -60,8 +72,9 @@ input.ui-text-input{
 #createAccountButton a{
 	bottom: 5px;
 }
-<!----------- User info ---------->
-
+/*//////////////////////////////////////
+				USER INFO 
+//////////////////////////////////////*/
 #userinfo h3{
 	margin-bottom: 40px;
 	
@@ -75,12 +88,10 @@ input.ui-text-input{
 	margin-bottom:50px;
 }
 
-/*-------------------------------------
-			TRACKING
---------------------------------------*/
-div#trackingContent{
-	background: url(../images/Map.png) no-repeat center center!important;
-}
+/*//////////////////////////////////////
+				TRACKING
+//////////////////////////////////////*/
+
 	
 div#selectDestination{
 	width: 250px;
@@ -90,8 +101,18 @@ div#selectDestination{
 div#trackingContent .ui-btn-inner{
 	border:none;
 }
-
-#start .ui-btn-down-a{
+div#tracking .ui-content{
+	padding: 0;
+}
+div#trackingButtons{
+	position: absolute;
+	z-index: 99;
+	
+	margin-left: auto;
+	margin-right:auto;
+	width: 300px;
+}
+div#start .ui-btn-down-a{
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;
             width: 146px;
@@ -110,7 +131,7 @@ div#trackingContent .ui-btn-inner{
             border: none;
 }
 
-#start .ui-btn-hover-a{
+div#start .ui-btn-hover-a{
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;
             width: 146px;
@@ -121,7 +142,7 @@ div#trackingContent .ui-btn-inner{
 
 
 
-.stopButton .ui-btn-hover-a{
+div#stop .ui-btn-hover-a{
 	background-image: url(../images/stop.png) !important;
 	border-radius: 100px;
             width: 146px;
@@ -168,6 +189,7 @@ div#start{
             padding: 0px;
             border: none;
 			box-shadow: none;
+			-webkit-transform: scale(0.7);
 }
 
 div#stop{
@@ -182,11 +204,36 @@ div#stop{
             padding: 0px;
             border: none;
 			box-shadow: none;
+			-webkit-transform: scale(0.7);
+			
 }
 
-/*---------------------------------
+div#durationLength{
+	/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0,0,0,0)), color-stop(1, rgba(0,0,0,1)));
+height: 120px;
+}
+div#durationLength h1{
+	font-size: 36px;
+	font-weight:lighter;
+	margin: 0;
+}
+div#durationLength p{
+	margin: 0;
+}
+div#duration{
+	margin:20px 10px 10px 20px;
+	float: left;
+}
+div#length{
+	margin:20px 10px 10px 20px;
+	float: right;
+}
+
+
+/*///////////////////////////////////
 			TRACKING LIST
------------------------------------*/
+///////////////////////////////////*/
 #trackingList h1{
 	font-size: 20px;
 }
@@ -205,6 +252,4 @@ a#save, a#delete{
 a#upload{
 	width: 220px;
 	}
-
-
 

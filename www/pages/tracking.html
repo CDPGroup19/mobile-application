@@ -28,31 +28,76 @@ $(document).bind('pageinit', function(){
         
 	</div>
     <div data-role="content" id="trackingContent" data-theme="a">
-      	
-      	<div id="start" onclick="app.startTracking()" class="startButton">
-      		<a data-role="button"></a>
-      	</div>
-        <div id="stop" onclick="app.stopTracking()" class="stopButton">
-        	<a data-role="button"></a>
+      	<div id="trackingButtons">
+            <div id="start" onclick="app.startTracking()" class="startButton">
+                <a data-role="button"></a>
+            </div>
+            <div id="stop" onclick="app.stopTracking()" class="stopButton">
+                <a data-role="button"></a>
+            </div>
+            
+            <div id="selectDestination" data-role="fieldcontain" >
+                <!--<label for="destination" class="select"></label>-->
+                <select name="destination" id="destination">
+                  <option value="Select">Select your destination...</option>
+                  <option value="Work">Work</option>
+                  <option value="Business">Business</option>
+                  <option value="School">School</option>
+                  <option value="Accompany">Accompany others</option>
+                  <option value="Shopping">Shopping/service</option>
+                  <option value="Leisure">Leisure</option>
+                  <option value="Home">Home</option>
+                </select>
+            </div>
         </div>
-    	
-        <div id="selectDestination" data-role="fieldcontain" >
-	    	<!--<label for="destination" class="select"></label>-->
-	    	<select name="destination" id="destination">
-              <option value="Select">Select your destination...</option>
-              <option value="Work">Work</option>
-              <option value="Business">Business</option>
-              <option value="School">School</option>
-              <option value="Accompany">Accompany others</option>
-              <option value="Shopping">Shopping/service</option>
-              <option value="Leisure">Leisure</option>
-              <option value="Home">Home</option>
-        	</select>
-      	</div>
-        
+        <div id="map">
+        </div>
+    </div>
+    <div data-role="footer" data-theme="f" id="durationLength">
+            <div id="duration">
+                <p>Duration:</p>
+                <h1>10:03</h1>
+            </div>
+            <div id="length">
+            	<p>Lenght:</p>
+                <h1>2,3 km</h1>
+            </div>
     </div>
 </div>
+<script>
+/*
+navigator.geolocation.getCurrentPosition (function (pos)
+{
+  var lat = pos.coords.latitude;
+  var lng = pos.coords.longitude;
+  $("#lat").val (lat);
+  $("#lng").val (lng);
+});
+*/
+$("#start").bind ("click", function (event)
+{
+  /*var lat = $("#lat").val ();
+  var lng = $("#lng").val ();*/
+  var latlng = new google.maps.LatLng (63.4122938, 10.4388454);
+  var options = { 
+    zoom : 15, 
+    center : latlng, 
+    mapTypeId : google.maps.MapTypeId.ROADMAP 
+  };
+  var $content = $("#map");
+  $content.height (screen.height - 50);
+  var map = new google.maps.Map ($content[0], options);
+  $.mobile.changePage ($("#tracking"));
+  
+  new google.maps.Marker ( 
+  { 
+    map : map, 
+    animation : google.maps.Animation.DROP,
+    position : latlng  
+  });  
+});
 
+</script>
 
 
 
