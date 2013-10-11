@@ -85,7 +85,10 @@ input.ui-text-input{
 }
 
 #travelcard{
-	margin-bottom:50px;
+	margin-bottom:20px;
+}
+#occupation{
+	margin-bottom:20px;
 }
 
 /*//////////////////////////////////////
@@ -94,9 +97,8 @@ input.ui-text-input{
 
 	
 div#selectDestination{
-	width: 250px;
-	margin-left:auto;
-	margin-right: auto;
+	width: inherit;
+	margin: 0;
 }
 div#trackingContent .ui-btn-inner{
 	border:none;
@@ -178,9 +180,7 @@ div#stop .ui-btn-up-a{
 	background:0;
 }
 div#start{
-	
-	margin-left: auto;
-	margin-right:auto;
+	margin-top: 200px;
 	background: transparent;
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;
@@ -193,9 +193,7 @@ div#start{
 }
 
 div#stop{
-	
-	margin-left: auto;
-	margin-right:auto;
+	margin-top: 200px;
 	background: transparent;
 	background-image: url(../images/stop.png) !important;
 	border-radius: 100px;
@@ -247,9 +245,9 @@ div#uploadDeleteButtons, ui-controlgroup-controls{
 	text-align:center;
 }
 a#save, a#delete{
-	width: 112px;
+	width: 100px;
 	}
 a#upload{
-	width: 220px;
+	width: 150px;
 	}
 
