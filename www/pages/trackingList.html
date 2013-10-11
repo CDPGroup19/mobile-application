@@ -1,7 +1,4 @@
-
-
-<body>
-<div data-role="page" data-theme="a">
+<div id="trackingList" data-role="page" data-theme="a">
     	<div class="headerMenu" data-role="header" data-theme="a">
         <a style="background: 0; padding:0; margin: 5px;" href="#"class="showMenu">
             <img src="../images/menu-icon.png"/>
@@ -17,7 +14,7 @@
             	<a href="#">
                   <p>Trip1</p>
                   <h1>11:34 - 11:59</h1>
-                  <div class="ui-li-aside"><img src="images/walk.png"/></div>
+                  <div class="ui-li-aside"><img src="../images/walk.png"/></div>
             	</a>
                 <a data-role="button">Change</a>
          	</li>
@@ -25,6 +22,29 @@
             	<a href="#">
                   <p>Trip2</p>
                   <h1>12:03 - 12:21</h1>
-                  <div class="ui-li-aside"><img src="images/buss.png"/></div>
+                  <div class="ui-li-aside"><img src="../images/buss.png"/></div>
             	</a>
-                <a data-role="button">Change<
+                <a data-role="button">Change</a>
+       		</li>
+            <li>
+            	<a>
+                  <p>Trip3</p>
+                  <h1>12:22 - 12:40</h1>
+                  <div class="ui-li-aside"><img src="../images/tram.png"/></div>
+            	</a>
+                <a data-role="button">Change</a>
+            </li>
+            <li id="buttons">
+            	<div style=" " id="uploadDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                    <a data-role="button" data-theme="f" id="save">Save</a>
+                    <a data-role="button" data-theme="d" id="upload">Upload</a>
+                    <a data-role="button" data-theme="f" id="delete">Delete</a>
+          		</div>
+            </li>
+          </ul>
+          <div id="map">
+        	</div>
+        </div>
+	
+    
+</div>
