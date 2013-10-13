@@ -79,6 +79,14 @@ Session.prototype.getLocalLog = function(id) {
 
 };
 
+Session.prototype.removedStorageLogEntry = function(username, id) {
+	
+	var logID = this.getUserLogKey(username, id);
+	
+	this.storage.removeItem(logID);
+	
+};
+
 // Remove a trip log from the local storage
 Session.prototype.removeLocalLog = function(id) {
 	
@@ -99,9 +107,7 @@ Session.prototype.removeLocalLog = function(id) {
 	
 	// Remove trip data from storage
 	
-	var logID = this.getUserLogKey(this.userData.username, id);
-	
-	this.storage.removeItem(logID);
+	this.removeStorageLogEntry(this.userData.username, id);
 
 };
 
@@ -116,8 +122,17 @@ Session.prototype.updateLocalUser = function() {
 };
 
 Session.prototype.deleteLocalUser = function(username) {
+	
+	// Remove trips
+	
+	var userData = this.getUserData(username);
+	var logs = userData.logs.slice(0);
+	
+	for(var i = 0; i < logs.length; i++) {
+		this.removedStorageLogEntry(username, logs[i]);
+	}
 
-	// Check password?
+	// Remove userdata entry from storage
 
 	this.storage.removeItem(this.getUserKey(username));
 
