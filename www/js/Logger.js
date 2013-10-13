@@ -37,7 +37,7 @@ Logger.prototype.addEntry = function(position) {
   * Get set of logger data with fields for server API
   *
   **/
-Logger.prototype.createObject = function() {
+Logger.prototype.toSerializableObject = function() {
 	
 	var out = [];
 

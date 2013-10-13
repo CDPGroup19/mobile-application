@@ -20,11 +20,11 @@
                   <option value="Home">Home</option>
                 </select>
             </div>
-            <div id="start" onclick="app.startTracking()" class="startButton">
+            <div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton">
                 <a data-role="button"></a>
             </div>
-            <div id="stop" onclick="app.stopTracking()" class="stopButton">
-                <a href="trackingList.html" data-role="button"></a>
+            <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton">
+                <a data-role="button"></a>
             </div>
             
         </div>

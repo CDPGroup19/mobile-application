@@ -3,6 +3,7 @@ var app = {
 	session: null,
 	location: null,
 	tracking: false,
+	log: null,
 
     // Application Constructor
     initialize: function() {
@@ -47,13 +48,57 @@ var app = {
 		
         console.log('Received Event: ' + id);
         
-        if(id == "loginsuccess") {
-        
-			console.log("Login was OK");
-			$.mobile.changePage("../pages/tracking.html");
-        
+        switch(id) {
+			case "loginsuccess":
+				console.log("Login was OK");
+				$.mobile.changePage("../pages/tracking.html");
+			break;
+			case "ontrackstart":
+				app.startTracking();
+			break;
+			case "ontrackend":
+				app.stopTracking();
+				$.mobile.changePage("../pages/trackingList.html");
+			break;
+			case "savetrip":
+				// Save trip locally
+				console.log("Saving trip locally");
+				app.storeLocalTrip();
+			break;
+			case "uploadtrip":
+				// Save locally and upload
+				app.uploadTrip();
+				console.log("Uploading trip");
+			break;
+			case "discardtrip":
+				// Discard
+				console.log("Discarding trip");
+				// Go back to tracking
+				$.mobile.changePage("../pages/tracking.html");
+			break;
+			default:
+				console.warn("Unknown event " + id);
         }
         
+    },
+    
+    storeLocalTrip: function() {
+    
+		if(!(this.log instanceof Logger)) {
+			console.warn("App: Attempted to store local trip, but no trip was in memory!");
+		}
+		
+		app.session.addLocalLog(this.log);
+    
+    },
+    
+    uploadTrip: function() {
+		
+		// Store locally before uploading
+		app.storeLocalTrip();
+		
+		// @TODO
+		
     },
     
     onLocationUpdate: function(data) {

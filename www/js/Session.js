@@ -29,7 +29,7 @@ Session.prototype.addLocalLog = function(log) {
 
 	var sessionLog = {
 		synched: false,
-		data: log.toObject()
+		data: log.toSerializableObject()
 	};
 
 	var logDataJSON = JSON.stringify(sessionLog);
@@ -109,7 +109,7 @@ Session.prototype.removeLocalLog = function(id) {
 Session.prototype.updateLocalUser = function() {
 	
 	this.storage.setItem(
-		this.getUserKey(username), 
+		this.getUserKey(this.userData.username), 
 		JSON.stringify(this.userData)
 	);
 	
