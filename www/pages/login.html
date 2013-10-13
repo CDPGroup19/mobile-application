@@ -14,14 +14,14 @@
     
 		<div data-role="fieldcontain" id="username">
 	    	<label for="textinput">Username:</label>
-	    	<input name="textinput" type="text" id="textinput" value="" data-theme="b"  />
+	    	<input name="textinput" type="text" id="usernameInput" value="" data-theme="b"  />
       	</div>
 	  	<div data-role="fieldcontain" id="password">
 	    	<label for="passwordinput">Password:</label>
-	    	<input name="passwordinput" type="password" id="passwordinput" value="" data-theme="b"  />
+	    	<input name="passwordinput" type="password" id="passwordInput" value="" data-theme="b"  />
       	</div>
         <div id="createAccountButton">
-        	<a onclick="app.signIn()" data-role="button" data-theme="d">Sign in</a>
+        	<a onclick="app.receivedEvent('onloginrequest');" data-role="button" data-theme="d">Sign in</a>
     	</div>
     </div>
 	

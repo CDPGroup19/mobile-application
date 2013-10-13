@@ -48,17 +48,27 @@ var app = {
 		
         console.log('Received Event: ' + id);
         
+        var username, password, password2;
+        
         switch(id) {
 			case "onusercreation":
 				console.log("Request to create new user");
 				
-				var username = $("#usernameInput")[0].value;
-				var password = $("#passwordInput")[0].value;
-				var password2 = $("#passwordInputConfirm")[0].value;
+				username = $("#usernameInput")[0].value;
+				password = $("#passwordInput")[0].value;
+				password2 = $("#passwordInputConfirm")[0].value;
 				
 				// @TODO validate input
 				
 				app.createUser(username, password);
+				
+			break;
+			case "onloginrequest":
+				
+				username = $("#usernameInput")[0].value;
+				password = $("#passwordInput")[0].value;
+				
+				app.signIn(username, password);
 				
 			break;
 			case "loginsuccess":
@@ -186,11 +196,8 @@ var app = {
       * Sign in an existing user
       * 
       **/
-    signIn: function() {
-    
-		var username = "lars";
-		var password = "test";
-    
+    signIn: function(username, password) {
+		
 		var login_ok = false;
 		var err_msg = "";
 		
