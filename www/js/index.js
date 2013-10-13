@@ -49,6 +49,18 @@ var app = {
         console.log('Received Event: ' + id);
         
         switch(id) {
+			case "onusercreation":
+				console.log("Request to create new user");
+				
+				var username = $("#usernameInput")[0].value;
+				var password = $("#passwordInput")[0].value;
+				var password2 = $("#passwordInputConfirm")[0].value;
+				
+				// @TODO validate input
+				
+				app.createUser(username, password);
+				
+			break;
 			case "loginsuccess":
 				console.log("Login was OK");
 				$.mobile.changePage("../pages/tracking.html");
@@ -140,6 +152,33 @@ var app = {
 		app.location.stop();
 		
 		console.log("Stopped tracking");
+		
+    },
+    
+    /**
+      * Create a new user
+      * 
+      **/
+    createUser: function(username, password) {
+    
+		// @TODO create on remote server
+		// Create locally for now
+		
+		var r = false;
+		
+		try {
+			r = app.session.createLocalUser(username, password);
+		} catch(e) {
+			console.warn("App: User creation exception: " + e);
+		}
+		
+		if(r === true) {
+			// OK => sign in
+			app.session.login(username, password);
+			app.receivedEvent('loginsuccess');
+		} else {
+			console.warn("App: Failed to create local user");
+		}
 		
     },
     

@@ -123,6 +123,19 @@ Session.prototype.deleteLocalUser = function(username) {
 
 };
 
+// Checks if a local user exists
+Session.prototype.hasUser = function(username) {
+
+	var userDataJSON = this.storage.getItem(this.getUserKey(username));
+	
+	if(userDataJSON !== undefined && userDataJSON !== null) {
+		return true;
+	}
+	
+	return false;
+
+};
+
 Session.prototype.createLocalUser = function(username, password) {
 
 	if(!username)
@@ -137,6 +150,12 @@ Session.prototype.createLocalUser = function(username, password) {
 	if(password.length < 4)
 		throw "Invalid password length";
 
+	// Don't allow creation if user already exists
+	if(this.hasUser(username)) {
+		console.log("Session: Account creation: Username is taken ...");
+		return false;
+	}
+	
 	var userData = {
 		username: username,
 		password: password,
@@ -144,10 +163,12 @@ Session.prototype.createLocalUser = function(username, password) {
 	};
 	
 	this.storage.setItem(this.getUserKey(username), JSON.stringify(userData));
+	
+	return true;
 
 };
 
-Session.prototype.login = function(username, password) {
+Session.prototype.getUserData = function(username) {
 
 	var userDataJSON = this.storage.getItem(this.getUserKey(username));
 
@@ -156,6 +177,17 @@ Session.prototype.login = function(username, password) {
 	}
 
 	var userData = JSON.parse(userDataJSON);
+	
+	return userData;
+
+};
+
+Session.prototype.login = function(username, password) {
+
+	if(!this.hasUser(username))
+		return false;
+	
+	var userData = this.getUserData(username);
 	
 	this.checkUserData(userData);
 	
