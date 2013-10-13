@@ -14,7 +14,7 @@ Session.prototype.getUserKey = function(username) {
 
 // Get storage key for user trip log
 Session.prototype.getUserLogKey = function(username, logId) {
-	return this.getUserKey() + "-" + logId;
+	return this.getUserKey(username) + "-" + logId;
 };
 
 Session.prototype.checkUserData = function(userData) {
