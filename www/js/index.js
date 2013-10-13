@@ -2,7 +2,7 @@ var app = {
 	
 	session: null,
 	location: null,
-	tracking: false,
+	isTracking: false,
 	log: null,
 
     // Application Constructor
@@ -125,7 +125,7 @@ var app = {
     
     onLocationUpdate: function(data) {
 		
-		if(!app.tracking) {
+		if(!app.isTracking) {
 			console.warn("App: Received location update, but we're not tracking");
 			return;
 		}
@@ -138,12 +138,12 @@ var app = {
     
     startTracking: function() {
     
-		if(app.tracking) {
+		if(app.isTracking) {
 			console.warn("Tracking was started, but we're already tracking!");
 			return;
 		}
     
-		app.tracking = true;
+		app.isTracking = true;
 		app.log = new Logger();
 		app.location.start();
     
@@ -153,12 +153,12 @@ var app = {
     
     stopTracking: function() {
 		
-		if(!app.tracking) {
+		if(!app.isTracking) {
 			console.warn("Received request to stop tracking while tracking is inactive");
 			return;
 		}
 		
-		app.tracking = false;
+		app.isTracking = false;
 		app.location.stop();
 		
 		console.log("Stopped tracking");
