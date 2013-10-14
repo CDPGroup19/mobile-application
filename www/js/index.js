@@ -4,6 +4,8 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
+	server: new ServerAPI("http://78.91.2.206/SmioIIS/BackendService.svc"),
+	map: new MapHelper,
 
     // Application Constructor
     initialize: function() {
@@ -12,6 +14,8 @@ var app = {
 		
 		app.session = new Session();
 		app.location = new GeoLocation({}, app.onLocationUpdate);
+		
+		app.map.init();
 		
         this.bindEvents();
     },
@@ -134,6 +138,10 @@ var app = {
 		
 		app.log.addEntry(data);
 		
+		// Update map
+		
+		app.map.update(data);
+		
     },
     
     startTracking: function() {
@@ -170,25 +178,40 @@ var app = {
       * 
       **/
     createUser: function(username, password) {
-    
-		// @TODO create on remote server
-		// Create locally for now
 		
-		var r = false;
+		var onServerResponse = (function(response) {
 		
-		try {
-			r = app.session.createLocalUser(username, password);
-		} catch(e) {
-			console.warn("App: User creation exception: " + e);
-		}
+			console.warn("SERVER RESPONSE: ", response);
 		
-		if(r === true) {
-			// OK => sign in
-			app.session.login(username, password);
-			app.receivedEvent('loginsuccess');
-		} else {
-			console.warn("App: Failed to create local user");
-		}
+			// @TODO create on remote server
+			// Create locally for now
+			
+			var r = false;
+			
+			try {
+				r = app.session.createLocalUser(username, password);
+			} catch(e) {
+				console.warn("App: User creation exception: " + e);
+			}
+			
+			if(r === true) {
+				// OK => sign in
+				app.session.login(username, password);
+				app.receivedEvent('loginsuccess');
+			} else {
+				console.warn("App: Failed to create local user");
+			}
+			
+		
+		}).bind(this);
+		
+		var userObj = {
+			username: username,
+			pinCode: password
+		};
+		
+		//this.server.createUser(userObj, onServerResponse);
+		onServerResponse();
 		
     },
     
