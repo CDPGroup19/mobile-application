@@ -3,11 +3,10 @@ var MapHelper = function() {
 	this.lineCoords = [];
 	this.map = null;
 	
+	this.marker = null;
+	this.line = null;
+	
 	var update = function(position) {
-		
-		return;
-		
-		console.log(this);
 		
 		var lat = position.coords.latitude;
 		var lng = position.coords.longitude;
@@ -20,7 +19,8 @@ var MapHelper = function() {
 		
 		// Update map center
 		
-		this.map.center = latlng;
+		this.map.setCenter(latlng);
+		this.marker.setPosition(latlng);
 		
 	};
 	
@@ -42,29 +42,38 @@ var MapHelper = function() {
 		
 		this.map = new google.maps.Map($content[0], options);
 		
-		console.warn("asdsaasdsad", this.map);
+		console.warn("asdsaasdsad", this, this.map);
 		
 		$.mobile.changePage ($("#tracking"));
 		
-		this.lineCoords = [];
+		var lineCoords = [];
 		
-		var line = new google.maps.Polyline({ 
-			path: this.lineCoords,
-			strokeColor: "#ff0000",
-			strokeOpacity: 1.0,
-			strokeWeight: 5,
-			editable: true
+		this.marker = new google.maps.Marker ({ 
+			map: this.map, 
+			animation: google.maps.Animation.DROP,
+			position: center
 		});
 		
-		line.setMap(this.map);
+		this.line = new google.maps.Polyline({ 
+			path: lineCoords,
+			strokeColor: "#ff0000",
+			strokeOpacity: 1.0,
+			strokeWeight: 3,
+			editable: !true,
+			draggable: !true
+		});
+		
+		this.lineCoords = this.line.getPath();
+		
+		this.line.setMap(this.map);
 		
 	};
 	
 	var init = function() {
 		
-		$(document).bind("pageinit", function() {
-			$("#start").click(create);
-		});
+		$(document).bind("pageinit", (function() {
+			$("#start").click(this.create);
+		}).bind(this));
 	
 	};
 

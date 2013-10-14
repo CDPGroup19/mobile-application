@@ -4,7 +4,7 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
-	server: new ServerAPI("http://78.91.2.206/SmioIIS/BackendService.svc"),
+	server: new ServerAPI("http://127.0.0.1/SmioIIS/BackendService.svc"),
 	map: new MapHelper,
 
     // Application Constructor
