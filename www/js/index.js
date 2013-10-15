@@ -162,7 +162,7 @@ var app = {
 				$.mobile.changePage("../pages/tracking.html");
 				
 				break;
-				
+			
 			default:
 				
 				console.warn("Unknown event " + id);

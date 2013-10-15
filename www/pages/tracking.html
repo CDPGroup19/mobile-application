@@ -1,4 +1,43 @@
 <div id="tracking" data-role="page" data-theme="a">
+
+	<script>
+
+		console.log("dsadsa");
+		
+	var startButton = $("#start");
+	var stopButton = $("#stop");
+	
+	stopButton.hide();
+
+	startButton.click(function(){
+		stopButton.show();
+        startButton.hide();
+	});
+	
+	
+	stopButton.click(function(){
+		startButton.show();
+       	stopButton.hide();
+	});
+		
+	//$(document).bind("pageinit", (function() {
+		console.log("asssasdds");
+		if(app.isTracking) {
+			// Restore
+			console.log("restore");
+			stopButton.show();
+			startButton.hide();
+			
+			app.map.create();
+		} else {
+			$("#start").click(function() {
+			console.log("clickclick");
+				app.map.create();
+			});
+		}
+	//}).bind(this));
+
+	</script>
     <div data-role="header" data-position="fixed" data-theme="a">
         <p>Tracking</p>
 	</div>

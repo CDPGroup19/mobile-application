@@ -43,8 +43,6 @@ var MapHelper = function() {
 		
 		this.map = new google.maps.Map($content[0], options);
 		
-		console.warn("asdsaasdsad", this, this.map);
-		
 		$.mobile.changePage ($("#tracking"));
 		
 		var lineCoords = [];
@@ -72,9 +70,13 @@ var MapHelper = function() {
 	
 	var init = function() {
 		
-		$(document).bind("pageinit", (function() {
-			$("#start").click(this.create);
-		}).bind(this));
+		//$(document).bind("pageinit", (function() {
+		//	if(app.isTracking) {
+		//		this.create();
+		//	} else {
+		//		$("#start").click(this.create);
+		//	}
+		//}).bind(this));
 	
 	};
 
