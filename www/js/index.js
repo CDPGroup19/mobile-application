@@ -132,6 +132,43 @@ var app = {
 				
 				break;
 			
+			case "distanceupdate":
+			
+				if($.mobile.activePage.attr('id') == "tracking") {
+					
+					var d = app.log.meta.distance;
+					
+					var unit = "km";
+					
+					if(d < 1) {
+						unit = "m";
+						// Convert to meters
+						d = Math.round(d * 1000);
+					} else {
+						// Round to two decimal precision
+						d = Math.round(d * 100) / 100;
+					}
+					
+					$("#totaldistance").html(d.toString() + " " + unit);
+					
+					console.log("Updating time!");
+					
+					var seconds = Math.floor( (Date.now() - app.log.meta.startTime) / 1000.0 );
+					var minutes = Math.floor(seconds / 60);
+					
+					
+					if(minutes > 0) {
+						seconds -= 60 * minutes;
+					}
+					
+					var timestr = minutes + ":" + seconds;
+					
+					$("#totalduration").html(timestr);
+					
+				}
+			
+				break;
+			
 			default:
 				
 				console.warn("Unknown event " + id);
