@@ -4,8 +4,8 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
-	server: new ServerAPI("http://127.0.0.1/SmioIIS/BackendService.svc"),
-	map: new MapHelper,
+	server: new ServerAPI("http://78.91.38.141/SmioIIS/BackendService.svc"),
+	map: null,
 
     // Application Constructor
     initialize: function() {
@@ -14,8 +14,6 @@ var app = {
 		
 		app.session = new Session();
 		app.location = new GeoLocation({}, app.onLocationUpdate);
-		
-		app.map.init();
 		
         this.bindEvents();
     },
@@ -113,35 +111,6 @@ var app = {
 				
 				$.mobile.changePage("../pages/history.html");
 				
-				// Add history
-				$(document).bind("pageinit", function() {
-				
-					var logs = app.session.userData.logs;
-				
-					for(var i = 0; i < logs.length; i++) {
-					
-						var log_id = logs[i];
-						var timestr = (new Date(log_id)).toLocaleString();
-						
-						var log = app.session.getLocalLog(log_id);
-						
-						var p = log.data.meta.purpose || -1;
-						
-						$("#logview").append("\
-							<li><a href=\"#\">\
-							<h3>" + timestr + "</h3>\
-							<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
-							<span class=\"ui-li-count\">1</span>\
-							<p class=\"ui-li-aside\">Aside</p>\
-							</a></li>"
-						);
-					
-					};
-					
-					$('#logview').listview('refresh');
-				
-				});
-				
 				break;
 				
 			case "uploadtrip":
@@ -215,6 +184,7 @@ var app = {
 		}
     
 		app.isTracking = true;
+		app.map = new MapHelper();
 		app.log = new Logger();
 		app.location.start();
     
@@ -269,8 +239,10 @@ var app = {
 		}).bind(this);
 		
 		var userObj = {
-			username: username,
-			pinCode: password
+			user: {
+				userName: username,
+				pinCode: password			
+			}
 		};
 		
 		//this.server.createUser(userObj, onServerResponse);

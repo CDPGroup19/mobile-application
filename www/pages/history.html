@@ -1,4 +1,39 @@
 <div data-role="page" data-theme="a">
+
+<script>
+
+// Add history
+$(document).one("pageinit", function() {
+
+	var logs = app.session.userData.logs;
+
+	for(var i = 0; i < logs.length; i++) {
+	
+		var log_id = logs[i];
+		var timestr = (new Date(log_id)).toLocaleString();
+		
+		var log = app.session.getLocalLog(log_id);
+		
+		var p = log.data.meta.purpose || -1;
+		
+		$("#logview").append("\
+			<li><a href=\"#\">\
+			<h3>" + timestr + "</h3>\
+			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
+			<span class=\"ui-li-count\">1</span>\
+			<p class=\"ui-li-aside\">Aside</p>\
+			</a></li>"
+		);
+	
+	};
+	
+	$('#logview').listview('refresh');
+
+});
+
+</script>
+
+
     	<div data-role="header" data-theme="a">
              <p>History</p>
         </div>

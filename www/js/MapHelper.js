@@ -1,10 +1,26 @@
 var MapHelper = function() {
 
-	this.lineCoords = [];
+	this._running = false;
+	
 	this.map = null;
 	
-	this.marker = null;
-	this.line = null;
+	this.center = new google.maps.LatLng(63.4122, 10.4388);
+	
+	this.marker = new google.maps.Marker ({ 
+		animation: google.maps.Animation.DROP,
+		position: this.center
+	});
+	
+	this.line = new google.maps.Polyline({ 
+		path: [],
+		strokeColor: "#ff0000",
+		strokeOpacity: 1.0,
+		strokeWeight: 3,
+		editable: !true,
+		draggable: !true
+	});
+	
+	this.lineCoords = this.line.getPath();
 	
 	var update = function(position) {
 		
@@ -28,43 +44,21 @@ var MapHelper = function() {
 	
 		console.warn("Creation called");
 		
-		var center = new google.maps.LatLng(63.4122, 10.4388);
-		
-		var options = { 
-			zoom: 15, 
-			center: center, 
-			disableDefaultUI: true,
-			mapTypeId: google.maps.MapTypeId.ROADMAP 
-		};
-		
 		var $content = $("#map");
 		
 		$content.height (screen.height - 110);
 		
-		this.map = new google.maps.Map($content[0], options);
-		
-		$.mobile.changePage ($("#tracking"));
-		
-		var lineCoords = [];
-		
-		this.marker = new google.maps.Marker ({ 
-			map: this.map, 
-			animation: google.maps.Animation.DROP,
-			position: center
+		this.map = new google.maps.Map($content[0], { 
+			zoom: 15, 
+			center: this.center, 
+			disableDefaultUI: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP 
 		});
-		
-		this.line = new google.maps.Polyline({ 
-			path: lineCoords,
-			strokeColor: "#ff0000",
-			strokeOpacity: 1.0,
-			strokeWeight: 3,
-			editable: !true,
-			draggable: !true
-		});
-		
-		this.lineCoords = this.line.getPath();
 		
 		this.line.setMap(this.map);
+		this.marker.setMap(this.map);
+		
+		this._running = true;
 		
 	};
 	

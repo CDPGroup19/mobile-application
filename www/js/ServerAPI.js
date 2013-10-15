@@ -34,18 +34,17 @@ ServerAPI.prototype.submitData = function(action, obj, callback) {
 	var apiUri = this.getUri(action);
 	var _callback = this.onServerResponse.bind(this, callback);
 
-	xmlhttp.open("POST", apiUri, true);
-	xmlhttp.setRequestHeader("Content-type","application/json; charset=utf-8");
-	
-	xmlhttp.onreadystatechange = function() {           
-		if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-			_callback(xmlhttp.responseText);
-		}
-		// @TODO: error handling
-		console.log("ServerAPI: State change, status=" + xmlhttp.status);
-	}
-	
-	xmlhttp.send(objJSON);
+	$.ajax({
+		type: 'POST',
+		url: apiUri,
+		contentType: "application/json",
+		crossDomain: true,
+		dataType: XMLHttpRequest,
+		success: _callback,
+		error: function(e) {
+			console.warn("Ajax error", e);
+		},
+	});
 	
 };
 
