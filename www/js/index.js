@@ -183,16 +183,59 @@ var app = {
 			return;
 		}
 		
-		app.session.addLocalLog(this.log);
+		return app.session.addLocalLog(this.log);
     
     },
     
     uploadTrip: function() {
 		
 		// Store locally before uploading
-		app.storeLocalTrip();
+		var id = app.storeLocalTrip();
 		
 		// @TODO
+		
+		// ex
+		/*
+		
+			{
+				id: 12309182309812,
+				user: {
+					userName: "lars",
+					pinCode: "1234"
+				},
+				trip: {
+					meta: {
+						// Timestamp
+						startTime: 123128371928,
+						// Trip distance (km)
+						distance: 1239.2312
+					},
+					entries: [
+						[1230921832, 12.2312, 10.32122], // time, latitude, longitude
+						[1230921838, 12.2315, 10.32125],
+						[1230921840, 12.2323, 10.32129],
+					]
+				}
+			}
+		
+		*/
+		
+		console.log("SUBMITTING TRIP TO REMOTE SERVER");
+		
+		this.server.submitReport({
+			
+			id: id,
+			
+			user: {
+				userName: app.session.userData.username,
+				pinCode: app.session.userData.password
+			},
+			
+			trip: this.log.toSerializableObject
+			
+		}, function(e) {
+			console.log("done! response: ", e);
+		});
 		
     },
     

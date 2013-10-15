@@ -13,6 +13,7 @@ var ServerAPI = function(serverUri) {
 
 ServerAPI.Request = {
 	INSERT_USER: "InsertNewUser",
+	INSERT_TRIP: "InsertTripData",
 };
 
 ServerAPI.prototype.getUri = function(action) {
@@ -69,8 +70,9 @@ ServerAPI.prototype.createUser = function(userObj, callback) {
 
 };
 
-ServerAPI.prototype.submitReport = function() {
+ServerAPI.prototype.submitReport = function(obj, callback) {
 
 	// @TODO
+	this.submitData(ServerAPI.Request.INSERT_TRIP, obj, callback);
 
 };
