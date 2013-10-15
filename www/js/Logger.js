@@ -15,6 +15,8 @@ var LogEntry = function(time, latitude, longitude) {
 var Logger = function() {
 	this.startTime = Date.now();
 	this.entries = [];
+	// Meta data for the trip
+	this.meta = {};
 };
 
 /**
@@ -33,8 +35,23 @@ Logger.prototype.addEntry = function(position) {
 
 };
 
+Logger.TRIP_PURPOSE = {
+	-1: "Unknown",
+	0: "Work",
+	1: "Business",
+	2: "School",
+	3: "Accompany others",
+	4: "Shopping service",
+	5: "Leisure",
+	6: "Home",
+};
+
+Logger.prototype.__defineSetter__("Purpose", function(value) {
+	this.meta.purpose = Number(value);
+});
+
 /** 
-  * Get set of logger data with fields for server API
+  * Get set of logger data with fields for server API/storage
   *
   **/
 Logger.prototype.toSerializableObject = function() {
@@ -49,6 +66,8 @@ Logger.prototype.toSerializableObject = function() {
 	
 	}
 
-	return out;
-	
+	return {
+		data: this.meta,
+		entries: out
+	};
 };

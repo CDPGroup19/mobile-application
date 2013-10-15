@@ -84,6 +84,11 @@ var app = {
 			break;
 			case "ontrackend":
 				app.stopTracking();
+				
+				var tripPurpose = $("#selectDestination option:selected").val();
+				
+				app.log.Purpose = parseInt(tripPurpose, 10);
+				
 				$.mobile.changePage("../pages/trackingList.html");
 			break;
 			case "savetrip":
