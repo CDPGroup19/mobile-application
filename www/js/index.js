@@ -55,7 +55,9 @@ var app = {
         var username, password, password2;
         
         switch(id) {
+			
 			case "onusercreation":
+				
 				console.log("Request to create new user");
 				
 				username = $("#usernameInput")[0].value;
@@ -66,7 +68,8 @@ var app = {
 				
 				app.createUser(username, password);
 				
-			break;
+				break;
+				
 			case "onloginrequest":
 				
 				username = $("#usernameInput")[0].value;
@@ -74,15 +77,23 @@ var app = {
 				
 				app.signIn(username, password);
 				
-			break;
+				break;
+			
 			case "loginsuccess":
+				
 				console.log("Login was OK");
 				$.mobile.changePage("../pages/tracking.html");
-			break;
+				
+				break;
+			
 			case "ontrackstart":
+				
 				app.startTracking();
-			break;
+				
+				break;
+				
 			case "ontrackend":
+				
 				app.stopTracking();
 				
 				var tripPurpose = $("#selectDestination option:selected").val();
@@ -90,24 +101,70 @@ var app = {
 				app.log.Purpose = parseInt(tripPurpose, 10);
 				
 				$.mobile.changePage("../pages/trackingList.html");
-			break;
+				
+				break;
+			
 			case "savetrip":
 				// Save trip locally
 				console.log("Saving trip locally");
 				app.storeLocalTrip();
-			break;
+				
+				console.log("changing to history page");
+				
+				$.mobile.changePage("../pages/history.html");
+				
+				// Add history
+				$(document).bind("pageinit", function() {
+				
+					var logs = app.session.userData.logs;
+				
+					for(var i = 0; i < logs.length; i++) {
+					
+						var log_id = logs[i];
+						var timestr = (new Date(log_id)).toLocaleString();
+						
+						var log = app.session.getLocalLog(log_id);
+						
+						var p = log.data.meta.purpose || -1;
+						
+						$("#logview").append("\
+							<li><a href=\"#\">\
+							<h3>" + timestr + "</h3>\
+							<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
+							<span class=\"ui-li-count\">1</span>\
+							<p class=\"ui-li-aside\">Aside</p>\
+							</a></li>"
+						);
+					
+					};
+					
+					$('#logview').listview('refresh');
+				
+				});
+				
+				break;
+				
 			case "uploadtrip":
+				
 				// Save locally and upload
 				app.uploadTrip();
+				
 				console.log("Uploading trip");
-			break;
+				
+				break;
+				
 			case "discardtrip":
+				
 				// Discard
 				console.log("Discarding trip");
+				
 				// Go back to tracking
 				$.mobile.changePage("../pages/tracking.html");
-			break;
+				
+				break;
+				
 			default:
+				
 				console.warn("Unknown event " + id);
         }
         
@@ -117,6 +174,7 @@ var app = {
     
 		if(!(this.log instanceof Logger)) {
 			console.warn("App: Attempted to store local trip, but no trip was in memory!");
+			return;
 		}
 		
 		app.session.addLocalLog(this.log);

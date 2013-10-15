@@ -13,11 +13,23 @@ var LogEntry = function(time, latitude, longitude) {
   *
   **/
 var Logger = function() {
-	this.startTime = Date.now();
 	this.entries = [];
 	// Meta data for the trip
-	this.meta = {};
+	this.meta = {
+		startTime: Date.now()
+	};
 };
+
+Logger.TRIP_PURPOSE = ({
+	"-1": "Unknown",
+	0: "Work",
+	1: "Business",
+	2: "School",
+	3: "Accompany others",
+	4: "Shopping service",
+	5: "Leisure",
+	6: "Home",
+});
 
 /**
   * Add new entry to the log
@@ -33,17 +45,6 @@ Logger.prototype.addEntry = function(position) {
 		position.coords.longitude
 	));
 
-};
-
-Logger.TRIP_PURPOSE = {
-	-1: "Unknown",
-	0: "Work",
-	1: "Business",
-	2: "School",
-	3: "Accompany others",
-	4: "Shopping service",
-	5: "Leisure",
-	6: "Home",
 };
 
 Logger.prototype.__defineSetter__("Purpose", function(value) {
@@ -67,7 +68,7 @@ Logger.prototype.toSerializableObject = function() {
 	}
 
 	return {
-		data: this.meta,
+		meta: this.meta,
 		entries: out
 	};
 };
