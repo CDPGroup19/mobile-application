@@ -1,18 +1,18 @@
 
-$( document ).bind( "pageinit", function( event, data ) {
-	var startButton = $("#start");
-	var stopButton = $("#stop");
+//$( document ).bind( "pageinit", function( event, data ) {
+//	var startButton = $("#start");
+//	var stopButton = $("#stop");
 	
-	stopButton.hide();
+//	stopButton.hide();
 
-	startButton.click(function(){
-		stopButton.show();
-        startButton.hide();
-	});
+//	startButton.click(function(){
+//		stopButton.show();
+//        startButton.hide();
+//	});
 	
 	
-	stopButton.click(function(){
-		startButton.show();
-       	stopButton.hide();
-	});
-});
+//	stopButton.click(function(){
+//		startButton.show();
+//       	stopButton.hide();
+//	});
+//});
