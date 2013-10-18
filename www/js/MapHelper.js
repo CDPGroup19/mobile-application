@@ -33,12 +33,13 @@ var MapHelper = function() {
 		var options = { 
 			zoom: 15, 
 			center: center, 
+			disableDefaultUI: true,
 			mapTypeId: google.maps.MapTypeId.ROADMAP 
 		};
 		
 		var $content = $("#map");
 		
-		$content.height (screen.height - 50);
+		$content.height (screen.height - 110);
 		
 		this.map = new google.maps.Map($content[0], options);
 		

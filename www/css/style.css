@@ -221,9 +221,6 @@ div#stop .ui-btn-hover-a, div#stop .ui-btn-down-a{
 }
 
 div#durationLength{
-	/* Webkit (Safari/Chrome 10) */ 
-/*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0,0,0,0)), color-stop(1, rgba(0,0,0,1)));
-height: 120px;*/
 position: absolute;
 z-index:99;
 width: 100%;
