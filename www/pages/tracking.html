@@ -1,13 +1,28 @@
 <div id="tracking" data-role="page" data-theme="a">
-    <div class="headerMenu" data-role="header" data-theme="a">
-        <a style="background: 0; padding:0;" href="#" class="showMenu">
-            <img src="../images/menu-icon.png"/>
-        </a>
-        
+    <div data-role="header" data-position="fixed" data-theme="a">
+        <p>Tracking</p>
 	</div>
     <div data-role="content" id="trackingContent" data-theme="a">
-      	<div id="trackingButtons">
-        	<div id="selectDestination" data-role="fieldcontain" style="width:inherit;" data-theme="f" data-inset="false">
+      	<div id="durationLength">
+            <div id="duration">
+                <p>Duration:</p>
+                <h3>10:03</h3>
+            </div>
+            <div id="length">
+            	<p>Distance:</p>
+                <h3>2,3 km</h3>
+            </div>
+        </div>
+        <div id="trackingButtons">
+        	<div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton">
+                <a data-role="button"></a>
+            </div>
+            <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton">
+                <a data-role="button"></a>
+            </div>
+        </div>
+        
+        <div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false">
                 <!--<label for="destination" class="select"></label>-->
                 <select name="destination" id="destination">
                   <option value="-1">Select your destination...</option>
@@ -19,27 +34,21 @@
                   <option value="5">Leisure</option>
                   <option value="6">Home</option>
                 </select>
-            </div>
-            <div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton">
-                <a data-role="button"></a>
-            </div>
-            <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton">
-                <a data-role="button"></a>
-            </div>
-            
         </div>
-        <div id="map">
+            
+            
+        <div id="map" style="position: fixed; background-size:cover;">
+        	<img src="images/Map.png"/>
         </div>
     </div>
-    <div data-role="footer" data-theme="f" id="durationLength">
-            <div id="duration">
-                <p>Duration:</p>
-                <h1>10:03</h1>
-            </div>
-            <div id="length">
-            	<p>Length:</p>
-                <h1>2,3 km</h1>
-            </div>
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+      <div id="menuButtons"data-inline="true" data-type="horizontal">
+          <a href="#" data-role="button" data-inline="true"><img src="../images/person.png"/></a>
+          <a href="#" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a>
+          <a href="#" data-role="button" data-inline="true"><img src="../images/book.png"/></a>
+          <a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a>
+      </div>
+    	
     </div>
 </div>
 
