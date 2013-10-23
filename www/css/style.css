@@ -82,8 +82,12 @@ div#mainmenu .ui-btn-inner{
 }
 
 #logoFront img{
-	margin-left: 70px;
-	margin-top: 100px;
+	position:absolute;
+	margin-left: auto;
+	margin-top: auto;
+	width: 90%;
+	vertical-align:central;
+	margin-top:20%;
 }
 
 #loginSignup .ui-footer .ui-btn{
@@ -137,16 +141,16 @@ div#tracking .ui-content{
 
 div#selectDestination{
 	width: inherit;
-	margin-top: 65%;
 	position: absolute;
 	z-index: 99;
+	padding: 0;
 	
 }
 
 div#trackingButtons{
 	position: absolute;
 	z-index: 99;
-	margin-top:45%;
+	margin-top:50%;
 	
 }
 
@@ -226,7 +230,9 @@ z-index:99;
 width: 100%;
 color: #333;
 text-shadow:none;
+margin-top: 25px;
 }
+
 div#durationLength h3{
 	font-size: 30px;
 	font-weight:lighter;

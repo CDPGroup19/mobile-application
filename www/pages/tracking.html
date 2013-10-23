@@ -47,6 +47,20 @@
         <p>Tracking</p>
 	</div>
     <div data-role="content" id="trackingContent" data-theme="a">
+    	<div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false">
+                <!--<label for="destination" class="select"></label>-->
+                <select name="destination" id="destination">
+                  <option value="-1">Select your destination...</option>
+                  <option value="0">Work</option>
+                  <option value="1">Business</option>
+                  <option value="2">School</option>
+                  <option value="3">Accompany others</option>
+                  <option value="4">Shopping/service</option>
+                  <option value="5">Leisure</option>
+                  <option value="6">Home</option>
+                </select>
+        </div>
+        
       	<div id="durationLength">
             <div id="duration">
                 <p>Duration:</p>
@@ -66,19 +80,7 @@
             </div>
         </div>
         
-        <div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false">
-                <!--<label for="destination" class="select"></label>-->
-                <select name="destination" id="destination">
-                  <option value="-1">Select your destination...</option>
-                  <option value="0">Work</option>
-                  <option value="1">Business</option>
-                  <option value="2">School</option>
-                  <option value="3">Accompany others</option>
-                  <option value="4">Shopping/service</option>
-                  <option value="5">Leisure</option>
-                  <option value="6">Home</option>
-                </select>
-        </div>
+        
             
             
         <div id="map" style="position: fixed; background-size:cover;">
