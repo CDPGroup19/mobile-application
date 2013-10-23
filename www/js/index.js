@@ -205,6 +205,8 @@ var app = {
 				},
 				trip: {
 					meta: {
+						// Purpose
+						purpose: 0,
 						// Timestamp
 						startTime: 123128371928,
 						// Trip distance (km)
@@ -222,7 +224,7 @@ var app = {
 		
 		console.log("SUBMITTING TRIP TO REMOTE SERVER");
 		
-		this.server.submitReport({
+		var jsonObj = {
 			
 			id: id,
 			
@@ -231,9 +233,11 @@ var app = {
 				pinCode: app.session.userData.password
 			},
 			
-			trip: this.log.toSerializableObject
+			trip: this.log.toSerializableObject()
 			
-		}, function(e) {
+		};
+		
+		this.server.submitReport(jsonObj, function(e) {
 			console.log("done! response: ", e);
 		});
 		
