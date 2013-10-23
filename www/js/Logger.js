@@ -17,7 +17,8 @@ var Logger = function() {
 	// Meta data for the trip
 	this.meta = {
 		startTime: Date.now(),
-		distance: 0
+		distance: 0,
+		purpose: 0
 	};
 };
 
