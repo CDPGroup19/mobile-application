@@ -37,9 +37,7 @@ Logger.prototype.updateDistance = function(coords) {
 	
 	if(this._lastCoords !== undefined) {
 		var d = Logger.getCoordPointDistance(this._lastCoords, coords);
-		if(d>2){
-			this.meta.distance += d;
-		}
+		this.meta.distance += d;
 	}
 	
 	this._lastCoords = coords;
