@@ -1,6 +1,5 @@
-<div id="tracking" data-role="page" data-theme="a">
-
-	<script>
+<div id="tracking" data-role="page" data-theme="a"> 
+  <script>
 
 	
 	 $(document).one("pageinit", function() {
@@ -43,61 +42,48 @@
 	 });
 	 
 	</script>
-    <div data-role="header" data-position="fixed" data-theme="a">
-        <p>Tracking</p>
-	</div>
-    <div data-role="content" id="trackingContent" data-theme="a">
-    	<div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false">
-                <!--<label for="destination" class="select"></label>-->
-                <select name="destination" id="destination">
-                  <option value="-1">Select the purpose of the trip...</option>
-                  <option value="0">Work</option>
-                  <option value="1">Business</option>
-                  <option value="2">School</option>
-                  <option value="3">Accompany others</option>
-                  <option value="4">Shopping/service</option>
-                  <option value="5">Leisure</option>
-                  <option value="6">Home</option>
-                </select>
-        </div>
-        
-      	<div id="durationLength">
-            <div id="duration">
-                <p>Duration:</p>
-                <h3 id="totalduration">0:0</h3>
-            </div>
-            <div id="length">
-            	<p>Distance:</p>
-                <h3 id="totaldistance">0 m</h3>
-            </div>
-        </div>
-        <div id="trackingButtons">
-        	<div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton">
-                <a data-role="button"></a>
-            </div>
-            <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton">
-                <a data-role="button"></a>
-            </div>
-        </div>
-        
-        
-            
-            
-        <div id="map" style="position: fixed; background-size:cover;">
-        	<img src="../images/Map.png"/>
-        </div>
+  <div data-role="header" data-position="fixed" data-theme="a">
+    <p>Tracking</p>
+  </div>
+  <div data-role="content" id="trackingContent" data-theme="a">
+    <div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false"> 
+      <!--<label for="destination" class="select"></label>-->
+      <select name="destination" id="destination">
+        <option value="-1">Select the purpose of the trip...</option>
+        <option value="0">Work</option>
+        <option value="1">Business</option>
+        <option value="2">School</option>
+        <option value="3">Accompany others</option>
+        <option value="4">Shopping/service</option>
+        <option value="5">Leisure</option>
+        <option value="6">Home</option>
+      </select>
+      <!--This part doesn't work... I don't know why it is not clickable :/-->
+      <select name="tripMode" id="tripMode">
+        <option>Select trip mode...</option>
+        <option>Bus</option>
+        <option>Tram</option>
+        <option>Subway</option>
+        <option>Walk</option>
+      </select>
     </div>
-    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
-      <div id="menuButtons"data-inline="true" data-type="horizontal">
-          <a href="#" data-role="button" data-inline="true"><img src="../images/person.png"/></a>
-          <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a>
-          <a href="history.html" data-role="button" data-inline="true"><img src="../images/book.png"/></a>
-          <a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a>
+    <div id="durationLength">
+      <div id="duration">
+        <p>Duration:</p>
+        <h3 id="totalduration">0:0</h3>
       </div>
-    	
+      <div id="length">
+        <p>Distance:</p>
+        <h3 id="totaldistance">0 m</h3>
+      </div>
     </div>
+    <div id="trackingButtons">
+      <div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton"> <a data-role="button"></a> </div>
+      <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton"> <a data-role="button"></a> </div>
+    </div>
+    <div id="map" style="position: fixed; background-size:cover;"> <img src="../images/Map.png"/> </div>
+  </div>
+  <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+    <div id="menuButtons" data-inline="true" data-type="horizontal"> <a href="#" data-role="button" data-inline="true"><img src="../images/person.png"/></a> <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a> <a href="history.html" data-role="button" data-inline="true"><img src="../images/book.png"/></a> <a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a> </div>
+  </div>
 </div>
-
-
-
-
