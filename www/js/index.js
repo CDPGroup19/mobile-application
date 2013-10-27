@@ -176,6 +176,35 @@ var app = {
         
     },
     
+    // Restore user info from local data
+    // Called when userinfo.html is loaded
+    
+    restoreUserInfo: function() {
+    
+		var fields = ['birthyear', 'maritalStatus', 'numChildren', 'residence', 'area', 'occupation'];
+    
+		for(var i = 0; i < fields.length; i++) {
+			
+			$('#' + fields[i])[0].value = this.session.getLocalUserInfo(fields[i]);
+			$('#' + fields[i]).selectmenu();
+			$('#' + fields[i]).selectmenu('refresh', true);
+		}
+		
+    },
+    
+    // User info update
+    
+    onUserInfoChanged: function(elem) {
+		
+		var key = elem.id;
+		var value = elem.value;
+		
+		// Validate?
+		
+		this.session.updateLocalUserInfo(key, value);
+		
+    },
+    
     storeLocalTrip: function() {
     
 		if(!(this.log instanceof Logger)) {

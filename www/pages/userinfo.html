@@ -20,10 +20,20 @@ $( document ).bind( "pageinit", function( event, data ) {
 
 <div id="userinfo" data-role="page" data-theme="a">
 	
+	<script>
+		
+		
+		$(document).one('pageshow', function() {
+			console.log("Restoring data");
+			app.restoreUserInfo();
+		});
+		
+	</script>
+	
 	<div data-role="content" data-theme="a">
     	<h3 style="font-weight: lighter;">About you:</h3>
     
-	  	<div data-role="fieldcontain"  >
+	  	<div data-role="fieldcontain">
             
             <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
               <legend>Gender:</legend>
@@ -35,7 +45,7 @@ $( document ).bind( "pageinit", function( event, data ) {
       
             <label for="birthyear" class="select">Age group:</label>
             
-            <select name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
+            <select onchange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
               <option value="none">I prefer not to tell</option>
               <option value="group1">1951-1960</option>
               <option value="group2">1961-1970</option>
@@ -48,8 +58,8 @@ $( document ).bind( "pageinit", function( event, data ) {
         
         <div data-role="fieldcontain" >
             <label for="maritalStatus" class="select">Marital status:</label>
-            <select name="maritalStatus" id="maritalStatus" data-icon="arrow-d" >
-              <option value="maritalStat">I prefer not to tell</option>
+            <select onchange="app.onUserInfoChanged(this)" name="maritalStatus" id="maritalStatus" data-icon="arrow-d" >
+              <option value="none">I prefer not to tell</option>
               <option value="notMarried">Unwed</option>
               <option value="married">Married</option>
               <option value="partner">Partner</option>
@@ -58,7 +68,7 @@ $( document ).bind( "pageinit", function( event, data ) {
             </select>
         
             <label for="numChildren" class="select">Number of children:</label>
-				<select name="numChildren" id="numChildren" data-icon="arrow-d" >
+				<select onchange="app.onUserInfoChanged(this)" name="numChildren" id="numChildren" data-icon="arrow-d" >
 				  <option value="none">I prefer not to tell</option>
 				  <option value="0">0</option>
 				  <option value="1">1</option>
@@ -85,7 +95,7 @@ $( document ).bind( "pageinit", function( event, data ) {
        
 	  	<div data-role="fieldcontain" >
 	    	<label for="residence" class="select">Residence:</label>
-	    	<select name="residence" id="residence">
+	    	<select onchange="app.onUserInfoChanged(this)" name="residence" id="residence">
               <option value="none">I prefer not to tell</option>
               <option value="Oslo">Oslo</option>
               <option value="Baerum">B&aelig;rum</option>
@@ -98,7 +108,7 @@ $( document ).bind( "pageinit", function( event, data ) {
 	  		<div id="area-wrapper" style="display:none">
         	
             	<label for="area" class="select">Administration area:</label>
-            	<select name="area" id="area">
+            	<select onchange="app.onUserInfoChanged(this)" name="area" id="area">
                   <option value="none">I prefer not to tell</option>
                   <option value="Alna">Alna</option>
                   <option value="Bjerke">Bjerke</option>
@@ -107,9 +117,9 @@ $( document ).bind( "pageinit", function( event, data ) {
           	</div>
       	</div>
         
-	  	<div data-role="fieldcontain" id="occupation">
+	  	<div data-role="fieldcontain">
 	    	<label for="occupation" class="select">Occupation:</label>
-	    	<select name="occupation" id="occupation">
+	    	<select onchange="app.onUserInfoChanged(this)" name="occupation" id="occupation">
               <option value="none">I prefer not to tell</option>
               <option value="Employed">Employed</option>
               <option value="Retired">Retired</option>

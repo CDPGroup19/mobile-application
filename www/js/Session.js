@@ -22,6 +22,9 @@ Session.prototype.checkUserData = function(userData) {
 	if(!(userData.logs instanceof Array))
 		userData.logs = [];
 	
+	if(!(userData.info instanceof Object))
+		userData.info = {};
+	
 };
 
 // Add a log object to the local storage
@@ -111,6 +114,22 @@ Session.prototype.removeLocalLog = function(id) {
 
 };
 
+Session.prototype.getLocalUserInfo = function(key) {
+	
+	var data = this.userData.info[key];
+	
+	return data == undefined ? "none" : data;
+			
+};
+
+Session.prototype.updateLocalUserInfo = function(key, value) {
+	
+	this.userData.info[key] = value;
+	
+	this.updateLocalUser();
+	
+};
+
 // Update the storaged object for active local user
 Session.prototype.updateLocalUser = function() {
 	
@@ -175,6 +194,7 @@ Session.prototype.createLocalUser = function(username, password) {
 		username: username,
 		password: password,
 		logs: [],
+		info: {}
 	};
 	
 	this.storage.setItem(this.getUserKey(username), JSON.stringify(userData));
