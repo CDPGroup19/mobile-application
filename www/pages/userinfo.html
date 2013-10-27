@@ -23,9 +23,35 @@ $( document ).bind( "pageinit", function( event, data ) {
 	<script>
 		
 		
-		$(document).one('pageshow', function() {
+		$(document).one('pagebeforeshow', function() {
+			
+			// Restore
+			
 			console.log("Restoring data");
 			app.restoreUserInfo();
+			
+			// Add listeners for radio select button
+			
+			$("input[name=Gender]:radio").change(function() {
+			
+				console.log("gender updated");
+			
+				var checked = $('input[name="Gender"]:checked').val();
+			
+				app.onUserInfoChanged({ id: 'Gender', value: checked });
+			
+			});
+			
+			$("input[name=travelcard]:radio").change(function() {
+			
+				console.log("travel card updated");
+				
+				var checked = $('input[name="travelcard"]:checked').val();
+			
+				app.onUserInfoChanged({ id: 'travelcard', value: checked });
+			
+			});
+			
 		});
 		
 	</script>
@@ -37,9 +63,9 @@ $( document ).bind( "pageinit", function( event, data ) {
             
             <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
               <legend>Gender:</legend>
-              <input type="radio" name="Gender" id="male"  value="" />
+              <input type="radio" name="Gender" id="male"  value="male" />
               <label for="male">Male</label>
-              <input type="radio" name="Gender" id="female" value="" />
+              <input type="radio" name="Gender" id="female" value="female" />
               <label for="female">Female</label>
             </fieldset>
       
@@ -79,15 +105,15 @@ $( document ).bind( "pageinit", function( event, data ) {
 				</select>
         </div>
         
-	  	<div data-role="fieldcontain" id="travelcard">
+	  	<div data-role="fieldcontain">
         	<div id="cardText" style="width:100%">
           			<p>Do you have travel card from Ruter?</p>
           	</div>
 	    	<fieldset data-role="controlgroup" data-type="horizontal">
                 	<legend> </legend>
-               		<input type="radio" name="travelcard" id="travelcard_yes" value="" />
+               		<input type="radio" name="travelcard" id="travelcard_yes" value="travelcard_yes" />
                     <label for="travelcard_yes">yes</label>
-                    <input type="radio" name="travelcard" id="travelcard_no" value="" />
+                    <input type="radio" name="travelcard" id="travelcard_no" value="travelcard_no" />
                     <label for="travelcard_no">no</label>
          		 
         	</fieldset>

@@ -180,14 +180,32 @@ var app = {
     // Called when userinfo.html is loaded
     
     restoreUserInfo: function() {
+		
+		// Restore selection lists
     
 		var fields = ['birthyear', 'maritalStatus', 'numChildren', 'residence', 'area', 'occupation'];
     
 		for(var i = 0; i < fields.length; i++) {
 			
-			$('#' + fields[i])[0].value = this.session.getLocalUserInfo(fields[i]);
+			$('#' + fields[i]).attr("value", this.session.getLocalUserInfo(fields[i]));
 			$('#' + fields[i]).selectmenu();
 			$('#' + fields[i]).selectmenu('refresh', true);
+		}
+		
+		// Restore radio check buttons
+		
+		var radiobuttons = ['Gender', 'travelcard'];
+		
+		for(var i = 0; i < radiobuttons.length; i++) {
+			
+			var value = this.session.getLocalUserInfo(radiobuttons[i]);
+			
+			if(value != 'none') {
+				
+				$('#' + value).attr("checked", true).checkboxradio("refresh", true);
+			
+			}
+			
 		}
 		
     },
