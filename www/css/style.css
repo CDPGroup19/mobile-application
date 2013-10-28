@@ -155,8 +155,10 @@ div#selectPurposeMode{
 }
 
 div#selectPurposeMode .ui-btn-inner{
-	font-size: 14px;
+	font-size: 0.9em;
 	height: 21px;
+	padding: 8px 13px;
+	text-align: left;
 }
 div#selectDestination{
 	width: 50%;
