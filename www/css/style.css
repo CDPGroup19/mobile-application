@@ -9,6 +9,11 @@ input.ui-text-input{
 	background-color: whitesmoke;
 	}
 	
+@media screen and (min-width: 450px){
+.ui-field-contain .ui-input-text{
+	 width: 100% !important;
+	}
+}
 .ui-btn, .ui-btn-inner{
 	border-radius: 5px;
 	}
@@ -18,6 +23,21 @@ input.ui-text-input{
 }
 .ui-header p{
 	text-align:center;
+}
+.back{
+	background: transparent;
+	border: none;
+	-webkit-box-shadow: none !important;
+	box-shadow: none;
+	text-shadow: none;
+	padding: 0;
+	font-weight: lighter;
+}
+.back .ui-btn-inner{
+	color: white;
+	border: none;
+	font-size:1em;
+	
 }
 
 .ui-footer{
@@ -53,15 +73,10 @@ div#mainmenu .ui-btn-inner{
 				LOG IN 
 //////////////////////////////////////*/
 
-#loginSignup .ui-content img{
-	margin-left: auto;
-}
-
 #logoFront img{
 	position:absolute;
-	margin-left: auto;
-	margin-top: auto;
-	width: 90%;
+	margin-left: 9%;
+	width: 80%;
 	vertical-align:central;
 	margin-top:20%;
 }
