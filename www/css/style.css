@@ -139,12 +139,26 @@ div#tracking .ui-content{
 	padding: 0;
 }
 
-div#selectDestination{
+div#selectPurposeMode{
 	width: inherit;
 	position: absolute;
 	z-index: 99;
 	padding: 0;
+	font-size: 0.9em;
 	
+}
+
+div#selectPurposeMode .ui-btn-inner{
+	font-size: 14px;
+	height: 21px;
+}
+div#selectDestination{
+	width: 50%;
+	float: left;
+}
+div#selectMode{
+	width: 50%; 
+	float: right;
 }
 
 div#trackingButtons{
@@ -181,29 +195,24 @@ div#stop .ui-btn-up-a{
 	background:0;
 }
 div#start{
-	margin-left: 10px;
-	background: transparent;
 	background-image: url(../images/play.png) !important;
-	border-radius: 100px;
-            width: 70px;
-            height: 70px;
-            padding: 0px;
-            border: none;
-			box-shadow: none;}
+	}
 
 div#stop{
+	background-image: url(../images/stop.png) !important;
+			
+}
+
+div#start, div#stop{
 	margin-left: 10px;
 	background: transparent;
-	background-image: url(../images/stop.png) !important;
 	border-radius: 100px;
             width: 70px;
             height: 70px;
             padding: 0px;
             border: none;
-			box-shadow: none;
-			
-			
-}
+			box-shadow: none;	
+	}
 div#start .ui-btn-hover-a, div#start .ui-btn-down-a{
 	background-image: url(../images/play.png) !important;
 	border-radius: 100px;

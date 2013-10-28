@@ -46,26 +46,30 @@
     <p>Tracking</p>
   </div>
   <div data-role="content" id="trackingContent" data-theme="a">
-    <div style="width:100%;" id="selectDestination" data-role="fieldcontain" data-inset="false"> 
+    <div style="width:100%;" id="selectPurposeMode" data-role="fieldcontain" data-inset="false"> 
       <!--<label for="destination" class="select"></label>-->
-      <select name="destination" id="destination">
-        <option value="-1">Select the purpose of the trip...</option>
-        <option value="0">Work</option>
-        <option value="1">Business</option>
-        <option value="2">School</option>
-        <option value="3">Accompany others</option>
-        <option value="4">Shopping/service</option>
-        <option value="5">Leisure</option>
-        <option value="6">Home</option>
-      </select>
-      <!--This part doesn't work... I don't know why it is not clickable :/-->
-      <select name="tripMode" id="tripMode">
-        <option>Select trip mode...</option>
-        <option>Bus</option>
-        <option>Tram</option>
-        <option>Subway</option>
-        <option>Walk</option>
-      </select>
+          <div id="selectDestination">
+            <select name="destination" id="destination">
+                <option value="-1">Where are you going?</option>
+                <option value="0">Work</option>
+                <option value="1">Business</option>
+                <option value="2">School</option>
+                <option value="3">Accompany others</option>
+                <option value="4">Shopping/service</option>
+                <option value="5">Leisure</option>
+                <option value="6">Home</option>
+              </select>
+          </div>
+      
+          <div id="selectMode">
+            <select name="tripMode" id="tripMode">
+                <option>How are you traveling?</option>
+                <option>Bus</option>
+                <option>Tram</option>
+                <option>Subway</option>
+                <option>Walk</option>
+              </select>
+          </div>
     </div>
     <div id="durationLength">
       <div id="duration">
