@@ -66,33 +66,33 @@ $( document ).bind( "pageinit", function( event, data ) {
       <label for="birthyear" class="select">Age group:</label>
       <select onChange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
         <option value="none">I prefer not to tell</option>
-        <option value="group1">1951-1960</option>
-        <option value="group2">1961-1970</option>
-        <option value="group3">1971-1980</option>
-        <option value="group4">1981-1990</option>
-        <option value="group5">1991-2000</option>
-        <option value="group6">2001 or later</option>
+        <option value="1">1951-1960</option>
+        <option value="2">1961-1970</option>
+        <option value="3">1971-1980</option>
+        <option value="4">1981-1990</option>
+        <option value="5">1991-2000</option>
+        <option value="6">2001 or later</option>
       </select>
     </div>
     <div data-role="fieldcontain" >
       <label for="maritalStatus" class="select">Marital status:</label>
       <select onChange="app.onUserInfoChanged(this)" name="maritalStatus" id="maritalStatus" data-icon="arrow-d" >
         <option value="none">I prefer not to tell</option>
-        <option value="notMarried">Unwed</option>
-        <option value="married">Married</option>
-        <option value="partner">Partner</option>
-        <option value="divorced">Divorced</option>
-        <option value="widowed">Widowed</option>
+        <option value="1">Single</option>
+        <option value="2">Married</option>
+        <option value="3">Partner</option>
+        <option value="4">Divorced</option>
+        <option value="5">Widowed</option>
       </select>
       <label for="numChildren" class="select">Number of children:</label>
       <select onChange="app.onUserInfoChanged(this)" name="numChildren" id="numChildren" data-icon="arrow-d" >
         <option value="none">I prefer not to tell</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="more">5 or more</option>
+        <option value="1">0</option>
+        <option value="2">1</option>
+        <option value="3">2</option>
+        <option value="4">3</option>
+        <option value="5">4</option>
+        <option value="6">5 or more</option>
       </select>
     </div>
     <div data-role="fieldcontain">
@@ -111,10 +111,10 @@ $( document ).bind( "pageinit", function( event, data ) {
       <label for="residence" class="select">Residence:</label>
       <select onChange="app.onUserInfoChanged(this)" name="residence" id="residence">
         <option value="none">I prefer not to tell</option>
-        <option value="Oslo">Oslo</option>
-        <option value="Baerum">B&aelig;rum</option>
-        <option value="Asker">Asker</option>
-        <option value="Oppegaard">Oppegaard</option>
+        <option value="1">Oslo</option>
+        <option value="2">B&aelig;rum</option>
+        <option value="3">Asker</option>
+        <option value="4">Oppegaard</option>
       </select>
       
       <!-- Show only if Oslo is selected as residence -->
@@ -122,9 +122,9 @@ $( document ).bind( "pageinit", function( event, data ) {
         <label for="area" class="select">Administration area:</label>
         <select onChange="app.onUserInfoChanged(this)" name="area" id="area">
           <option value="none">I prefer not to tell</option>
-          <option value="Alna">Alna</option>
-          <option value="Bjerke">Bjerke</option>
-          <option value="Frogner">Frogner</option>
+          <option value="1">Alna</option>
+          <option value="2">Bjerke</option>
+          <option value="3">Frogner</option>
         </select>
       </div>
     </div>
@@ -132,13 +132,13 @@ $( document ).bind( "pageinit", function( event, data ) {
       <label for="occupation" class="select">Occupation:</label>
       <select onChange="app.onUserInfoChanged(this)" name="occupation" id="occupation">
         <option value="none">I prefer not to tell</option>
-        <option value="Employed">Employed</option>
-        <option value="Retired">Retired</option>
-        <option value="Student">Student</option>
-        <option value="MilitaryService">Military service</option>
-        <option value="WorkingAtHome">Working at home</option>
-        <option value="NotWorking">Not working</option>
-        <option value="Other">Other</option>
+        <option value="1">Employed</option>
+        <option value="2">Retired</option>
+        <option value="3">Student</option>
+        <option value="4">Military service</option>
+        <option value="5">Working at home</option>
+        <option value="6">Not working</option>
+        <option value="7">Other</option>
       </select>
     </div>
   </div>
