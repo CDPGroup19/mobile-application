@@ -13,36 +13,12 @@ input.ui-text-input{
 	border-radius: 5px;
 	}
 	
-.headerMenu a{
-	background-image: url("images/menu-icon.png");
-}
 .ui-header{
 	height: 50px;
 }
 .ui-header p{
 	text-align:center;
 }
-.ui-header .ui-btn-inner{
-	border: none;
-	padding: 0;
-}
-.ui-header .ui-btn{
-	box-shadow: none;
-	padding:0;
-}
-
-.ui-btn-right{
-	color:#ffffff;
-	border:0;
-	background:0;
-}
-
-.headerMenu a{
-	background: 0;
-	border: 0;
-	box-shadow: none;
-}
-
 
 .ui-footer{
 	position:fixed; 
