@@ -1,14 +1,4 @@
 /**
-  * Class for log entry
-  * 
-  **/
-var LogEntry = function(time, latitude, longitude) {
-	this.time = time;
-	this.latitude = latitude;
-	this.longitude = longitude;
-};
-
-/**
   * Data logger class. Contains the data for a trip.
   *
   **/
@@ -56,13 +46,17 @@ Logger.prototype.addEntry = function(position) {
 
 
 	this.updateDistance(position.coords);
-
-
-	this.entries.push(new LogEntry(
-		position.timestamp,
-		position.coords.latitude,
-		position.coords.longitude
-	));
+	
+	this.entries.push({
+		timestamp: position.timestamp,
+		latitude: position.coords.latitude,
+		longitude: position.coords.longitude,
+		altitude: position.coords.altitude,
+		accuracy: position.coords.accuracy,
+		altitudeAccuracy: position.coords.altitudeAccuracy,
+		heading: position.coords.heading,
+		speed: position.coords.speed
+	});
 
 };
 
@@ -95,7 +89,14 @@ Logger.prototype.toSerializableObject = function() {
 	
 		var entry = this.entries[i];
 	
-		out.push([entry.time, entry.latitude, entry.longitude]);
+		var outEntry = {};
+		
+		for(var i in entry) {
+			if(entry[i] !== undefined && entry[i] !== null)
+				outEntry[i] = entry[i];
+		}
+	
+		out.push(outEntry);
 	
 	}
 
