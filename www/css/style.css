@@ -126,6 +126,12 @@ div#mainmenu .ui-btn-inner{
 	margin-bottom:20px;
 }
 
+div#logOut{
+	margin-top:: 70px;
+	padding: 10px, 10px, 10px, 10px;
+	float:right;
+}
+
 /*//////////////////////////////////////
 				TRACKING
 //////////////////////////////////////*/
