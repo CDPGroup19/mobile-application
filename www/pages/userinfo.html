@@ -1,5 +1,4 @@
 <body>
-
 <script> 
 
 /*
@@ -16,11 +15,8 @@ $( document ).bind( "pageinit", function( event, data ) {
 });
 */
 </script>
-
-
-<div id="userinfo" data-role="page" data-theme="a">
-	
-	<script>
+<div id="userinfo" data-role="page" data-theme="a"> 
+  <script>
 		
 		
 		$(document).one('pagebeforeshow', function() {
@@ -55,122 +51,100 @@ $( document ).bind( "pageinit", function( event, data ) {
 		});
 		
 	</script>
-	
-	<div data-role="content" data-theme="a">
-    	<h3 style="font-weight: lighter;">About you:</h3>
-    
-	  	<div data-role="fieldcontain">
-            
-            <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
-              <legend>Gender:</legend>
-              <input type="radio" name="Gender" id="male"  value="male" />
-              <label for="male">Male</label>
-              <input type="radio" name="Gender" id="female" value="female" />
-              <label for="female">Female</label>
-            </fieldset>
+  <div data-role="header" data-theme="a">
+    <h3>About you</h3>
+    <a href="main.html" data-theme="a" id="logOut" class="ui-btn-right" style="color:white; margin-top:auto;">LogOut</a> </div>
+  <div data-role="content" data-theme="a">
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
+        <legend>Gender:</legend>
+        <input type="radio" name="Gender" id="male"  value="male" />
+        <label for="male">Male</label>
+        <input type="radio" name="Gender" id="female" value="female" />
+        <label for="female">Female</label>
+      </fieldset>
+      <label for="birthyear" class="select">Age group:</label>
+      <select onChange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
+        <option value="none">I prefer not to tell</option>
+        <option value="group1">1951-1960</option>
+        <option value="group2">1961-1970</option>
+        <option value="group3">1971-1980</option>
+        <option value="group4">1981-1990</option>
+        <option value="group5">1991-2000</option>
+        <option value="group6">2001 or later</option>
+      </select>
+    </div>
+    <div data-role="fieldcontain" >
+      <label for="maritalStatus" class="select">Marital status:</label>
+      <select onChange="app.onUserInfoChanged(this)" name="maritalStatus" id="maritalStatus" data-icon="arrow-d" >
+        <option value="none">I prefer not to tell</option>
+        <option value="notMarried">Unwed</option>
+        <option value="married">Married</option>
+        <option value="partner">Partner</option>
+        <option value="divorced">Divorced</option>
+        <option value="widowed">Widowed</option>
+      </select>
+      <label for="numChildren" class="select">Number of children:</label>
+      <select onChange="app.onUserInfoChanged(this)" name="numChildren" id="numChildren" data-icon="arrow-d" >
+        <option value="none">I prefer not to tell</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="more">5 or more</option>
+      </select>
+    </div>
+    <div data-role="fieldcontain">
+      <div id="cardText" style="width:100%">
+        <p>Do you have travel card from Ruter?</p>
+      </div>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <legend> </legend>
+        <input type="radio" name="travelcard" id="travelcard_yes" value="travelcard_yes" />
+        <label for="travelcard_yes">yes</label>
+        <input type="radio" name="travelcard" id="travelcard_no" value="travelcard_no" />
+        <label for="travelcard_no">no</label>
+      </fieldset>
+    </div>
+    <div data-role="fieldcontain" >
+      <label for="residence" class="select">Residence:</label>
+      <select onChange="app.onUserInfoChanged(this)" name="residence" id="residence">
+        <option value="none">I prefer not to tell</option>
+        <option value="Oslo">Oslo</option>
+        <option value="Baerum">B&aelig;rum</option>
+        <option value="Asker">Asker</option>
+        <option value="Oppegaard">Oppegaard</option>
+      </select>
       
-            <label for="birthyear" class="select">Age group:</label>
-            
-            <select onchange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
-              <option value="none">I prefer not to tell</option>
-              <option value="group1">1951-1960</option>
-              <option value="group2">1961-1970</option>
-              <option value="group3">1971-1980</option>
-              <option value="group4">1981-1990</option>
-              <option value="group5">1991-2000</option>
-              <option value="group6">2001 or later</option>
-            </select>
-        </div>
-        
-        <div data-role="fieldcontain" >
-            <label for="maritalStatus" class="select">Marital status:</label>
-            <select onchange="app.onUserInfoChanged(this)" name="maritalStatus" id="maritalStatus" data-icon="arrow-d" >
-              <option value="none">I prefer not to tell</option>
-              <option value="notMarried">Unwed</option>
-              <option value="married">Married</option>
-              <option value="partner">Partner</option>
-              <option value="divorced">Divorced</option>
-              <option value="widowed">Widowed</option>
-            </select>
-        
-            <label for="numChildren" class="select">Number of children:</label>
-				<select onchange="app.onUserInfoChanged(this)" name="numChildren" id="numChildren" data-icon="arrow-d" >
-				  <option value="none">I prefer not to tell</option>
-				  <option value="0">0</option>
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="more">5 or more</option>
-				</select>
-        </div>
-        
-	  	<div data-role="fieldcontain">
-        	<div id="cardText" style="width:100%">
-          			<p>Do you have travel card from Ruter?</p>
-          	</div>
-	    	<fieldset data-role="controlgroup" data-type="horizontal">
-                	<legend> </legend>
-               		<input type="radio" name="travelcard" id="travelcard_yes" value="travelcard_yes" />
-                    <label for="travelcard_yes">yes</label>
-                    <input type="radio" name="travelcard" id="travelcard_no" value="travelcard_no" />
-                    <label for="travelcard_no">no</label>
-         		 
-        	</fieldset>
-      	</div>
-       
-	  	<div data-role="fieldcontain" >
-	    	<label for="residence" class="select">Residence:</label>
-	    	<select onchange="app.onUserInfoChanged(this)" name="residence" id="residence">
-              <option value="none">I prefer not to tell</option>
-              <option value="Oslo">Oslo</option>
-              <option value="Baerum">B&aelig;rum</option>
-              <option value="Asker">Asker</option>
-              <option value="Oppegaard">Oppegaard</option>
-        	</select>
-      	
-        
-        <!-- Show only if Oslo is selected as residence -->
-	  		<div id="area-wrapper" style="display:none">
-        	
-            	<label for="area" class="select">Administration area:</label>
-            	<select onchange="app.onUserInfoChanged(this)" name="area" id="area">
-                  <option value="none">I prefer not to tell</option>
-                  <option value="Alna">Alna</option>
-                  <option value="Bjerke">Bjerke</option>
-                  <option value="Frogner">Frogner</option>
-            	</select>
-          	</div>
-      	</div>
-        
-	  	<div data-role="fieldcontain">
-	    	<label for="occupation" class="select">Occupation:</label>
-	    	<select onchange="app.onUserInfoChanged(this)" name="occupation" id="occupation">
-              <option value="none">I prefer not to tell</option>
-              <option value="Employed">Employed</option>
-              <option value="Retired">Retired</option>
-              <option value="Student">Student</option>
-              <option value="MilitaryService">Military service</option>
-              <option value="WorkingAtHome">Working at home</option>
-              <option value="NotWorking">Not working</option> 
-              <option value="Other">Other</option> 
-            </select>
-      	</div>
-        
-	</div>
-	
-	<div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
-    
-		<div id="menuButtons" data-inline="true" data-type="horizontal">
-			<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person.png"/></a>
-			<a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a>
-			<a href="history.html" data-role="button" data-inline="true"><img src="../images/book.png"/></a>
-			<a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a>
-		</div>
-	
-	</div>
-	
+      <!-- Show only if Oslo is selected as residence -->
+      <div id="area-wrapper" style="display:none">
+        <label for="area" class="select">Administration area:</label>
+        <select onChange="app.onUserInfoChanged(this)" name="area" id="area">
+          <option value="none">I prefer not to tell</option>
+          <option value="Alna">Alna</option>
+          <option value="Bjerke">Bjerke</option>
+          <option value="Frogner">Frogner</option>
+        </select>
+      </div>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="occupation" class="select">Occupation:</label>
+      <select onChange="app.onUserInfoChanged(this)" name="occupation" id="occupation">
+        <option value="none">I prefer not to tell</option>
+        <option value="Employed">Employed</option>
+        <option value="Retired">Retired</option>
+        <option value="Student">Student</option>
+        <option value="MilitaryService">Military service</option>
+        <option value="WorkingAtHome">Working at home</option>
+        <option value="NotWorking">Not working</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </div>
+  <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+    <div id="menuButtons" data-inline="true" data-type="horizontal"> <a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person.png"/></a> <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a> <a href="history.html" data-role="button" data-inline="true"><img src="../images/book.png"/></a> <a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a> </div>
+  </div>
 </div>
-
 </body>
 </html>
