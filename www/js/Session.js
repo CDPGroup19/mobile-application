@@ -122,6 +122,32 @@ Session.prototype.getLocalUserInfo = function(key) {
 			
 };
 
+// Get a serializable info object for the active user
+
+Session.prototype.getUserInfoObject = function() {
+	
+	var out = {};
+	
+	var attrs = ['birthyear', 'martialStatus', 'numChildren', 'residence',
+		'area', 'occupation'];
+	
+	for(var i = 0; i < attrs.length; i++) {
+		if(this.userData.info[attrs[i]] !== undefined) {
+			out[attrs[i]] = Number(this.userData.info[attrs[i]]) || 0;
+		}
+	}
+	
+	out.Gender = this.userData.info.Gender !== undefined
+			? (this.userData.info.Gender == "male" ? 1 : 2)
+			: 0;
+	
+	out.travelcard = this.userData.info.travelcard !== undefined
+			? (this.userData.info.travelcard == "travelcard_yes" ? 1 : 2)
+			: 0;
+	
+	return out;
+};
+
 Session.prototype.updateLocalUserInfo = function(key, value) {
 	
 	this.userData.info[key] = value;
@@ -130,7 +156,8 @@ Session.prototype.updateLocalUserInfo = function(key, value) {
 	
 };
 
-// Update the storaged object for active local user
+// Update the stored object for active local user
+
 Session.prototype.updateLocalUser = function() {
 	
 	this.storage.setItem(
@@ -140,11 +167,13 @@ Session.prototype.updateLocalUser = function() {
 	
 };
 
+// Delete a user locally
+
 Session.prototype.deleteLocalUser = function(username) {
 	
 	// Remove trips
 	
-	var userData = this.getUserData(username);
+	var userData = this.getStoredUserData(username);
 	var logs = userData.logs.slice(0);
 	
 	for(var i = 0; i < logs.length; i++) {
@@ -157,7 +186,8 @@ Session.prototype.deleteLocalUser = function(username) {
 
 };
 
-// Checks if a local user exists
+// Checks if a user exists on the device
+
 Session.prototype.hasUser = function(username) {
 
 	var userDataJSON = this.storage.getItem(this.getUserKey(username));
@@ -169,6 +199,8 @@ Session.prototype.hasUser = function(username) {
 	return false;
 
 };
+
+// Create a user locally on the device
 
 Session.prototype.createLocalUser = function(username, password) {
 
@@ -203,7 +235,9 @@ Session.prototype.createLocalUser = function(username, password) {
 
 };
 
-Session.prototype.getUserData = function(username) {
+//  Load user data from local storage
+
+Session.prototype.getStoredUserData = function(username) {
 
 	var userDataJSON = this.storage.getItem(this.getUserKey(username));
 
@@ -222,7 +256,7 @@ Session.prototype.login = function(username, password) {
 	if(!this.hasUser(username))
 		return false;
 	
-	var userData = this.getUserData(username);
+	var userData = this.getStoredUserData(username);
 	
 	this.checkUserData(userData);
 	

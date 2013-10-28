@@ -248,7 +248,10 @@ var app = {
 				id: 12309182309812,
 				user: {
 					userName: "lars",
-					pinCode: "1234"
+					pinCode: "1234",
+					person: {
+						
+					}
 				},
 				trip: {
 					meta: {
@@ -277,12 +280,16 @@ var app = {
 			
 			user: {
 				userName: app.session.userData.username,
-				pinCode: app.session.userData.password
+				pinCode: app.session.userData.password,
 			},
+			
+			person: app.session.getUserInfoObject(),
 			
 			trip: this.log.toSerializableObject()
 			
 		};
+		
+		console.log(JSON.stringify(jsonObj));
 		
 		this.server.submitReport(jsonObj, function(e) {
 			console.log("done! response: ", e);
