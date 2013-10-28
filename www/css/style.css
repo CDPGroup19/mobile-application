@@ -19,7 +19,7 @@ input.ui-text-input{
 	}
 	
 .ui-header{
-	height: 50px;
+	height: 45px;
 }
 .ui-header p{
 	text-align:center;
@@ -46,7 +46,7 @@ input.ui-text-input{
 	left:0;
 	right:0; 
 	width: 100%;
-	height:50px;
+	height:48px;
 }
 
 .footerMenu a{
@@ -67,6 +67,11 @@ div#mainmenu a{
 div#mainmenu .ui-btn-inner{
 	border: 0;
 	box-shadow: none;
+	padding: 0;
+}
+div#menuButtons img{
+	
+	height: 30px;
 }
 
 /*//////////////////////////////////////
@@ -127,7 +132,14 @@ div#logOut{
 				TRACKING
 //////////////////////////////////////*/
 
-	
+@media screen and (min-width: 450px){
+#selectPurposeMode{
+	 margin:0 !important;
+	}
+#selectPurposeMode .ui-select{
+	width: 100% !important;
+	}
+}
 
 div#trackingContent .ui-btn-inner{
 	border:none;
@@ -163,7 +175,7 @@ div#selectMode{
 div#trackingButtons{
 	position: absolute;
 	z-index: 99;
-	margin-top:50%;
+	margin-top:200px;
 	
 }
 
