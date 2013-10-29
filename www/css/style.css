@@ -300,6 +300,9 @@ div#uploadDeleteButtons, .ui-controlgroup-controls{
 	bottom:0;
 	text-align:center;
 }
+div#uploadDeleteButtons .ui-btn-inner{
+	padding: 5px 3px;
+}
 a#save, a#delete{
 	width: 28%;
 	}
