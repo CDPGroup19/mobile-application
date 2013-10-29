@@ -10,7 +10,12 @@ $(document).one("pageinit", function() {
 	for(var i = 0; i < logs.length; i++) {
 	
 		var log_id = logs[i];
-		var timestr = (new Date(log_id)).toLocaleString();
+		var datestr = (new Date(log_id)).toLocaleDateString();
+		
+		var timestr = new Date(log_id);
+		var hour = timestr.getHours();
+		var minute = timestr.getMinutes();
+		var time = (hour + ":" + minute);
 		
 		var log = app.session.getLocalLog(log_id);
 		
@@ -18,10 +23,9 @@ $(document).one("pageinit", function() {
 		
 		$("#logview").append("\
 			<li><a href=\"#\">\
-			<h3>" + timestr + "</h3>\
+			<h3>" + datestr +" "+ time +"</h3>\
 			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
-			<span class=\"ui-li-count\">1</span>\
-			<p class=\"ui-li-aside\">Aside</p>\
+			<p class=\"ui-li-aside\"><img style=\"width: 50px; height: 50px;\" src=\"../images/map.png\"/></p>\
 			</a></li>"
 		);
 	
@@ -35,7 +39,7 @@ $(document).one("pageinit", function() {
 
 
     <div data-role="header" data-position="fixed" data-theme="a">
-         <p>History</p>
+         <h3>History</h3>
     </div>
 	
 	<div data-role="content" data-theme="b">
@@ -47,10 +51,10 @@ $(document).one("pageinit", function() {
 		<div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
 		
 			<div id="menuButtons" data-inline="true" data-type="horizontal">
-				<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person.png"/></a>
-				<a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking.png"/></a>
-				<a href="history.html" data-role="button" data-inline="true"><img src="../images/book.png"/></a>
-				<a href="#" data-role="button" data-inline="true"><img src="../images/achievements.png"/></a>
+				<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
+				<a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2.png"/></a>
+				<a href="history.html"	data-role="button" data-inline="true"><img src="../images/book2selected.png"/></a>
+				<a href="#" 			data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
 			</div>
 		
 		</div>

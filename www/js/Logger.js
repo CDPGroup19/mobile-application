@@ -13,7 +13,7 @@ var Logger = function() {
 };
 
 Logger.TRIP_PURPOSE = ({
-	"-1": "Unknown",
+	"-1": "Unknown travel mode",
 	0: "Work",
 	1: "Business",
 	2: "School",
