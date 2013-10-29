@@ -15,8 +15,8 @@ $( document ).bind( "pageinit", function( event, data ) {
 });
 */
 </script>
-<div id="userinfo" data-role="page" data-theme="a"> 
-  <script>
+<div id="userinfo" data-role="page" data-theme="a">
+<script>
 		
 		
 		$(document).one('pagebeforeshow', function() {
@@ -51,9 +51,9 @@ $( document ).bind( "pageinit", function( event, data ) {
 		});
 		
 	</script>
-  <div data-role="header" data-theme="a"> <a href="#" data-theme="a" class="back" data-icon="info">Help</a>
-    <h3>About you</h3>
-    <a href="main.html" data-theme="a" class="back" data-icon="delete" data-iconpos="right">LogOut</a>
+<div data-role="header" data-theme="a"> <a href="#" data-theme="a" class="back" data-icon="info">Help</a>
+  <h3>About you</h3>
+  <a href="main.html" data-theme="a" class="back" data-icon="delete" data-iconpos="right">LogOut</a>
   <div data-role="content" data-theme="a">
     <div data-role="fieldcontain">
       <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
@@ -63,6 +63,8 @@ $( document ).bind( "pageinit", function( event, data ) {
         <input type="radio" name="Gender" id="female" value="female" />
         <label for="female">Female</label>
       </fieldset>
+    </div>
+    <div data-role="fieldcontain">
       <label for="birthyear" class="select">Age group:</label>
       <select onChange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
         <option value="none">I prefer not to tell</option>
@@ -84,6 +86,8 @@ $( document ).bind( "pageinit", function( event, data ) {
         <option value="4">Divorced</option>
         <option value="5">Widowed</option>
       </select>
+    </div>
+    <div data-role="fieldcontain">
       <label for="numChildren" class="select">Number of children:</label>
       <select onChange="app.onUserInfoChanged(this)" name="numChildren" id="numChildren" data-icon="arrow-d" >
         <option value="none">I prefer not to tell</option>
@@ -96,10 +100,8 @@ $( document ).bind( "pageinit", function( event, data ) {
       </select>
     </div>
     <div data-role="fieldcontain">
-      <div id="cardText" style="width:100%">
-        <p>Do you have travel card from Ruter?</p>
-      </div>
-      <fieldset data-role="controlgroup" data-type="horizontal">
+      <label for="travelcard">Do you have travel card from Ruter?</label>
+      <fieldset id="travelcard" name="travelcard" data-role="controlgroup" data-type="horizontal">
         <legend> </legend>
         <input type="radio" name="travelcard" id="travelcard_yes" value="travelcard_yes" />
         <label for="travelcard_yes">yes</label>
@@ -135,8 +137,6 @@ $( document ).bind( "pageinit", function( event, data ) {
         <option value="22">R&aelig;lingen</option>
         <option value="23">Nes</option>
         <option value="24">Other</option>
-        
-        
       </select>
       
       <!-- Show only if Oslo is selected as residence -->
@@ -162,7 +162,7 @@ $( document ).bind( "pageinit", function( event, data ) {
         </select>
       </div>
     </div>
-    <div data-role="fieldcontain">
+    <div data-role="fieldcontain" style="margin-bottom:50px">
       <label for="occupation" class="select">Occupation:</label>
       <select onChange="app.onUserInfoChanged(this)" name="occupation" id="occupation">
         <option value="none">I prefer not to tell</option>
