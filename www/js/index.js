@@ -4,7 +4,7 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
-	server: new ServerAPI("http://78.91.38.141/SmioIIS/BackendService.svc"),
+	server: new ServerAPI("http://129.241.110.230/SmioIIS/BackendService.svc"),
 	map: null,
 
     // Application Constructor
@@ -379,12 +379,12 @@ var app = {
 		var userObj = {
 			user: {
 				userName: username,
-				pinCode: password			
+				pinCode: password,
 			}
 		};
 		
-		//this.server.createUser(userObj, onServerResponse);
-		onServerResponse();
+		this.server.createUser(userObj, onServerResponse);
+		//onServerResponse();
 		
     },
     

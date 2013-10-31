@@ -12,8 +12,8 @@ var ServerAPI = function(serverUri) {
 };
 
 ServerAPI.Request = {
-	INSERT_USER: "InsertNewUser",
-	INSERT_TRIP: "InsertTripData",
+	INSERT_USER: "InsertNewUserREST",
+	INSERT_TRIP: "InsertTripDataREST",
 };
 
 ServerAPI.prototype.getUri = function(action) {
@@ -35,9 +35,12 @@ ServerAPI.prototype.submitData = function(action, obj, callback) {
 	var apiUri = this.getUri(action);
 	var _callback = this.onServerResponse.bind(this, callback);
 
+	console.log("Sending this:", objJSON);
+
 	$.ajax({
 		type: 'POST',
 		url: apiUri,
+		data: objJSON,
 		contentType: "application/json",
 		crossDomain: true,
 		dataType: XMLHttpRequest,
