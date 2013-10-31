@@ -52,7 +52,7 @@ var MapHelper = function() {
 			zoom: 15, 
 			center: this.center, 
 			disableDefaultUI: true,
-			mapTypeId: google.maps.MapTypeId.ROADMAP 
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 		
 		this.line.setMap(this.map);

@@ -3,7 +3,11 @@
   *
   **/
 var Logger = function() {
+	
 	this.entries = [];
+	
+	this.modes = [];
+	
 	// Meta data for the trip
 	this.meta = {
 		startTime: Date.now(),
@@ -11,6 +15,14 @@ var Logger = function() {
 		purpose: 0
 	};
 };
+
+Logger.MODE = ({
+	0: "UNKNOWN",
+	1: "BUS",
+	2: "TRAM",
+	3: "SUBWAY",
+	4: "WALK",
+});
 
 Logger.TRIP_PURPOSE = ({
 	"-1": "Unknown travel mode",
@@ -22,6 +34,21 @@ Logger.TRIP_PURPOSE = ({
 	5: "Leisure",
 	6: "Home",
 });
+
+Logger.prototype.updateMode = function(travelMode) {
+	this.modes.push({
+		mode: travelMode,
+		time: Date.now()
+	});
+};
+
+Logger.prototype.getActiveMode = function() {
+	
+	if(this.modes.length > 0)
+		return this.modes[this.modes.length - 1];
+	
+	return 0;
+};
 
 Logger.prototype.updateDistance = function(coords) {
 	

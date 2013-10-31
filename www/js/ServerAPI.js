@@ -6,9 +6,6 @@ var ServerAPI = function(serverUri) {
 	
 	this.serverUri = serverUri;
 	
-	// temporary
-	//this.serverUri = "http://localhost/SmioIIS/BackendService.svc";
-	
 };
 
 ServerAPI.Request = {
@@ -43,22 +40,25 @@ ServerAPI.prototype.submitData = function(action, obj, callback) {
 		data: objJSON,
 		contentType: "application/json",
 		crossDomain: true,
-		dataType: XMLHttpRequest,
+		//dataType: XMLHttpRequest,
+		dataType: 'json',
 		success: _callback,
 		error: function(e) {
 			console.warn("Ajax error", e);
+			window.wtf = e.responseText;
 		},
 	});
 	
 };
 
-ServerAPI.prototype.onServerResponse = function(callback, responseText) {
+ServerAPI.prototype.onServerResponse = function(callback, obj) {
 	
-	var obj = JSON.parse(responseText);
+	console.log("onserverresponse", obj);
+	
+	// @TODO: Handle server response in case of error
 	
 	callback(obj);
 	
-	// @TODO: Handle server response
 	
 };
 
