@@ -267,6 +267,7 @@ var app = {
 				app.session.setLogSynched(e.InsertTripDataRESTResult);
 			}
 			
+			$.mobile.changePage("../pages/history.html");
 			
 		}).bind(this));
 		
