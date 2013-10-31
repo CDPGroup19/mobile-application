@@ -24,10 +24,13 @@ input.ui-text-input{
 .ui-header p{
 	text-align:center;
 }
-div#gear{
-	height: 40px;
-	width: 40px;
+a#gear img{
+	height: 30px;	
 }
+a#gear .ui-btn-inner{
+	padding: 5px;
+}
+
 .back{
 	background: transparent;
 	border: none;
