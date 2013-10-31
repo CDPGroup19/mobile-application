@@ -116,7 +116,10 @@ var app = {
 			case "uploadtrip":
 				
 				// Save locally and upload
-				app.uploadTrip();
+				
+				var id = app.storeLocalTrip();
+				
+				app.uploadTrip(id);
 				
 				console.log("Uploading trip");
 				
@@ -234,10 +237,11 @@ var app = {
     
     },
     
-    uploadTrip: function() {
+    uploadTrip: function(id, callback) {
 		
-		// Store locally before uploading
-		var id = app.storeLocalTrip();
+		callback = callback || (function() { 
+			$.mobile.changePage("../pages/history.html");
+		}).bind(this);
 		
 		console.log("SUBMITTING TRIP TO REMOTE SERVER");
 		
@@ -251,8 +255,7 @@ var app = {
 			},
 			
 			person: app.session.getUserInfoObject(),
-			
-			trip: this.log.toSerializableObject()
+			trip: this.session.getLocalLog(id).log
 			
 		};
 		
@@ -267,7 +270,7 @@ var app = {
 				app.session.setLogSynched(e.InsertTripDataRESTResult);
 			}
 			
-			$.mobile.changePage("../pages/history.html");
+			callback();
 			
 		}).bind(this));
 		

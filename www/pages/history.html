@@ -17,17 +17,26 @@ $(document).one("pageinit", function() {
 		var minute = timestr.getMinutes();
 		var time = (hour + ":" + minute);
 		
-		var log = app.session.getLocalLog(log_id);
+		var data = app.session.getLocalLog(log_id);
 		
-		var p = log.data.meta.purpose || -1;
+		var p = data.log.meta.purpose || -1;
 		
 		$("#logview").append("\
 			<li><a href=\"#\">\
 			<h3>" + datestr +" "+ time +"</h3>\
 			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
+			<p id=\"sync_log_" + log_id + "\" class=\"ui-li-aside\"><a href=\"#\">Upload</a></p>\
 			<p class=\"ui-li-aside\"><img style=\"width: 50px; height: 50px;\" src=\"../images/Map.png\"/></p>\
 			</a></li>"
 		);
+		
+		$("#sync_log_" + log_id).click((function(id) {
+			return function() {
+				app.uploadTrip(id, function() {
+					$("#sync_log_" + id).remove();
+				});			
+			}
+		})(log_id));
 	
 	};
 	
