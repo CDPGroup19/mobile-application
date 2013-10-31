@@ -32,7 +32,7 @@ Session.prototype.addLocalLog = function(log) {
 
 	var sessionLog = {
 		synched: false,
-		data: log.toSerializableObject()
+		log: log.toSerializableObject()
 	};
 
 	var logDataJSON = JSON.stringify(sessionLog);

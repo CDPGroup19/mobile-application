@@ -4,7 +4,7 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
-	server: new ServerAPI("http://129.241.110.230/SmioIIS/BackendService.svc"),
+	server: new ServerAPI("http://129.241.110.230/Smio/BackendService.svc"),
 	map: null,
 
     // Application Constructor
@@ -116,7 +116,10 @@ var app = {
 			case "uploadtrip":
 				
 				// Save locally and upload
-				app.uploadTrip();
+				
+				var id = app.storeLocalTrip();
+				
+				app.uploadTrip(id);
 				
 				console.log("Uploading trip");
 				
@@ -176,6 +179,18 @@ var app = {
         
     },
     
+    restoreListValue: function(id, value) {
+		
+		var el = $('#' + id);
+		
+		el.val(value).attr("selected", true).siblings('option').removeAttr('selected');
+		el.selectmenu('refresh', true);
+    
+		//$(id).attr("value", this.session.getLocalUserInfo(fields[i]));
+		//$(id).selectmenu();
+		//$(id).selectmenu('refresh', true);
+    },
+    
     // Restore user info from local data
     // Called when userinfo.html is loaded
     
@@ -187,9 +202,10 @@ var app = {
     
 		for(var i = 0; i < fields.length; i++) {
 			
-			$('#' + fields[i]).attr("value", this.session.getLocalUserInfo(fields[i]));
-			$('#' + fields[i]).selectmenu();
-			$('#' + fields[i]).selectmenu('refresh', true);
+			var id = fields[i];
+			
+			app.restoreListValue(id, this.session.getLocalUserInfo(id));
+			
 		}
 		
 		// Restore radio check buttons
@@ -234,10 +250,11 @@ var app = {
     
     },
     
-    uploadTrip: function() {
+    uploadTrip: function(id, callback) {
 		
-		// Store locally before uploading
-		var id = app.storeLocalTrip();
+		callback = callback || (function() { 
+			$.mobile.changePage("../pages/history.html");
+		}).bind(this);
 		
 		console.log("SUBMITTING TRIP TO REMOTE SERVER");
 		
@@ -251,8 +268,7 @@ var app = {
 			},
 			
 			person: app.session.getUserInfoObject(),
-			
-			trip: this.log.toSerializableObject()
+			trip: this.session.getLocalLog(id).log
 			
 		};
 		
@@ -262,11 +278,15 @@ var app = {
 			
 			console.log("done! response: ", e);
 			
-			if(e.InsertTripDataRESTResult) {
+			if(e.InsertTripDataRESTResult  == "ok") {
 				console.log("Marking log as synched");
-				app.session.setLogSynched(e.InsertTripDataRESTResult);
+				// e.InsertTripDataRESTResult
+				app.session.setLogSynched(id);
+			} else {
+				console.warn("Trip synch failed! Do something about it!");
 			}
 			
+			callback();
 			
 		}).bind(this));
 		
