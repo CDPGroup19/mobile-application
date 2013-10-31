@@ -4,7 +4,7 @@ var app = {
 	location: null,
 	isTracking: false,
 	log: null,
-	server: new ServerAPI("http://129.241.110.230/SmioIIS/BackendService.svc"),
+	server: new ServerAPI("http://129.241.110.230/Smio/BackendService.svc"),
 	map: null,
 
     // Application Constructor
@@ -179,6 +179,18 @@ var app = {
         
     },
     
+    restoreListValue: function(id, value) {
+		
+		var el = $('#' + id);
+		
+		el.val(value).attr("selected", true).siblings('option').removeAttr('selected');
+		el.selectmenu('refresh', true);
+    
+		//$(id).attr("value", this.session.getLocalUserInfo(fields[i]));
+		//$(id).selectmenu();
+		//$(id).selectmenu('refresh', true);
+    },
+    
     // Restore user info from local data
     // Called when userinfo.html is loaded
     
@@ -190,16 +202,10 @@ var app = {
     
 		for(var i = 0; i < fields.length; i++) {
 			
-			var id = '#' + fields[i];
+			var id = fields[i];
 			
-			var el = $(id);
+			app.restoreListValue(id, this.session.getLocalUserInfo(id));
 			
-			el.val(this.session.getLocalUserInfo(fields[i])).attr("selected", true).siblings('option').removeAttr('selected');
-			el.selectmenu('refresh', true);
-			
-			//$(id).attr("value", this.session.getLocalUserInfo(fields[i]));
-			//$(id).selectmenu();
-			//$(id).selectmenu('refresh', true);
 		}
 		
 		// Restore radio check buttons

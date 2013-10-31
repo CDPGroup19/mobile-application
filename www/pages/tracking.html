@@ -30,6 +30,8 @@
 				stopButton.show();
 				startButton.hide();
 				
+				app.restoreListValue("destination", app.log.Purpose)
+				
 				app.map.create();
 			} else {
 				$("#start").click(function() {

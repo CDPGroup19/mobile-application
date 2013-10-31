@@ -91,6 +91,10 @@ Logger.prototype.__defineSetter__("Purpose", function(value) {
 	this.meta.purpose = Number(value);
 });
 
+Logger.prototype.__defineGetter__("Purpose", function() {
+	return this.meta.purpose;
+});
+
 Logger.getCoordPointDistance = function(p0, p1) {
 	
 	var deg2rad = Math.PI / 180;
