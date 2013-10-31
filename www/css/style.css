@@ -24,6 +24,8 @@ input.ui-text-input{
 .ui-header p{
 	text-align:center;
 }
+
+/*settings button*/
 a#gear img{
 	height: 30px;	
 }
@@ -31,6 +33,7 @@ a#gear .ui-btn-inner{
 	padding: 5px;
 }
 
+/*back button*/
 .back{
 	background: transparent;
 	border: none;
