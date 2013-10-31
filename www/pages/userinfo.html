@@ -15,8 +15,8 @@ $( document ).bind( "pageinit", function( event, data ) {
 });
 */
 </script>
-<div id="userinfo" data-role="page" data-theme="a">
-<script>
+<div id="userinfo" data-role="page" data-theme="a"> 
+  <script>
 		
 		
 		$(document).one('pagebeforeshow', function() {
@@ -51,9 +51,9 @@ $( document ).bind( "pageinit", function( event, data ) {
 		});
 		
 	</script>
-<div data-role="header" data-theme="a"> <a href="help.html" data-theme="a" class="back" data-icon="info">Help</a>
-  <h3>About you</h3>
-  <a href="main.html" data-theme="a" class="back" data-icon="delete" data-iconpos="right">LogOut</a>
+  <div data-role="header" data-theme="a"> <a href="help.html" data-theme="a" class="back" data-icon="info">Help</a>
+    <h3>About you</h3>
+    <a href="settings.html" id="gear" data-role="button" data-inline="true" class="back"><img src="../images/gear.png" alt="gear"/></a> </div>
   <div data-role="content" data-theme="a">
     <div data-role="fieldcontain">
       <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
@@ -173,16 +173,6 @@ $( document ).bind( "pageinit", function( event, data ) {
         <option value="5">Working at home</option>
         <option value="6">Not working</option>
         <option value="7">Other</option>
-      </select>
-    </div>
-    <div data-role="fieldcontain">
-      <label for="login" class="select">LogIn Preferences</label>
-      <select onChange="#" name="login" id="login">
-        <option value="none">How often do you want to log in?</option>
-        <option value="1">Every time I open the app</option>
-        <option value="2">Once a day</option>
-        <option value="3">Once a week</option>
-        <option value="4">Never</option>
       </select>
     </div>
   </div>
