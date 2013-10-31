@@ -12,21 +12,32 @@ $(document).one("pageinit", function() {
 		var log_id = logs[i];
 		var datestr = (new Date(log_id)).toLocaleDateString();
 		
+		var zeroPad = function(str, n) {
+			var l = String(str).length;
+			if(l < n) {
+				return Array(n - l + 1).join("0") + str;
+			}
+			return str;
+		}
+		
 		var timestr = new Date(log_id);
 		var hour = timestr.getHours();
 		var minute = timestr.getMinutes();
-		var time = (hour + ":" + minute);
+		var time = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
 		
 		var data = app.session.getLocalLog(log_id);
 		
 		var p = data.log.meta.purpose || -1;
 		
+		var uploadElement = "<a id=\"sync_log_" + log_id + "\" href=\"#\"><img src=\"../images/upload.png\" /></a>";
+		
+		uploadElement = data.synched ? "" : uploadElement;
+		
 		$("#logview").append("\
 			<li><a href=\"#\">\
 			<h3>" + datestr +" "+ time +"</h3>\
 			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
-			<p id=\"sync_log_" + log_id + "\" class=\"ui-li-aside\"><a href=\"#\">Upload</a></p>\
-			<p class=\"ui-li-aside\"><img style=\"width: 50px; height: 50px;\" src=\"../images/Map.png\"/></p>\
+			<p class=\"ui-li-aside\">" + uploadElement + " <img style=\"width: 50px; height: 50px;\" src=\"../images/Map.png\"/></p>\
 			</a></li>"
 		);
 		
