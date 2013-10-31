@@ -378,3 +378,19 @@ div#right{
 }
 
 
+/*/////////////////////////////////////
+			POPUPS
+/////////////////////////////////////*/
+
+.popupDialog .ui-header{
+	height: 30px;
+}
+
+.popupDialog #dialogButtons{
+	text-align: center;
+	width: 100%;
+}
+
+.popupDialog a{
+	width: 40%;
+}
