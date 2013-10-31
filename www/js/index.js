@@ -278,9 +278,12 @@ var app = {
 			
 			console.log("done! response: ", e);
 			
-			if(e.InsertTripDataRESTResult) {
+			if(e.InsertTripDataRESTResult  == "ok") {
 				console.log("Marking log as synched");
-				app.session.setLogSynched(e.InsertTripDataRESTResult);
+				// e.InsertTripDataRESTResult
+				app.session.setLogSynched(id);
+			} else {
+				console.warn("Trip synch failed! Do something about it!");
 			}
 			
 			callback();
