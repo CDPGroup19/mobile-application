@@ -190,9 +190,16 @@ var app = {
     
 		for(var i = 0; i < fields.length; i++) {
 			
-			$('#' + fields[i]).attr("value", this.session.getLocalUserInfo(fields[i]));
-			$('#' + fields[i]).selectmenu();
-			$('#' + fields[i]).selectmenu('refresh', true);
+			var id = '#' + fields[i];
+			
+			var el = $(id);
+			
+			el.val(this.session.getLocalUserInfo(fields[i])).attr("selected", true).siblings('option').removeAttr('selected');
+			el.selectmenu('refresh', true);
+			
+			//$(id).attr("value", this.session.getLocalUserInfo(fields[i]));
+			//$(id).selectmenu();
+			//$(id).selectmenu('refresh', true);
 		}
 		
 		// Restore radio check buttons
