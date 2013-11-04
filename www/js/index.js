@@ -11,12 +11,18 @@ var app = {
     initialize: function() {
     
 		console.log("Initializing application");
-		
-		app.session = new Session();
 		app.location = new GeoLocation({}, app.onLocationUpdate);
+		app.startSession();
 		
         this.bindEvents();
     },
+    
+    startSession: function() {
+		
+		app.session = new Session();
+    
+    },
+    
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -67,7 +73,21 @@ var app = {
 				app.createUser(username, password);
 				
 				break;
+			
+			case "onlogout":
+			
+				if(app.isTracking)
+					app.stopTracking();
 				
+				app.session = null;
+				app.log = null;
+				
+				app.startSession();
+				
+				$.mobile.changePage("../pages/main.html");
+			
+				break;
+			
 			case "onloginrequest":
 				
 				username = $("#usernameInput")[0].value;
