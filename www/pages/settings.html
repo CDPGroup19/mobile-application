@@ -1,20 +1,20 @@
 <body>
 <div data-role="page" data-theme="a">
   <div data-role="content" data-theme="a">
-  <div data-role="header" data-theme="a" data-position="fixed"> <a href="userinfo.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
-    <h1>Settings</h1>
-  </div>
+    <div data-role="header" data-theme="a" data-position="fixed"> <a href="userinfo.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+      <h1>Settings</h1>
+    </div>
     <div data-role="fieldcontain">
       <label for="login" class="select">LogIn Preferences</label>
       <select onChange="#" name="login" id="login">
-        <option value="none">How often do you want to log in?</option>
+        <option value="none">Log in frequency</option>
         <option value="1">Every time I open the app</option>
         <option value="3">Once a week</option>
         <option value="4">Never</option>
       </select>
     </div>
     <!--Change Password-->
-    
+    <label>Account management</label>
     <div data-inline="true" data-type="horizontal"><a href="#deleteAccount" data-rel="popup" data-position-to="window" data-role="button" data-theme="a" data-inline="true">Change Password</a></div>
     <div id="popupDelete">
       <div data-role="popup" id="deleteAccount" class="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
@@ -34,8 +34,6 @@
       </div>
     </div>
     <div data-inline="true" data-type="horizontal"> <a href="main.html" data-role="button" data-theme="a" data-inline="true">Log Out</a> </div>
-    
-    <!--Change Password-->
     <div data-inline="true" data-type="horizontal"><a href="#deleteAccount" data-rel="popup" data-position-to="window" data-role="button" data-theme="a" data-inline="true">Delete Account</a></div>
     <div id="popupDelete">
       <div data-role="popup" id="deleteAccount" class="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
