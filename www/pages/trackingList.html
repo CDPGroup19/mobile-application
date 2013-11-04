@@ -1,4 +1,62 @@
-<div id="trackingList" data-role="page" data-theme="a">
+<div data-role="page" data-theme="a">
+
+  <script>
+
+var timeStr = function(time) {
+
+	var zeroPad = function(str, n) {
+		var l = String(str).length;
+		if(l < n) {
+			return Array(n - l + 1).join("0") + str;
+		}
+		return str;
+	}
+	
+	var timestr = new Date(time);
+	var hour = timestr.getHours();
+	var minute = timestr.getMinutes();
+	var str = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
+	
+	return str;
+};
+
+		
+
+// Add history
+$(document).one("pagebeforeshow", function() {
+
+	var elem = $('#trackingList');
+	var log = app.log;
+	
+	elem.listview();
+	
+	for(var i = 0; i < log.modes.length; i++) {
+		
+		var time = log.modes[i].time;
+		var mode = log.modes[i].mode;
+		
+		if(mode <= 0)
+			continue;
+		
+		var modestr = Logger.MODE[mode];
+		
+		elem.append("<li>\
+				<a href=\"#\">\
+				  <h1>" + timeStr(time) + "</h1>\
+				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
+				</a>\
+				<!--<a data-role=\"button\">Change</a>-->\
+			</li>"
+		);
+		
+	}
+	
+	elem.listview('refresh');
+
+});
+
+</script>
+
     	<div data-role="header" data-theme="a">
          <p>Tracking</p>
         </div>

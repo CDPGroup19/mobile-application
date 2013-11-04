@@ -17,13 +17,14 @@ var Logger = function() {
 };
 
 Logger.MODE = ({
-	0: "UNKNOWN",
-	1: "BUS",
-	2: "TRAM",
-	3: "SUBWAY",
-	4: "WALK",
-	5: "BICYCLE",
-	6: "BOAT",
+	0: "unknown",
+	1: "bus",
+	2: "tram",
+	3: "subway",
+	4: "walk",
+	5: "bicycle",
+	6: "boat",
+	7: "car",
 });
 
 Logger.TRIP_PURPOSE = ({
