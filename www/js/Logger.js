@@ -22,6 +22,8 @@ Logger.MODE = ({
 	2: "TRAM",
 	3: "SUBWAY",
 	4: "WALK",
+	5: "BICYCLE",
+	6: "BOAT",
 });
 
 Logger.TRIP_PURPOSE = ({
@@ -36,6 +38,10 @@ Logger.TRIP_PURPOSE = ({
 });
 
 Logger.prototype.updateMode = function(travelMode) {
+
+	if(travelMode == this.getActiveMode())
+		return;
+	
 	this.modes.push({
 		mode: travelMode,
 		time: Date.now()
@@ -133,6 +139,7 @@ Logger.prototype.toSerializableObject = function() {
 
 	return {
 		meta: this.meta,
-		entries: out
+		entries: out,
+		modes: this.modes
 	};
 };

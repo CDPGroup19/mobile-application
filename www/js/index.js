@@ -111,6 +111,8 @@ var app = {
 				
 				$.mobile.changePage("../pages/history.html");
 				
+				app.closeLogger();
+				
 				break;
 				
 			case "uploadtrip":
@@ -120,6 +122,8 @@ var app = {
 				var id = app.storeLocalTrip();
 				
 				app.uploadTrip(id);
+				
+				app.closeLogger();
 				
 				console.log("Uploading trip");
 				
@@ -237,6 +241,12 @@ var app = {
 		
 		this.session.updateLocalUserInfo(key, value);
 		
+    },
+    
+    closeLogger: function() {
+    
+		this.log = null;
+    
     },
     
     storeLocalTrip: function() {

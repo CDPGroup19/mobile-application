@@ -20,8 +20,12 @@
 			stopButton.hide();
 		});
 		
-		if(app.isTracking)
+		if(app.isTracking) {
+			
+			app.restoreListValue('destination', app.log.Purpose)
 			app.restoreListValue('tripMode', app.log.getActiveMode());
+			
+		}
 		
 		$('#tripMode').click(function() {
 			
@@ -46,10 +50,21 @@
 				app.restoreListValue("destination", app.log.Purpose)
 				
 				app.map.create();
+				
+				// For some reason Google maps is broken
+				// Send resize event to trick it into fixing itself
+				$(document).one("pageshow", function() {
+					var evt = document.createEvent('HTMLEvents');
+					evt.initEvent('resize', true, false);
+					window.dispatchEvent(evt);				
+				});
+					
 			} else {
 				$("#start").click(function() {
 				console.log("clickclick");
 					app.map.create();
+					
+					
 				});
 			}
 		//}).bind(this));
@@ -84,6 +99,8 @@
                 <option value="2">Tram</option>
                 <option value="3">Subway</option>
                 <option value="4">Walk</option>
+                <option value="5">Bicycle</option>
+                <option value="6">Boat</option>
               </select>
           </div>
     </div>
