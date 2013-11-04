@@ -7,6 +7,28 @@ var Session = function() {
 
 };
 
+Session.prototype.setAutoLogin = function(option) {
+	this.storage.setItem('autouser', JSON.stringify({
+		username: this.userData.username,
+		password: this.userData.password
+	}));
+	this.storage.setItem('autoconfig', option);
+	return true;
+};
+
+Session.prototype.tryAutoLogin = function() {
+
+	var autouser = JSON.parse(this.storage.getItem('autouser'));
+	var autoconf = Number(this.storage.getItem('autoconfig'));
+
+	if(autoconf > 0 && autouser.username && autouser.password) {
+		this.login(autouser.username, autouser.password);
+		return true;
+	}
+
+	return false;
+};
+
 // Get storage key for user
 Session.prototype.getUserKey = function(username) {
 	return "user-" + username;
