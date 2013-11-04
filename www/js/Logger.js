@@ -45,7 +45,7 @@ Logger.prototype.updateMode = function(travelMode) {
 Logger.prototype.getActiveMode = function() {
 	
 	if(this.modes.length > 0)
-		return this.modes[this.modes.length - 1];
+		return (this.modes[this.modes.length - 1]).mode;
 	
 	return 0;
 };

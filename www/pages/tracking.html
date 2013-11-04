@@ -4,8 +4,6 @@
 	
 	 $(document).one("pagebeforeshow", function() {
 		
-		console.log("dsadsa");
-		
 		var startButton = $("#start");
 		var stopButton = $("#stop");
 		
@@ -21,7 +19,22 @@
 			startButton.show();
 			stopButton.hide();
 		});
+		
+		if(app.isTracking)
+			app.restoreListValue('tripMode', app.log.getActiveMode());
+		
+		$('#tripMode').click(function() {
 			
+			if(!app.isTracking) {
+				return;
+			}
+			
+			var value = Number($('#tripMode').children("option:selected").val());
+			
+			app.log.updateMode(value);
+			
+		});
+		
 		//$(document).bind("pageinit", (function() {
 			//console.log("asssasdds");
 			if(app.isTracking) {
@@ -66,11 +79,11 @@
       
           <div id="selectMode">
             <select name="tripMode" id="tripMode">
-                <option>Travel mode?</option>
-                <option>Bus</option>
-                <option>Tram</option>
-                <option>Subway</option>
-                <option>Walk</option>
+                <option value="0">Travel mode?</option>
+                <option value="1">Bus</option>
+                <option value="2">Tram</option>
+                <option value="3">Subway</option>
+                <option value="4">Walk</option>
               </select>
           </div>
     </div>
