@@ -4,7 +4,8 @@ var MapHelper = function() {
 	
 	this.map = null;
 	
-	this.center = new google.maps.LatLng(63.4122, 10.4388);
+	//sets default position to Trondheim
+	this.center = new google.maps.LatLng(63,4305, 10,3951);
 	
 	this.marker = new google.maps.Marker ({ 
 		animation: google.maps.Animation.DROP,
