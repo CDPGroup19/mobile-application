@@ -47,7 +47,7 @@ var MapHelper = function() {
 		
 		var $content = $("#map");
 		
-		$content.height (screen.height - 110);
+		$content.height (screen.height - 200);
 		
 		this.map = new google.maps.Map($content[0], { 
 			zoom: 15, 

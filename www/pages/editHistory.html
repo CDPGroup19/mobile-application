@@ -1,7 +1,8 @@
-<div data-role="page" id="historyPage" data-theme="a"> 
-  <script>
-
+<div data-role="page" data-theme="a"> 
+  
+<script>
 // Add history
+
 $(document).one("pageinit", function() {
 
 	var logs = app.session.userData.logs;
@@ -28,7 +29,7 @@ $(document).one("pageinit", function() {
 		
 		var p = data.log.meta.purpose || -1;
 		
-		var uploadElement = "<img id=\"sync_log_" + log_id + "\" class=\"uploadIcon\" src=\"../images/upload.png\" />";
+		var uploadElement = "<a id=\"sync_log_" + log_id + "\" href=\"#\"><img src=\"../images/upload.png\" /></a>";
 		
 		uploadElement = data.synched ? "" : uploadElement;
 		
@@ -59,10 +60,10 @@ $(document).one("pageinit", function() {
   <div data-role="content" data-theme="b">
     <div data-role="header" data-position="fixed" data-theme="a">
       <h3>History</h3>
-      	<a href="#" id="edit" data-role="button" class="customButton" data-inline="true">Edit</a>
+      	<a href="history.html" id="done" data-role="button" class="customButton" data-inline="true">Done</a>
     </div>
-    <ul id="logview" data-role="listview" data-inset="false" data-theme="a">
-    </ul>
+    <ol id="logview" data-role="listview" data-inset="false" data-theme="a">
+    </ol>
     <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
       <div id="menuButtons" data-inline="true" data-type="horizontal"> 
       	<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a> 

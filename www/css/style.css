@@ -33,6 +33,22 @@ a#gear .ui-btn-inner{
 	padding: 5px;
 }
 
+.customButton{
+	background: transparent;
+	border: none;
+	-webkit-box-shadow: none !important;
+	box-shadow: none;
+	text-shadow: none;
+	padding: 0;
+	font-weight: lighter;
+	color: white;
+}
+.customButton .ui-btn-inner{
+	color: white;
+	border: none;
+	font-size:1em;
+}
+
 /*back button*/
 .back{
 	background: transparent;
@@ -83,7 +99,14 @@ div#menuButtons img{
 	
 	height: 30px;
 }
+.uploadIcon{
+	width: 30px;
+	margin-bottom: 20px;
+}
 
+.ui-li-aside{
+	width: auto !important;
+}
 /*//////////////////////////////////////
 				LOG IN 
 //////////////////////////////////////*/
@@ -185,7 +208,7 @@ div#selectMode{
 div#trackingButtons{
 	position: absolute;
 	z-index: 99;
-	margin-top:200px;
+	bottom: 80px;
 	
 }
 
@@ -300,6 +323,7 @@ div#map{
 ///////////////////////////////////*/
 #trackingList h1{
 	font-size: 20px;
+	color: black;
 }
 li#buttons{
 	padding:0;
