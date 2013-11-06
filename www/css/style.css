@@ -24,7 +24,9 @@ input.ui-text-input{
 .ui-header p{
 	text-align:center;
 }
-
+.ui-header img{
+	height: 30px;
+}
 /*settings button*/
 a#gear img{
 	height: 30px;	
