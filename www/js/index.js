@@ -66,6 +66,29 @@ var app = {
         
         switch(id) {
 			
+			case "deleteuser":
+			
+				app.server.deleteUser({
+					user: {
+						userName: app.session.userData.username,
+						pinCode: app.session.userData.password
+					}
+				}, function(e) {
+				
+					if(e.DeleteUserRESTResult == "ok") {
+						
+						console.log('Delete user OK!');
+						app.session.deleteLocalUser(app.session.userData.username);
+						app.receivedEvent('onlogout');
+						
+					} else {
+						console.error("@TODO: Handle delete user failed ...");
+					}
+				
+				});
+			
+				break;
+		
 			case "managetrip":
 			
 				$.mobile.changePage('../pages/manageTrackingList.html');

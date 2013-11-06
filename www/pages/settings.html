@@ -74,7 +74,7 @@ $(document).one('pagebeforeshow', function() {
                 <p>This action can not be undone</p>
                 <div id="dialogButtons">
                 	<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Cancel</a>
-                    <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="a">Delete</a>
+                    <a onclick="app.receivedEvent('deleteuser');" href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="a">Delete</a>
                 </div>
             </div>
         </div>
