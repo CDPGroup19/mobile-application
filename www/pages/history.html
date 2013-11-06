@@ -35,7 +35,7 @@ $(document).one("pageinit", function() {
 		uploadElement = data.synched ? "" : uploadElement;
 		
 		$("#logview").append("\
-			<li id=\"trip_" + log_id + "\"><a href=\"#\">\
+			<li id=\"trip_" + log_id + "\" onclick=\"app.viewLog(" + log_id + ")\"><a href=\"#\">\
 			<h3>" + datestr +" "+ time +"</h3>\
 			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
 			<p class=\"ui-li-aside\">" + uploadElement + " <img style=\"width: 50px; height: 50px\" src=\"../images/Map.png\"/></p>\
@@ -43,10 +43,12 @@ $(document).one("pageinit", function() {
 		);
 		
 		$("#sync_log_" + log_id).click((function(id) {
-			return function() {
+			return function(e) {
+				e.stopPropagation();
 				app.uploadTrip(id, function() {
 					$("#sync_log_" + id).remove();
-				});			
+				});	
+				return false;		
 			}
 		})(log_id));
 	

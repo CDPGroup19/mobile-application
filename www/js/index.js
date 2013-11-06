@@ -66,6 +66,12 @@ var app = {
         
         switch(id) {
 			
+			case "managetrip":
+			
+				$.mobile.changePage('../pages/manageTrip.html');
+				
+				break;
+			
 			case "resetpassword":
 				
 				code = $('#codeInput').val();
@@ -280,6 +286,17 @@ var app = {
         }
         
     },
+    
+    // Request to manage trip
+    
+    viewLog: function(log) {
+    
+		app.session.setActiveLogId(log);
+		app.session.receivedEvent('managetrip');
+    
+    },
+    
+    // Restore value to list element (helper method)
     
     restoreListValue: function(id, value) {
 		

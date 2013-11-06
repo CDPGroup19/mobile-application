@@ -2,7 +2,7 @@ var Session = function() {
 
 	this.isAuthenticated = false;
 	this.userData = null;
-
+	this.logId = null;
 	this.storage = window.localStorage;
 
 };
@@ -305,6 +305,14 @@ Session.prototype.getStoredUserData = function(username) {
 	
 	return userData;
 
+};
+
+Session.prototype.setActiveLogId = function(value) {
+	this.logId = value;
+};
+
+Session.prototype.getActiveLogId = function() {
+	return this.logId;
 };
 
 Session.prototype.setActiveUser = function(value) {
