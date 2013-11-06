@@ -31,6 +31,9 @@ input.ui-text-input{
 a#gear img{
 	height: 30px;	
 }
+#mapIcon .ui-btn-inner{
+	padding: 0;
+}
 a#gear .ui-btn-inner{
 	padding: 5px;
 }
@@ -325,7 +328,7 @@ div#map{
 /*///////////////////////////////////
 			TRACKING LIST
 ///////////////////////////////////*/
-#trackingList h1{
+.trackingList h1{
 	font-size: 20px;
 	color: black;
 }
@@ -347,13 +350,13 @@ a#save, a#delete{
 a#upload{
 	width: 40%;
 	}
-ul#trackingList p, ul#trackingList h1{
+.trackingList p, .trackingList h1{
 	width: 65%;
 	float: left;
 }
 
 
-ul#trackingList .ui-li-aside{
+.trackingList .ui-li-aside{
 	width: 30%;
 	float: right;
 }
