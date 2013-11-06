@@ -62,9 +62,80 @@ var app = {
 		
         console.log('Received Event: ' + id);
         
-        var username, password, password2;
+        var username, password, password2, code;
         
         switch(id) {
+			
+			case "resetpassword":
+				
+				code = $('#codeInput').val();
+				password = $('#newpasswordInput').val();
+				password2 = $('#confirmpasswordInput').val();
+				
+				if(password != password2) {
+					// @TODO: Display error
+				}
+				
+				//{ 
+				//	user: {
+				//		userName: "asdasddas",
+				//		pinCode: "asdasdqpei"
+				//	},
+				//	activationCode: "asdadssa"
+				//}
+				
+				app.server.requestNewPassword({
+					user: {
+						userName: app.session.getActiveUser(),
+						pinCode: password
+					},
+					activationCode: code
+				}, function(response) {
+					
+					if(response.ResetPasswordRESTResult == "ok") {
+						
+						if(app.session.hasUser(app.session.getActiveUser())) {
+							app.session.setUserPassword(app.session.getActiveUser(), password);
+						} else {
+							app.session.createLocalUser(app.session.getActiveUser(), password);
+						}
+						
+						if(app.session.login(app.session.getActiveUser(), password)) {
+							app.receivedEvent('loginsuccess');
+						} else {
+							console.error("Something wrong with account that was reset...");
+						}
+						
+					} else {
+						
+						console.log("TODO: authenticate activation code failed!");
+						
+					}
+					
+				});
+				
+				break;
+				
+			case "resetpasswordrequest":
+			
+				username = $('#forgotPasswordInput').val();
+				
+				if(username.match(/.*\@.*\.[a-z]{3}/) !== null) {
+					
+					app.session.setActiveUser(username);
+					
+					app.server.requestPasswordReset({
+						user: {
+							userName: username
+						}
+					}, function() {
+						console.log('OK!');
+						$.mobile.changePage("../pages/resetPassword.html");
+					});
+					
+				}
+			
+				break;
 			
 			case "onusercreation":
 				

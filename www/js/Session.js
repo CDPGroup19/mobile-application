@@ -74,7 +74,7 @@ Session.prototype.addLocalLog = function(log) {
 	this.userData.logs.push(id);
 	
 	// Update local user in storage
-	this.updateLocalUser();
+	this.updateCurrentUser();
 	
 	this.storage.setItem(
 		this.getUserLogKey(this.userData.username, id),
@@ -138,7 +138,7 @@ Session.prototype.removeLocalLog = function(id) {
 	
 	// Update user data in storage
 	
-	this.updateLocalUser();
+	this.updateCurrentUser();
 	
 	// Remove trip data from storage
 	
@@ -180,24 +180,31 @@ Session.prototype.getUserInfoObject = function() {
 	return out;
 };
 
-Session.prototype.updateLocalUserInfo = function(key, value) {
+Session.prototype.updateCurrentUserInfo = function(key, value) {
 	
 	this.userData.info[key] = value;
 	
-	this.updateLocalUser();
+	this.updateCurrentUser();
 	
 };
 
 // Update the stored object for active local user
 
-Session.prototype.updateLocalUser = function() {
+Session.prototype.updateCurrentUser = function() {
+	
+	this.updateLocalUser(this.userData.username, this.userData);
+	
+};
+
+Session.prototype.updateLocalUser = function(username, data) {
 	
 	this.storage.setItem(
-		this.getUserKey(this.userData.username), 
-		JSON.stringify(this.userData)
+		this.getUserKey(username), 
+		JSON.stringify(data)
 	);
 	
 };
+
 
 // Delete a user locally
 
@@ -267,6 +274,23 @@ Session.prototype.createLocalUser = function(username, password) {
 
 };
 
+Session.prototype.setUserPassword = function(username, password) {
+	
+	var data = this.getStoredUserData(username);
+	
+	if(data == null) {
+		throw "Invalid user";
+		//return false;
+	}
+	
+	data.password = password;
+	
+	this.updateLocalUser(username, data);
+	
+	return true;
+	
+}
+
 //  Load user data from local storage
 
 Session.prototype.getStoredUserData = function(username) {
@@ -274,13 +298,25 @@ Session.prototype.getStoredUserData = function(username) {
 	var userDataJSON = this.storage.getItem(this.getUserKey(username));
 
 	if(!userDataJSON) {
-		throw "User doesn't exist";
+		return null;
 	}
 
 	var userData = JSON.parse(userDataJSON);
 	
 	return userData;
 
+};
+
+Session.prototype.setActiveUser = function(value) {
+	this.userData = this.userData || {};
+	this.userData.username = value;
+};
+
+Session.prototype.getActiveUser = function() {
+	if(this.userData && this.userData.username) {
+		return this.userData.username;
+	}
+	return null;
 };
 
 Session.prototype.login = function(username, password) {

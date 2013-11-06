@@ -11,6 +11,8 @@ var ServerAPI = function(serverUri) {
 ServerAPI.Request = {
 	INSERT_USER: "InsertNewUserREST",
 	INSERT_TRIP: "InsertTripDataREST",
+	RESET_PASS_REQ: "SendEmailForNewPasswordREST",
+	RESET_PASS: "ResetPasswordREST",
 };
 
 ServerAPI.prototype.getUri = function(action) {
@@ -78,4 +80,15 @@ ServerAPI.prototype.submitReport = function(obj, callback) {
 	// @TODO
 	this.submitData(ServerAPI.Request.INSERT_TRIP, obj, callback);
 
+};
+
+ServerAPI.prototype.requestPasswordReset = function(obj, callback) {
+	
+	this.submitData(ServerAPI.Request.RESET_PASS_REQ, obj, callback);
+
+};
+
+ServerAPI.prototype.requestNewPassword = function(obj, callback) {
+
+	this.submitData(ServerAPI.Request.RESET_PASS, obj, callback);
 };
