@@ -88,8 +88,20 @@ $(document).one("pagebeforeshow", function() {
         </div>
         
         <div data-role="content">
+        <div id="manageTripButtons">
+                  
+                    <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                        <a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>
+                        <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="uploadBtn">Upload</a>
+                        <a data-role="button" data-theme="a" onclick="" id="deleteTrip">Delete</a>
+                    </div>
+                
+            </div>
+            
+      
+         <ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
         
-          <ul id="manageTrackingList" data-role="listview" data-inset="true">
+          
           	
            <!-- 
             <li>
