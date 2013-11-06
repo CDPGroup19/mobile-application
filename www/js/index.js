@@ -398,6 +398,35 @@ var app = {
     
     },
     
+    deleteTrip: function(id) {
+    
+		app.server.deleteTrip({
+		
+			user: {
+				userName: app.session.userData.username,
+				pinCode: app.session.userData.password
+			},
+			
+			id: id,
+			
+			trip: {
+				// blank
+			}
+		
+		}, function(e) {
+		
+			if(e.DeleteTripByIdRESTResult == 'ok') {
+				
+				$.mobile.changePage('../pages/history.html');
+				
+			} else {
+				console.error("@TODO: Delete trip by ID failed");
+			}
+		
+		});
+    
+    },
+    
     uploadTrip: function(id, callback) {
 		
 		callback = callback || (function() { 

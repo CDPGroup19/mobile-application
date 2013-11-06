@@ -89,7 +89,7 @@ $(document).one("pagebeforeshow", function() {
         
         <div data-role="content">
         
-          <ul id="manageTrackingList" class="trackingList" data-role="listview" data-inset="true">
+          <ul id="manageTrackingList" data-role="listview" data-inset="true">
           	
            <!-- 
             <li>
@@ -121,7 +121,7 @@ $(document).one("pagebeforeshow", function() {
             	<div id="uploadButton" data-role="controlgroup" data-type="horizontal">
                     <a data-role="button" data-theme="f" onclick="" id="saveChanges">Save changes</a>
                     <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
-                    <a data-role="button" data-theme="f" onclick="" id="delete">Delete</a>
+                    <a data-role="button" data-theme="f" onclick="app.deleteTrip(app.session.getActiveLogId());" id="delete">Delete</a>
           		</div>
             </li>
           </ul>
@@ -129,7 +129,7 @@ $(document).one("pagebeforeshow", function() {
          	<div id="map">
         	</div>
             
-            <!--<div id="popupMode">
+            <div id="popupMode">
             <a data-rel="popup" data-role="button"href="#popupTranspMode">OK</a>
             
             <div data-role="popup" id="popupTranspMode" class="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all" data-position-to="window"> 
@@ -154,7 +154,7 @@ $(document).one("pagebeforeshow", function() {
                     </div> 
                 </div>
             </div>
-        </div> -->
+        </div>
             
         </div>
         

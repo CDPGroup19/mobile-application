@@ -14,6 +14,7 @@ ServerAPI.Request = {
 	RESET_PASS_REQ: "SendEmailForNewPasswordREST",
 	RESET_PASS: "ResetPasswordREST",
 	DELETE_USER: "DeleteUserREST",
+	DELETE_TRIP: "DeleteTripByIdREST",
 };
 
 ServerAPI.prototype.getUri = function(action) {
@@ -97,5 +98,11 @@ ServerAPI.prototype.requestNewPassword = function(obj, callback) {
 ServerAPI.prototype.deleteUser = function(obj, callback) {
 	
 	this.submitData(ServerAPI.Request.DELETE_USER, obj, callback);
+	
+};
+
+ServerAPI.prototype.deleteTrip = function(obj, callback) {
+	
+	this.submitData(ServerAPI.Request.DELETE_TRIP, obj, callback);
 	
 };
