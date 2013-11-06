@@ -8,12 +8,26 @@
         </div>
         <!--End header-->
         <!--Begin page content-->
+        <script>
+
+$(document).one('pagebeforeshow', function() {
+
+	$('#loginf').change(function() {
+	
+		console.log('autologin is now', $('#loginf').val());
+		
+		app.session.setAutoLogin($('#loginf').val());
+	
+	});
+
+});
+
+        </script>
         <div data-role="fieldcontain">
         	<label for="loginF" class="select">Login Preferences</label>
-            <select onChange="#" name="loginF" id="loginF">
-            	<option value="none">Login frequency</option>
-            	<option value="1">Every Time I open the app</option>
-            	<option value="2">Never</option>
+            <select id="loginf" onChange="#" name="loginF" id="loginF">
+            	<option value="0">Always require password</option>
+            	<option value="1">Never require password</option>
             </select>
         </div>
         <label>Account Management</label>

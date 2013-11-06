@@ -4,6 +4,8 @@
 // Add history
 $(document).one("pageinit", function() {
 
+	console.log('asdasdsa');
+
 	var logs = app.session.userData.logs;
 
 	for(var i = 0; i < logs.length; i++) {
@@ -33,7 +35,7 @@ $(document).one("pageinit", function() {
 		uploadElement = data.synched ? "" : uploadElement;
 		
 		$("#logview").append("\
-			<li><a href=\"#\">\
+			<li id=\"trip_" + log_id + "\"><a href=\"#\">\
 			<h3>" + datestr +" "+ time +"</h3>\
 			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
 			<p class=\"ui-li-aside\">" + uploadElement + " <img style=\"width: 50px; height: 50px\" src=\"../images/Map.png\"/></p>\

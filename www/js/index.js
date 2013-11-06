@@ -14,9 +14,8 @@ var app = {
 		app.location = new GeoLocation({}, app.onLocationUpdate);
 		app.startSession();
 		
-		app.session.tryAutoLogin();
-		
         this.bindEvents();
+		
     },
     
     startSession: function() {
@@ -48,7 +47,12 @@ var app = {
         
         console.log("Device ready");
         
-        $.mobile.changePage("pages/main.html");
+        if(app.session.tryAutoLogin()) {
+			app.receivedEvent('loginsuccess');
+		} else {
+			$.mobile.changePage("pages/main.html");
+		}
+        
         
         
     },
