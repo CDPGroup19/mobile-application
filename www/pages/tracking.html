@@ -4,6 +4,8 @@
 	
 	 $(document).one("pagebeforeshow", function() {
 		
+		console.log("hey!!");
+		
 		var startButton = $("#start");
 		var stopButton = $("#stop");
 		
@@ -27,14 +29,16 @@
 			
 		}
 		
-		$('#tripMode').click(function() {
+		$('#tripMode').change(function() {
 			
 			if(!app.isTracking) {
 				return;
 			}
 			
+			
 			var value = Number($('#tripMode').children("option:selected").val());
 			
+			console.log('updating mode to ' + value);
 			app.log.updateMode(value);
 			
 		});

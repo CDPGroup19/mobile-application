@@ -22,7 +22,7 @@
 </script>
 
   <script>
-/*
+
 var timeStr = function(time) {
 
 	var zeroPad = function(str, n) {
@@ -47,7 +47,7 @@ var timeStr = function(time) {
 $(document).one("pagebeforeshow", function() {
 
 	var elem = $('#manageTrackingList');
-	var log = app.log;
+	var log = app.session.getLocalLog(app.session.getActiveLogId()).log;
 	
 	elem.listview();
 	
@@ -75,7 +75,7 @@ $(document).one("pagebeforeshow", function() {
 	elem.listview('refresh');
 
 });
-*/
+
 </script>
 
 

@@ -68,7 +68,7 @@ var app = {
 			
 			case "managetrip":
 			
-				$.mobile.changePage('../pages/manageTrip.html');
+				$.mobile.changePage('../pages/manageTrackingList.html');
 				
 				break;
 			
@@ -292,7 +292,7 @@ var app = {
     viewLog: function(log) {
     
 		app.session.setActiveLogId(log);
-		app.session.receivedEvent('managetrip');
+		app.receivedEvent('managetrip');
     
     },
     
