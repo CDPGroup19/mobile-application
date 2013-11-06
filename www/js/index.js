@@ -288,7 +288,7 @@ var app = {
 		el.val(value).attr("selected", true).siblings('option').removeAttr('selected');
 		el.selectmenu('refresh', true);
     
-		//$(id).attr("value", this.session.getLocalUserInfo(fields[i]));
+		//$(id).attr("value", app.session.getLocalUserInfo(fields[i]));
 		//$(id).selectmenu();
 		//$(id).selectmenu('refresh', true);
     },
@@ -306,7 +306,7 @@ var app = {
 			
 			var id = fields[i];
 			
-			app.restoreListValue(id, this.session.getLocalUserInfo(id));
+			app.restoreListValue(id, app.session.getLocalUserInfo(id));
 			
 		}
 		
@@ -316,7 +316,7 @@ var app = {
 		
 		for(var i = 0; i < radiobuttons.length; i++) {
 			
-			var value = this.session.getLocalUserInfo(radiobuttons[i]);
+			var value = app.session.getLocalUserInfo(radiobuttons[i]);
 			
 			if(value != 'none') {
 				
@@ -337,24 +337,24 @@ var app = {
 		
 		// Validate?
 		
-		this.session.updateLocalUserInfo(key, value);
+		app.session.updateCurrentUserInfo(key, value);
 		
     },
     
     closeLogger: function() {
     
-		this.log = null;
+		app.log = null;
     
     },
     
     storeLocalTrip: function() {
     
-		if(!(this.log instanceof Logger)) {
+		if(!(app.log instanceof Logger)) {
 			console.warn("App: Attempted to store local trip, but no trip was in memory!");
 			return;
 		}
 		
-		return app.session.addLocalLog(this.log);
+		return app.session.addLocalLog(app.log);
     
     },
     
@@ -376,13 +376,13 @@ var app = {
 			},
 			
 			person: app.session.getUserInfoObject(),
-			trip: this.session.getLocalLog(id).log
+			trip: app.session.getLocalLog(id).log
 			
 		};
 		
 		console.log(JSON.stringify(jsonObj));
 		
-		this.server.submitReport(jsonObj, (function(e) {
+		app.server.submitReport(jsonObj, (function(e) {
 			
 			console.log("done! response: ", e);
 			
@@ -487,7 +487,7 @@ var app = {
 			}
 		};
 		
-		this.server.createUser(userObj, onServerResponse);
+		app.server.createUser(userObj, onServerResponse);
 		//onServerResponse();
 		
     },
