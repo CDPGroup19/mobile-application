@@ -11,6 +11,11 @@ Session.prototype.__defineGetter__('AutoLoginConf', function() {
 	return Number(this.storage.getItem('autoconfig'));
 });
 
+Session.prototype.removeAutoLogin = function() {
+	this.storage.setItem('autouser', '{}');
+	this.storage.setItem('autoconfig', 0);
+};
+
 Session.prototype.setAutoLogin = function(option) {
 	this.storage.setItem('autouser', JSON.stringify({
 		username: this.userData.username,

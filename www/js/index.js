@@ -85,6 +85,7 @@ var app = {
 				if(app.isTracking)
 					app.stopTracking();
 				
+				app.session.removeAutoLogin();
 				app.session = null;
 				app.log = null;
 				
