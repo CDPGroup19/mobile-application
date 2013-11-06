@@ -12,6 +12,8 @@
 
 $(document).one('pagebeforeshow', function() {
 
+	app.restoreListValue('loginf', app.session.AutoLoginConf);
+	
 	$('#loginf').change(function() {
 	
 		console.log('autologin is now', $('#loginf').val());

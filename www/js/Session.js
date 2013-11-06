@@ -7,6 +7,10 @@ var Session = function() {
 
 };
 
+Session.prototype.__defineGetter__('AutoLoginConf', function() {
+	return Number(this.storage.getItem('autoconfig'));
+});
+
 Session.prototype.setAutoLogin = function(option) {
 	this.storage.setItem('autouser', JSON.stringify({
 		username: this.userData.username,
@@ -18,12 +22,13 @@ Session.prototype.setAutoLogin = function(option) {
 
 Session.prototype.tryAutoLogin = function() {
 
-	var autouser = JSON.parse(this.storage.getItem('autouser'));
-	var autoconf = Number(this.storage.getItem('autoconfig'));
+	if(!this.AutoLoginConf)
+		return false;
 
-	if(autoconf > 0 && autouser.username && autouser.password) {
-		this.login(autouser.username, autouser.password);
-		return true;
+	var autouser = JSON.parse(this.storage.getItem('autouser'));
+	
+	if(autouser.username && autouser.password) {
+		return this.login(autouser.username, autouser.password);
 	}
 
 	return false;
