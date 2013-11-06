@@ -45,6 +45,16 @@
         <div id="createAccountButton">
         	<a onclick="app.receivedEvent('onloginrequest');" data-role="button" class="show-page-loading-msg"  data-overlay-theme="c" data-textonly="false" data-textvisible="true" data-msgtext="Logging in.." data-theme="d">Log in</a>
     	</div>
+        
+        <div data-role="fieldcontain" id="forgotPassword">
+	  	  <label for="forgotPasswordinput">Forgot your password? Enter your e-mail here:</label>
+	  	  <input type="text" name="forgotPasswordinput" id="forgotPasswordInput" value="" data-theme="b" />
+  	  	
+            <div id="forgotPasswordButton">
+                <a href="resetPassword.html" data-role="button" data-theme="c">Get new password</a>
+            </div>
+        </div>
+        
     </div>
 	
     
