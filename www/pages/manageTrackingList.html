@@ -79,98 +79,91 @@ $(document).one("pagebeforeshow", function() {
 </script>
 
 
-    	<div data-role="header" data-theme="a">
+    <div data-role="header" data-theme="a">
         	<a href="history.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
          	<p>Tracking</p>
             <a href="#" id="mapIcon" data-role="button" data-inline="true" class="customButton">
     			<img src="../images/mapIcon.png"/>
     		</a> 
-        </div>
+    </div>
         
-        <div data-role="content">
-        <div id="manageTripButtons">
-                  
-                    <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
-                        <a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>
-                        <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="uploadBtn">Upload</a>
-                        <a data-role="button" data-theme="a" onclick="" id="deleteTrip">Delete</a>
-                    </div>
+    <div data-role="content">
+    	<div id="manageTripButtons">
+                      
+                <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                     <a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>
+                     <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="uploadBtn">Upload</a>
+                     <a data-role="button" data-theme="a" onclick="" id="deleteTrip">Delete</a>
+                </div>
+                    
+        </div>
                 
-            </div>
+		<ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
             
-      
-         <ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
-        
-          
-          	
-           <!-- 
-            <li>
-            	<a href="#">
-                  <p>Trip1</p>
-                  <h1>11:34 - 11:59</h1>
-                  <div class="ui-li-aside"><img src="../images/walk.png"/></div>
-            	</a>
-                <a data-role="button">Change</a>
-         	</li>
-            <li>
-            	<a href="#">
-                  <p>Trip2</p>
-                  <h1>12:03 - 12:21</h1>
-                  <div class="ui-li-aside"><img src="../images/buss.png"/></div>
-            	</a>
-                <a data-role="button">Change</a>
-       		</li>
-            <li>
-            	<a>
-                  <p>Trip3</p>
-                  <h1>12:22 - 12:40</h1>
-                  <div class="ui-li-aside"><img src="../images/tram.png"/></div>
-            	</a>
-                <a data-role="button">Change</a>
-            </li>
-        -->
-            <li id="buttons">
-            	<div id="uploadButton" data-role="controlgroup" data-type="horizontal">
-                    <a data-role="button" data-theme="f" onclick="" id="saveChanges">Save changes</a>
-                    <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
-                    <a data-role="button" data-theme="f" onclick="app.deleteTrip(app.session.getActiveLogId());" id="delete">Delete</a>
-          		</div>
-            </li>
-          </ul>
-          
-         	<div id="map">
-        	</div>
-            
-            <div id="popupMode">
-            <a data-rel="popup" data-role="button"href="#popupTranspMode">OK</a>
-            
-            <div data-role="popup" id="popupTranspMode" class="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all" data-position-to="window"> 
-                <div data-role="header" data-theme="a" class="ui-corner-top">
-                    <h1>Change mode</h1>
-                </div>
-                <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
-                    <div id="selectMode" style="width: 100%;">
-                        <select name="tripMode" id="tripMode">
-                            <option value="0">Travel mode?</option>
-                            <option value="1">Bus</option>
-                            <option value="2">Tram</option>
-                            <option value="3">Subway</option>
-                            <option value="4">Walk</option>
-                            <option value="5">Bicycle</option>
-                            <option value="6">Boat</option>
-                            <option value="7">Car</option>
-                          </select>
-                     </div>
-                    <div id="dialogButtons">    
-                        <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="d">OK</a> 
-                    </div> 
-                </div>
-            </div>
+              
+                
+               <!-- 
+                <li>
+                    <a href="#">
+                      <p>Trip1</p>
+                      <h1>11:34 - 11:59</h1>
+                      <div class="ui-li-aside"><img src="../images/walk.png"/></div>
+                    </a>
+                    <a data-role="button">Change</a>
+                </li>
+                <li>
+                    <a href="#">
+                      <p>Trip2</p>
+                      <h1>12:03 - 12:21</h1>
+                      <div class="ui-li-aside"><img src="../images/buss.png"/></div>
+                    </a>
+                    <a data-role="button">Change</a>
+                </li>
+                <li>
+                    <a>
+                      <p>Trip3</p>
+                      <h1>12:22 - 12:40</h1>
+                      <div class="ui-li-aside"><img src="../images/tram.png"/></div>
+                    </a>
+                    <a data-role="button">Change</a>
+                </li>
+            -->
+                
+		</ul>
+              
+        <div id="map">
         </div>
+                <!--
+                <div id="popupMode">
+                <a data-rel="popup" data-role="button"href="#popupTranspMode">OK</a>
+                
+                <div data-role="popup" id="popupTranspMode" class="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all" data-position-to="window"> 
+                    <div data-role="header" data-theme="a" class="ui-corner-top">
+                        <h1>Change mode</h1>
+                    </div>
+                    <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                        <div id="selectMode" style="width: 100%;">
+                            <select name="tripMode" id="tripMode">
+                                <option value="0">Travel mode?</option>
+                                <option value="1">Bus</option>
+                                <option value="2">Tram</option>
+                                <option value="3">Subway</option>
+                                <option value="4">Walk</option>
+                                <option value="5">Bicycle</option>
+                                <option value="6">Boat</option>
+                                <option value="7">Car</option>
+                              </select>
+                         </div>
+                        <div id="dialogButtons">    
+                            <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="d">OK</a> 
+                        </div> 
+                    </div>
+                </div>
+				</div>-->
             
-        </div>
+    </div>
         
-        <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
           <div id="menuButtons"data-inline="true" data-type="horizontal">
               <a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
               <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2selected.png"/></a>
@@ -178,7 +171,7 @@ $(document).one("pagebeforeshow", function() {
               <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
           </div>
     	
-    	</div>
+    </div>
         
 </div>
 

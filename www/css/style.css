@@ -363,9 +363,10 @@ div#uploadDeleteButtons, .ui-controlgroup-controls{
 }
 div#uploadDeleteButtons .ui-btn-inner{
 	padding: 5px 3px;
-}
-div#uploadDeleteButtons .ui-btn-text{
 	font-size: 0.9em;
+}
+div#manageTripButtons .ui-btn-text{
+	font-size: 0.9em !important;
 }
 a#save, a#delete{
 	width: 28%;
