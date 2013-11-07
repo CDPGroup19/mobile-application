@@ -32,7 +32,7 @@ $(document).one("pageinit", function() {
 		
 		var uploadElement = "<img id=\"sync_log_" + log_id + "\" class=\"uploadIcon\" src=\"../images/upload.png\" />";
 		
-		uploadElement = data.synched ? "" : uploadElement;
+		uploadElement = data.synched ? "Uploaded" : "Not uploaded";
 		
 		$("#logview").append("\
 			<li id=\"trip_" + log_id + "\" onclick=\"app.viewLog(" + log_id + ")\"><a href=\"#\">\
