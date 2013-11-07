@@ -399,7 +399,7 @@ var app = {
     },
     
     deleteTrip: function(id) {
-    
+		
 		app.server.deleteTrip({
 		
 			user: {
@@ -416,6 +416,8 @@ var app = {
 		}, function(e) {
 		
 			if(e.DeleteTripByIdRESTResult == 'ok') {
+				
+				app.session.removeLocalLog(id);
 				
 				$.mobile.changePage('../pages/history.html');
 				

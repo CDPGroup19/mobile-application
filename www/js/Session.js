@@ -114,7 +114,7 @@ Session.prototype.getLocalLog = function(id) {
 
 };
 
-Session.prototype.removedStorageLogEntry = function(username, id) {
+Session.prototype.removeStorageLogEntry = function(username, id) {
 	
 	var logID = this.getUserLogKey(username, id);
 	
@@ -216,7 +216,7 @@ Session.prototype.deleteLocalUser = function(username) {
 	var logs = userData.logs.slice(0);
 	
 	for(var i = 0; i < logs.length; i++) {
-		this.removedStorageLogEntry(username, logs[i]);
+		this.removeStorageLogEntry(username, logs[i]);
 	}
 
 	// Remove userdata entry from storage
