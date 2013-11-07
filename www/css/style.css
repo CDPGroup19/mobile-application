@@ -344,15 +344,15 @@ li#manageTripButtons{
 	padding: 5px 3px;
 }
 a#deleteTrip, a#saveChanges{
-	width: 30%;
-	font-size: 0.9em;
+	width: 31%;
+	font-size: 0.8em;
 	
 }
 
 a#uploadBtn{
 	margin: 0;
-	width: 39%;
-	font-size: 0.9em;
+	width: 35%;
+	font-size: 0.8em;
 }
 
 div#uploadDeleteButtons, .ui-controlgroup-controls{
