@@ -47,7 +47,15 @@ var timeStr = function(time) {
 $(document).one("pagebeforeshow", function() {
 
 	var elem = $('#manageTrackingList');
-	var log = app.session.getLocalLog(app.session.getActiveLogId()).log;
+	var entry = app.session.getLocalLog(app.session.getActiveLogId());
+	var log = entry.log;
+	var synched = entry.synched;
+	
+	if(synched) {
+		$('#uploadBtn').text("Already uploaded");
+		//$('#uploadBtn').button();
+		//$('#uploadBtn').button("disable");
+	}
 	
 	elem.listview();
 	
@@ -92,8 +100,8 @@ $(document).one("pagebeforeshow", function() {
                       
                 <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
                      <a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>
-                     <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="uploadBtn">Upload</a>
-                     <a data-role="button" data-theme="a" onclick="" id="deleteTrip">Delete</a>
+                     <a data-role="button" data-theme="d" onclick="app.uploadTrip(app.session.getActiveLogId());" id="uploadBtn">Upload</a>
+                     <a data-role="button" data-theme="a" onclick="app.deleteTrip(app.session.getActiveLogId())" id="deleteTrip">Delete</a>
                 </div>
                     
         </div>
