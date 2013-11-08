@@ -24,9 +24,7 @@ var timeStr = function(time) {
 
 // Add history
 $(document).one("pagebeforeshow", function() {
-
-	return;
-
+	
 	var elem = $('#manageTrackingList');
 	var entry = app.session.getLocalLog(app.session.getActiveLogId());
 	
