@@ -1,25 +1,4 @@
 <div id="manageTripPage" data-role="page" data-theme="a">
-<script>
-		$(document).on("click", ".show-page-loading-msg", function() {
-			var $this = $( this ),
-				theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-				msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-				textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-				textonly = !!$this.jqmData("textonly");
-				html = $this.jqmData("html") || "";
-			$.mobile.loading( 'show', {
-					text: msgText,
-					textVisible: textVisible,
-					theme: theme,
-					textonly: textonly,
-					html: html
-			});
-			
-		})
-		.on("click", ".hide-page-loading-msg", function() {
-			$.mobile.loading( 'hide' );
-		});
-</script>
 
   <script>
 
@@ -46,8 +25,14 @@ var timeStr = function(time) {
 // Add history
 $(document).one("pagebeforeshow", function() {
 
+	return;
+
 	var elem = $('#manageTrackingList');
 	var entry = app.session.getLocalLog(app.session.getActiveLogId());
+	
+	if(!entry)
+		return;
+	
 	var log = entry.log;
 	var synched = entry.synched;
 	
@@ -65,6 +50,9 @@ $(document).one("pagebeforeshow", function() {
 	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	
 	elem.listview();
+	
+	if(!log || !log.entries || log.entries.length <= 0)
+		return;
 	
 	for(var i = 0; i < log.modes.length; i++) {
 		
@@ -105,8 +93,8 @@ $(document).one("pagebeforeshow", function() {
 
     <div data-role="header" data-theme="a">
         	<a href="history.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
-         		<p id="tripTime"><script>$('#tripTime').html((new Date).toLocaleDateString());</script></p>
-            <a href="#" id="mapIcon" data-role="button" data-inline="true" class="customButton">
+         		<p id="tripTime">Trip view</p>
+            <a href="viewMap.html" id="mapIcon" data-role="button" data-inline="true" class="customButton">
     			<img src="../images/mapIcon.png"/>
     		</a> 
     </div>
@@ -134,66 +122,11 @@ $(document).one("pagebeforeshow", function() {
                     </div>
                	</a>
             </li>
-              
-                
-               <!-- 
-                <li>
-                    <a href="#">
-                      <p>Trip1</p>
-                      <h1>11:34 - 11:59</h1>
-                      <div class="ui-li-aside"><img src="../images/walk.png"/></div>
-                    </a>
-                    <a data-role="button">Change</a>
-                </li>
-                <li>
-                    <a href="#">
-                      <p>Trip2</p>
-                      <h1>12:03 - 12:21</h1>
-                      <div class="ui-li-aside"><img src="../images/buss.png"/></div>
-                    </a>
-                    <a data-role="button">Change</a>
-                </li>
-                <li>
-                    <a>
-                      <p>Trip3</p>
-                      <h1>12:22 - 12:40</h1>
-                      <div class="ui-li-aside"><img src="../images/tram.png"/></div>
-                    </a>
-                    <a data-role="button">Change</a>
-                </li>
-            -->
                 
 		</ul>
               
         <div id="map">
         </div>
-                <!--
-                <div id="popupMode">
-                <a data-rel="popup" data-role="button"href="#popupTranspMode">OK</a>
-                
-                <div data-role="popup" id="popupTranspMode" class="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all" data-position-to="window"> 
-                    <div data-role="header" data-theme="a" class="ui-corner-top">
-                        <h1>Change mode</h1>
-                    </div>
-                    <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
-                        <div id="selectMode" style="width: 100%;">
-                            <select name="tripMode" id="tripMode">
-                                <option value="0">Travel mode?</option>
-                                <option value="1">Bus</option>
-                                <option value="2">Tram</option>
-                                <option value="3">Subway</option>
-                                <option value="4">Walk</option>
-                                <option value="5">Bicycle</option>
-                                <option value="6">Boat</option>
-                                <option value="7">Car</option>
-                              </select>
-                         </div>
-                        <div id="dialogButtons">    
-                            <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="d">OK</a> 
-                        </div> 
-                    </div>
-                </div>
-				</div>-->
             
     </div>
         
@@ -207,10 +140,4 @@ $(document).one("pagebeforeshow", function() {
     	
     </div>
         
-</div>
-
-<div id="mapPage" data-role="page">
-	<div id="mapView">
-    <img src="../images/map.png"/>
-    </div>
 </div>
