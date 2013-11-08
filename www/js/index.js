@@ -552,6 +552,11 @@ var app = {
 		
 			console.warn("SERVER RESPONSE: ", response);
 			
+			if(e.InsertNewUserRESTResult != "ok") {
+				app.popup.warn("That won't do. " + e.InsertNewUserRESTResult);
+				return;
+			}
+			
 			var r = false;
 			
 			try {
@@ -606,8 +611,7 @@ var app = {
 		if(login_ok)
 			app.receivedEvent('loginsuccess');
 		else {
-			// @TODO: Handle login fail
-			alert("Failed to sign in: " + err_msg);
+			app.popup.warn("Failed to sign in. " + err_msg);
 		}
     
     },
