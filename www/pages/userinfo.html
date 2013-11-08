@@ -45,13 +45,13 @@ $( document ).bind( "pageinit", function( event, data ) {
 			
 			});
 			
-			$("input[name=travelcard]:radio").change(function() {
+			$("input[name=subscription]:radio").change(function() {
 			
 				console.log("travel card updated");
 				
-				var checked = $('input[name="travelcard"]:checked').val();
+				var checked = $('input[name="subscription"]:checked').val();
 			
-				app.onUserInfoChanged({ id: 'travelcard', value: checked });
+				app.onUserInfoChanged({ id: 'subscription', value: checked });
 			
 			});
 			
@@ -106,14 +106,14 @@ $( document ).bind( "pageinit", function( event, data ) {
       </select>
     </div>
     <div data-role="fieldcontain">
-      <label for="travelcard">What's your payment preference when travelling with Ruter? Choose the most applicable.</label>
-      <fieldset id="travelcard" name="travelcard" data-role="controlgroup" data-type="horizontal">
+      <label for="subscription">What's your payment preference when travelling with Ruter? Choose the most applicable.</label>
+      <fieldset id="subscription" name="subscription" data-role="controlgroup" data-type="horizontal">
         <legend> </legend>
-        <input type="radio" name="travelcard" id="travelcard_1" value="travelcard_1" />
+        <input type="radio" name="subscription" id="travelcard_1" value="travelcard_1" />
         <label for="travelcard_1">Travel Card</label>
-        <input type="radio" name="travelcard" id="travelcard_2" value="travelcard_2" />
+        <input type="radio" name="subscription" id="travelcard_2" value="travelcard_2" />
         <label for="travelcard_2">Monthly Card</label>
-        <input type="radio" name="travelcard" id="travelcard_3" value="travelcard_3" />
+        <input type="radio" name="subscription" id="travelcard_3" value="travelcard_3" />
         <label for="travelcard_3">Single Tickets</label>
       </fieldset>
     </div>

@@ -27,16 +27,16 @@ Logger.MODE = ({
 	7: "car",
 });
 
-Logger.TRIP_PURPOSE = ({
-	"-1": "Unknown travel mode",
-	0: "Work",
-	1: "Business",
-	2: "School",
-	3: "Accompany others",
-	4: "Shopping service",
-	5: "Leisure",
-	6: "Home",
-});
+Logger.TRIP_PURPOSE = {
+	0: "Unknown purpose",
+	1: "Work",
+	2: "Business",
+	3: "School",
+	4: "Accompany others",
+	5: "Shopping service",
+	6: "Leisure",
+	7: "Home",
+};
 
 Logger.prototype.updateMode = function(travelMode) {
 

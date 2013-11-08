@@ -160,16 +160,16 @@ Session.prototype.getUserInfoObject = function() {
 	
 	var out = {};
 	
-	var attrs = ['birthyear', 'martialStatus', 'numChildren', 'residence',
+	var attrs = ['birthyear', 'maritalStatus', 'numChildren', 'residence',
 		'area', 'occupation'];
 	
 	for(var i = 0; i < attrs.length; i++) {
 		if(this.userData.info[attrs[i]] !== undefined) {
-			out[attrs[i]] = Number(this.userData.info[attrs[i]]) || 0;
+			out[attrs[i] + "Id"] = Number(this.userData.info[attrs[i]]) || 0;
 		}
 	}
 	
-	var checks = ['Gender', 'travelcard'];
+	var checks = ['Gender', 'subscription'];
 	
 	for(var i = 0; i < checks.length; i++) {
 		var check = checks[i];
@@ -180,16 +180,8 @@ Session.prototype.getUserInfoObject = function() {
 				val = parseInt(m[1], 10);
 			}
 		}
-		out[check] = val;
+		out[check + "Id"] = val;
 	}
-	
-	out.Gender = this.userData.info.Gender !== undefined
-			? (this.userData.info.Gender == "male" ? 1 : 2)
-			: 0;
-	
-	out.travelcard = this.userData.info.travelcard !== undefined
-			? (this.userData.info.travelcard == "travelcard_yes" ? 1 : 2)
-			: 0;
 	
 	return out;
 };

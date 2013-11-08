@@ -352,7 +352,7 @@ var app = {
 		
 		// Restore radio check buttons
 		
-		var radiobuttons = ['Gender', 'travelcard'];
+		var radiobuttons = ['Gender', 'subscription'];
 		
 		for(var i = 0; i < radiobuttons.length; i++) {
 			
