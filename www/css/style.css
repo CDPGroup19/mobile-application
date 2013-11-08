@@ -167,6 +167,13 @@ div#logOut{
 	padding: 10px, 10px, 10px, 10px;
 	float:right;
 }
+#paymentPref .ui-btn-inner{
+	padding: 7px;
+}
+#paymentPref .ui-radio{
+	width: 33%;
+	font-size:0.9em;
+}
 
 /*//////////////////////////////////////
 				TRACKING
