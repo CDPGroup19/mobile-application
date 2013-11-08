@@ -45,7 +45,8 @@ Logger.prototype.updateMode = function(travelMode) {
 	
 	this.modes.push({
 		mode: travelMode,
-		time: Date.now()
+		time: Date.now(),
+		startDistance: this.meta.distance
 	});
 };
 
