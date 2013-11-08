@@ -451,6 +451,9 @@ var app = {
 			
 		};
 		
+		// hack
+		jsonObj.trip.meta.purposeId = jsonObj.trip.meta.purpose;
+		
 		console.log(JSON.stringify(jsonObj));
 		
 		app.server.submitReport(jsonObj, (function(e) {

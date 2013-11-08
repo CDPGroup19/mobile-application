@@ -4,13 +4,17 @@
 	
 	 $(document).one("pagebeforeshow", function() {
 		
-		console.log("hey!!");
+		var divPurpose = $("#selectDestination");
+		var divMode = $("#selectMode");
+		
+		divPurpose.hide();
+		divMode.hide();
 		
 		var startButton = $("#start");
 		var stopButton = $("#stop");
 		
 		stopButton.hide();
-
+		
 		startButton.click(function(){
 			stopButton.show();
 			startButton.hide();
@@ -46,6 +50,11 @@
 		//$(document).bind("pageinit", (function() {
 			//console.log("asssasdds");
 			if(app.isTracking) {
+			
+				console.log("isTracking=true");
+				divPurpose.show();
+				divMode.show();
+			
 				// Restore
 				console.log("restore");
 				stopButton.show();
@@ -65,9 +74,11 @@
 					
 			} else {
 				$("#start").click(function() {
-				console.log("clickclick");
-					app.map.create();
 					
+					console.log("clicked start button");
+					app.map.create();
+					divPurpose.show();
+					divMode.show();
 					
 				});
 			}
