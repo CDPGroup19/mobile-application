@@ -54,24 +54,40 @@ $(document).one("pagebeforeshow", function() {
 	if(synched) {
 		$('#uploadBtn').text("Already uploaded");
 		//$('#uploadBtn').button();
-		//$('#uploadBtn').button("disable");
+	} else {
+		$('#uploadBtn').text("Upload");
+		$('#uploadBtn').click(function() {
+			app.uploadTrip(app.session.getActiveLogId());
+		});
 	}
+	
+	$("#tripLength").html("Length: " + log.meta.distance + "m");
+	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	
 	elem.listview();
 	
 	for(var i = 0; i < log.modes.length; i++) {
 		
-		var time = log.modes[i].time;
-		var mode = log.modes[i].mode;
+		var mode = log.modes[i];
 		
-		if(mode <= 0)
+		var modeId = mode.mode;
+		var time = mode.time;
+		
+		var nextTime = log.entries[log.entries.length - 1].timestamp;
+		
+		if(i + 1 < log.modes.length) {
+			nextTime = log.modes[i+1].time;
+		}
+		
+		if(modeId <= 0)
 			continue;
 		
-		var modestr = Logger.MODE[mode];
+		var modestr = Logger.MODE[modeId];
+		var d = mode.startDistance || 0;
 		
 		elem.append("<li>\
 				<a href=\"#\">\
-				  <h1>" + timeStr(time) + "</h1>\
+				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + "m</h1>\
 				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
 				</a>\
 				<!--<a data-role=\"button\">Change</a>-->\
@@ -99,8 +115,8 @@ $(document).one("pagebeforeshow", function() {
     	<div id="manageTripButtons">
                       
                 <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
-                     <a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>
-                     <a data-role="button" data-theme="d" onclick="app.uploadTrip(app.session.getActiveLogId());" id="uploadBtn">Upload</a>
+                     <!--<a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>-->
+                     <a data-role="button" data-theme="d" id="uploadBtn">Upload</a>
                      <a data-role="button" data-theme="a" onclick="app.deleteTrip(app.session.getActiveLogId())" id="deleteTrip">Delete</a>
                 </div>
                     
@@ -110,11 +126,11 @@ $(document).one("pagebeforeshow", function() {
             <li>
             	<a href="#" id="headerTrackingList">
             		<div style="float: left;">
-                    	<h3 style="margin: 0;">Accompany others</h3>
+                    	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
                     </div>
                     <div style="float: right; width: 30%">
-                    	<p style="float: right; font-size:0.9em; margin: 0;">Duration: 12.04</p>
-                		<p style="float: right; font-size:0.9em; margin: 0;">Length: 2000 m</p>
+                    	<!--<p style="float: right; font-size:0.9em; margin: 0;">Duration: 12.04</p>-->
+                		<p style="float: right; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
                     </div>
                	</a>
             </li>
