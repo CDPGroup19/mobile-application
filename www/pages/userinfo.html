@@ -20,6 +20,13 @@ $( document ).bind( "pageinit", function( event, data ) {
 		
 		
 		$(document).one('pagebeforeshow', function() {
+		
+		
+			var startYear = (new Date).getFullYear() - 18;
+		
+			for(var i = startYear; i > startYear - 50; i--) {
+				$("#birthyear").append("<option value=\"" + i + "\">" + i + "</option>");
+			}
 			
 			// Restore
 			
@@ -62,22 +69,17 @@ $( document ).bind( "pageinit", function( event, data ) {
     <div data-role="fieldcontain">
       <fieldset data-role="controlgroup" data-type="horizontal" id="gender">
         <legend>Gender:</legend>
-        <input type="radio" name="Gender" id="male"  value="male" />
-        <label for="male">Male</label>
-        <input type="radio" name="Gender" id="female" value="female" />
-        <label for="female">Female</label>
+        <input type="radio" name="Gender" id="male_1"  value="male_1" />
+        <label for="male_1">Male</label>
+        <input type="radio" name="Gender" id="female_2" value="female_2" />
+        <label for="female_2">Female</label>
       </fieldset>
     </div>
     <div data-role="fieldcontain">
-      <label for="birthyear" class="select">Age group:</label>
+      <label for="birthyear" class="select">Birth year:</label>
       <select onChange="app.onUserInfoChanged(this)" name="birthyear" id="birthyear" data-icon="arrow-d" type="year">
         <option value="none">I prefer not to tell</option>
-        <option value="1">1951-1960</option>
-        <option value="2">1961-1970</option>
-        <option value="3">1971-1980</option>
-        <option value="4">1981-1990</option>
-        <option value="5">1991-2000</option>
-        <option value="6">2001 or later</option>
+        <option value="1">I'm under 18</option>
       </select>
     </div>
     <div data-role="fieldcontain" >
@@ -104,13 +106,15 @@ $( document ).bind( "pageinit", function( event, data ) {
       </select>
     </div>
     <div data-role="fieldcontain">
-      <label for="travelcard">Do you have travel card from Ruter?</label>
+      <label for="travelcard">What's your payment preference when travelling with Ruter? Choose the most applicable.</label>
       <fieldset id="travelcard" name="travelcard" data-role="controlgroup" data-type="horizontal">
         <legend> </legend>
-        <input type="radio" name="travelcard" id="travelcard_yes" value="travelcard_yes" />
-        <label for="travelcard_yes">yes</label>
-        <input type="radio" name="travelcard" id="travelcard_no" value="travelcard_no" />
-        <label for="travelcard_no">no</label>
+        <input type="radio" name="travelcard" id="travelcard_1" value="travelcard_1" />
+        <label for="travelcard_1">Travel Card</label>
+        <input type="radio" name="travelcard" id="travelcard_2" value="travelcard_2" />
+        <label for="travelcard_2">Monthly Card</label>
+        <input type="radio" name="travelcard" id="travelcard_3" value="travelcard_3" />
+        <label for="travelcard_3">Single Tickets</label>
       </fieldset>
     </div>
     <div data-role="fieldcontain" >

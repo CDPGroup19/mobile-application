@@ -169,6 +169,20 @@ Session.prototype.getUserInfoObject = function() {
 		}
 	}
 	
+	var checks = ['Gender', 'travelcard'];
+	
+	for(var i = 0; i < checks.length; i++) {
+		var check = checks[i];
+		var val = 0;
+		if(this.userData.info[check] !== undefined) {
+			var m = this.userData.info[check].match(/.*_(\d)$/);
+			if(m !== null) {
+				val = parseInt(m[1], 10);
+			}
+		}
+		out[check] = val;
+	}
+	
 	out.Gender = this.userData.info.Gender !== undefined
 			? (this.userData.info.Gender == "male" ? 1 : 2)
 			: 0;
