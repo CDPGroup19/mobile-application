@@ -44,7 +44,9 @@ var PopupHelper = function() {
 		$.mobile.activePage.page('destroy').page()
 	};
 	
-	this.warn = function(message) {
+	this.warn = function(message,  handler) {
+	
+		handler = handler || (function() { void 0; });
 	
 		this.add(
 			undefined,
@@ -53,7 +55,7 @@ var PopupHelper = function() {
 			"Something went wrong...",
 			message,
 			"OK",
-			(function() { void 0; })
+			[handler]
 		);
 	
 	};

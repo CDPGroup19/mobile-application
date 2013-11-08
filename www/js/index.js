@@ -6,6 +6,7 @@ var app = {
 	log: null,
 	server: new ServerAPI("http://129.241.110.230/Smio/BackendService.svc"),
 	map: null,
+	popup: new PopupHelper(),
 
     // Application Constructor
     initialize: function() {
@@ -82,7 +83,10 @@ var app = {
 						app.receivedEvent('onlogout');
 						
 					} else {
-						console.error("@TODO: Handle delete user failed ...");
+						console.error("Delete user failed ...");
+						
+						app.popup.warn("User deletion failed. " + e.DeleteUserRESTResult);
+						
 					}
 				
 				});
@@ -102,7 +106,9 @@ var app = {
 				password2 = $('#confirmpasswordInput').val();
 				
 				if(password != password2) {
-					// @TODO: Display error
+					
+					app.popup.warn("Please reconfirm your password.");
+					return;
 				}
 				
 				//{ 
@@ -137,6 +143,7 @@ var app = {
 						
 					} else {
 						
+						app.popup.warn("That didn't quite work out. " + response.ResetPasswordRESTResult);
 						console.log("TODO: authenticate activation code failed!");
 						
 					}
@@ -175,6 +182,11 @@ var app = {
 				password2 = $("#passwordInputConfirm")[0].value;
 				
 				// @TODO validate input
+				
+				if(password != password2) {
+					app.popup.warn("Please reconfirm your password.");
+					return;
+				}
 				
 				app.createUser(username, password);
 				
@@ -429,7 +441,16 @@ var app = {
     
     },
     
+    isOnline: function() {
+		return navigator.onLine;
+    },
+    
     uploadTrip: function(id, callback) {
+		
+		if(!app.isOnline()) {
+			app.popup.warn("Ensure your internet connection is working.");
+			return;
+		}
 		
 		callback = callback || (function() { 
 			$.mobile.changePage("../pages/history.html");
@@ -530,10 +551,6 @@ var app = {
 		var onServerResponse = (function(response) {
 		
 			console.warn("SERVER RESPONSE: ", response);
-		
-			
-			// @TODO create on remote server
-			// Create locally for now
 			
 			var r = false;
 			
@@ -549,6 +566,7 @@ var app = {
 				app.receivedEvent('loginsuccess');
 			} else {
 				console.warn("App: Failed to create local user");
+				app.popup.warn("Something went wrong. Sorry!");
 			}
 			
 		
