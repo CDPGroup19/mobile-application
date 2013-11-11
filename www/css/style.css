@@ -168,11 +168,18 @@ div#logOut{
 	float:right;
 }
 #paymentPref .ui-btn-inner{
-	padding: 7px;
+	padding: 8px;
+	font-size: 0.95em;
 }
 #paymentPref .ui-radio{
 	width: 33%;
 	font-size:0.9em;
+}
+
+.ui-popup-screen{
+	pointer-events: none;
+	z-index: 99;
+	position:absolute;
 }
 
 /*//////////////////////////////////////
@@ -347,11 +354,18 @@ li#manageTripButtons{
 	width: 100%;
 	margin: 0;
 }
+#saveDeleteButtons #uploadBtn{
+	margin: 0;
+	width: 49%;
+	font-size: 0.8em;
+	padding: 7px 0px;
+}
+
 #saveDeleteButtons .ui-btn-inner{
 	padding: 5px 3px;
 }
 a#deleteTrip, a#saveChanges{
-	width: 33%;
+	width: 49%;
 	font-size: 0.8em;
 	
 }
@@ -392,15 +406,18 @@ a#upload{
 	float: left;
 }
 
-.trackingList a#headerTrackingList p{
+.trackingList .headerTrackingList p{
 	width: 100%;
 }
-a#headerTrackingList{
-	padding: 10px;
+.headerTrackingList{
+	padding: 10px !important;
 }
 .trackingList .ui-li-aside{
-	width: 30%;
+	width: 40%;
 	float: right;
+}
+ul#manageTrackingList .ui-btn-inner{
+	padding: 0px!important;
 }
 
 /*///////////////////////////////////
@@ -448,6 +465,14 @@ div#addStops{
 div#right{
 	float:right;
 	text-align:right;
+}
+
+/*/////////////////////////////////////
+			MAP VIEW
+/////////////////////////////////////*/
+
+#viewMap .ui-content{
+	padding: 0;
 }
 
 

@@ -28,6 +28,33 @@ $(document).one("pagebeforeshow", function() {
 	var elem = $('#trackingList');
 	var log = app.log;
 	
+	var synched = app.synched;
+	if(synched) {
+		$('#uploadBtn').text("Already uploaded");
+		//$('#uploadBtn').button();
+	} else {
+		$('#uploadBtn').text("Upload");
+		$('#uploadBtn').click(function() {
+			app.uploadTrip(app.session.getActiveLogId());
+		});
+	}
+	
+	var d = log.meta.distance;
+	var unit = "km";
+					
+	if(d < 1) {
+		unit = "m";
+		// Convert to meters
+		d = Math.round(d * 1000);
+	} else {
+		// Round to two decimal precision
+		d = Math.round(d * 100) / 100;
+	}
+					
+					
+	
+	$("#tripLength").html("Length: " + d  +" "+ unit);
+	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	elem.listview();
 	
 	for(var i = 0; i < log.modes.length; i++) {
@@ -62,11 +89,25 @@ $(document).one("pagebeforeshow", function() {
         </div>
         
         <div data-role="content" data-theme="a">
-        
-          <ul id="trackingList" class="trackingList" data-role="listview" data-inset="true">
-          	<li>
-            	<div id="time"><script>$('#time').html("Finished at " + (new Date).toLocaleTimeString());</script></div>
-            </li>
+            <div id="uploadDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('savetrip');" id="save">Save</a>
+                    <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('discardtrip');" id="delete">Discard</a>
+          	</div>
+            
+          <ul id="trackingList" data-icon="" class="trackingList" data-role="listview" data-inset="true">
+          	
+            <li>
+            	<a href="#" class="headerTrackingList">
+            		<div style="float: left;">
+                    	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
+                    </div>
+                    <div style="float: right; width: 50%">
+                    	<p style="float: right; font-size:0.9em; margin: 0;" id="time"><script>$('#time').html("Finished at " + (new Date).toLocaleTimeString());</script>>Duration:</p>
+                		<p style="float: right !important; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
+                    </div>
+               	</a>
+            </li> 
             <!--
             <li>
             	<a href="#">
@@ -76,34 +117,10 @@ $(document).one("pagebeforeshow", function() {
             	</a>
                 <a data-role="button">Change</a>
          	</li>
-            <li>
-            	<a href="#">
-                  <p>Trip2</p>
-                  <h1>12:03 - 12:21</h1>
-                  <div class="ui-li-aside"><img src="../images/buss.png"/></div>
-            	</a>
-                <a data-role="button">Change</a>
-       		</li>
-            <li>
-            	<a>
-                  <p>Trip3</p>
-                  <h1>12:22 - 12:40</h1>
-                  <div class="ui-li-aside"><img src="../images/tram.png"/></div>
-            	</a>
-                <a data-role="button">Change</a>
-            </li>
             -->
-            <li id="buttons">
-            	<div id="uploadDeleteButtons" data-role="controlgroup" data-type="horizontal">
-                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('savetrip');" id="save">Save</a>
-                    <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
-                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('discardtrip');" id="delete">Discard</a>
-          		</div>
-            </li>
+            
           </ul>
           
-         	<div id="map">
-        	</div>
             
         </div>
         

@@ -44,7 +44,21 @@ $(document).one("pagebeforeshow", function() {
 		});
 	}
 	
-	$("#tripLength").html("Length: " + log.meta.distance + "m");
+	var d = log.meta.distance;
+	var unit = "km";
+					
+	if(d < 1) {
+		unit = "m";
+		// Convert to meters
+		d = Math.round(d * 1000);
+	} else {
+		// Round to two decimal precision
+		d = Math.round(d * 100) / 100;
+	}
+					
+					
+	
+	$("#tripLength").html("Length: " + d  +" "+ unit);
 	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	
 	elem.listview();
@@ -70,10 +84,19 @@ $(document).one("pagebeforeshow", function() {
 		
 		var modestr = Logger.MODE[modeId];
 		var d = mode.startDistance || 0;
-		
+		var unit = "km";
+					
+		if(d < 1) {
+			unit = "m";
+			// Convert to meters
+			d = Math.round(d * 1000);
+		} else {
+			// Round to two decimal precision
+			d = Math.round(d * 100) / 100;
+		}
 		elem.append("<li>\
 				<a href=\"#\">\
-				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + "m</h1>\
+				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + unit +"</h1>\
 				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
 				</a>\
 				<!--<a data-role=\"button\">Change</a>-->\
@@ -110,7 +133,7 @@ $(document).one("pagebeforeshow", function() {
                 
 		<ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
             <li>
-            	<a href="#" id="headerTrackingList">
+            	<a href="#" class="headerTrackingList">
             		<div style="float: left;">
                     	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
                     </div>
@@ -119,12 +142,8 @@ $(document).one("pagebeforeshow", function() {
                 		<p style="float: right; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
                     </div>
                	</a>
-            </li>
-                
+            </li> 
 		</ul>
-              
-        <div id="map">
-        </div>
             
     </div>
         
