@@ -58,7 +58,7 @@ $(document).one("pagebeforeshow", function() {
 </script>
 
     	<div data-role="header" data-theme="a">
-         <p>Tracking</p>
+         <p id="tripTime"><script>$('#tripTime').html((new Date).toLocaleDateString());</script></p>
         </div>
         
         <div data-role="content" data-theme="a">
@@ -95,9 +95,9 @@ $(document).one("pagebeforeshow", function() {
             -->
             <li id="buttons">
             	<div id="uploadDeleteButtons" data-role="controlgroup" data-type="horizontal">
-                    <a data-role="button" data-theme="f" onclick="app.receivedEvent('savetrip');" id="save">Save</a>
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('savetrip');" id="save">Save</a>
                     <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
-                    <a data-role="button" data-theme="f" onclick="app.receivedEvent('discardtrip');" id="delete">Discard</a>
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('discardtrip');" id="delete">Discard</a>
           		</div>
             </li>
           </ul>

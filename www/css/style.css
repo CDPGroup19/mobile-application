@@ -344,15 +344,21 @@ li#manageTripButtons{
 	padding: 5px 3px;
 }
 a#deleteTrip, a#saveChanges{
-	width: 31%;
+	width: 33%;
 	font-size: 0.8em;
 	
+}
+@media screen and (min-width: 450px){
+a#uploadBtn{
+	padding: 7px;
+}
 }
 
 a#uploadBtn{
 	margin: 0;
-	width: 35%;
+	width: 31%;
 	font-size: 0.8em;
+	
 }
 
 div#uploadDeleteButtons, .ui-controlgroup-controls{
@@ -379,7 +385,12 @@ a#upload{
 	float: left;
 }
 
-
+.trackingList a#headerTrackingList p{
+	width: 100%;
+}
+a#headerTrackingList{
+	padding: 10px;
+}
 .trackingList .ui-li-aside{
 	width: 30%;
 	float: right;

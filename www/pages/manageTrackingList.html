@@ -89,7 +89,7 @@ $(document).one("pagebeforeshow", function() {
 
     <div data-role="header" data-theme="a">
         	<a href="history.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
-         	<p>Tracking</p>
+         		<p id="tripTime"><script>$('#tripTime').html((new Date).toLocaleDateString());</script></p>
             <a href="#" id="mapIcon" data-role="button" data-inline="true" class="customButton">
     			<img src="../images/mapIcon.png"/>
     		</a> 
@@ -107,7 +107,17 @@ $(document).one("pagebeforeshow", function() {
         </div>
                 
 		<ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
-            
+            <li>
+            	<a href="#" id="headerTrackingList">
+            		<div style="float: left;">
+                    	<h3 style="margin: 0;">Accompany others</h3>
+                    </div>
+                    <div style="float: right; width: 30%">
+                    	<p style="float: right; font-size:0.9em; margin: 0;">Duration: 12.04</p>
+                		<p style="float: right; font-size:0.9em; margin: 0;">Length: 2000 m</p>
+                    </div>
+               	</a>
+            </li>
               
                 
                <!-- 
