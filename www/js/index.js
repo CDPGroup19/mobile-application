@@ -552,8 +552,8 @@ var app = {
 		
 			console.warn("SERVER RESPONSE: ", response);
 			
-			if(e.InsertNewUserRESTResult != "ok") {
-				app.popup.warn("That won't do. " + e.InsertNewUserRESTResult);
+			if(response.InsertNewUserRESTResult != "ok") {
+				app.popup.warn("That won't do. " + response.InsertNewUserRESTResult);
 				return;
 			}
 			
