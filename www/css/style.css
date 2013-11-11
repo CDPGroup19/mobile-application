@@ -343,7 +343,7 @@ div#map{
 			TRACKING LIST
 ///////////////////////////////////*/
 .trackingList h1{
-	font-size: 20px;
+	font-size: 1em;
 	color: black;
 }
 
@@ -402,22 +402,36 @@ a#upload{
 	width: 40%;
 	}
 .trackingList p, .trackingList h1{
-	width: 65%;
+	width: 80%;
 	float: left;
 }
 
 .trackingList .headerTrackingList p{
 	width: 100%;
 }
-.headerTrackingList{
-	padding: 10px !important;
-}
+
 .trackingList .ui-li-aside{
 	width: 40%;
 	float: right;
 }
 ul#manageTrackingList .ui-btn-inner{
 	padding: 0px!important;
+}
+#manageTrackingList a{
+	padding-right: 15px !important;
+}
+.trackingListEntry{
+	padding: 0px 10px !important;
+}
+.trackingListEntry img{
+	height: 35px;
+}
+
+#logView a{
+	padding-right: 40px !important;
+}
+.headerTrackingList{
+	padding: 10px !important;
 }
 
 /*///////////////////////////////////

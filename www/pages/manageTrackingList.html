@@ -58,7 +58,7 @@ $(document).one("pagebeforeshow", function() {
 					
 					
 	
-	$("#tripLength").html("Length: " + d  +" "+ unit);
+	$("#tripLength").html("Distance: " + d  +" "+ unit);
 	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	
 	elem.listview();
@@ -95,7 +95,7 @@ $(document).one("pagebeforeshow", function() {
 			d = Math.round(d * 100) / 100;
 		}
 		elem.append("<li>\
-				<a href=\"#\">\
+				<a class=\"trackingListEntry\" href=\"#\">\
 				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + unit +"</h1>\
 				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
 				</a>\
@@ -137,9 +137,9 @@ $(document).one("pagebeforeshow", function() {
             		<div style="float: left;">
                     	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
                     </div>
-                    <div style="float: right; width: 30%">
+                    <div style="float: right; width: 40%">
                     	<!--<p style="float: right; font-size:0.9em; margin: 0;">Duration: 12.04</p>-->
-                		<p style="float: right; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
+                		<p style="text-align: right; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
                     </div>
                	</a>
             </li> 

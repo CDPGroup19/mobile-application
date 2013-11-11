@@ -53,7 +53,7 @@ $(document).one("pagebeforeshow", function() {
 					
 					
 	
-	$("#tripLength").html("Length: " + d  +" "+ unit);
+	$("#tripLength").html("Distance: " + d  +" "+ unit);
 	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
 	elem.listview();
 	
@@ -61,6 +61,11 @@ $(document).one("pagebeforeshow", function() {
 		
 		var time = log.modes[i].time;
 		var mode = log.modes[i].mode;
+		var nextTime = log.entries[log.entries.length - 1].timestamp;
+		
+		if(i + 1 < log.modes.length) {
+			nextTime = log.modes[i+1].time;
+		}
 		
 		if(mode <= 0)
 			continue;
@@ -68,8 +73,8 @@ $(document).one("pagebeforeshow", function() {
 		var modestr = Logger.MODE[mode];
 		
 		elem.append("<li>\
-				<a href=\"#\">\
-				  <h1>" + timeStr(time) + "</h1>\
+				<a class=\"trackingListEntry\"href=\"#\">\
+				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + unit +"</h1>\
 				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
 				</a>\
 				<!--<a data-role=\"button\">Change</a>-->\
@@ -103,8 +108,7 @@ $(document).one("pagebeforeshow", function() {
                     	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
                     </div>
                     <div style="float: right; width: 50%">
-                    	<p style="float: right; font-size:0.9em; margin: 0;" id="time"><script>$('#time').html("Finished at " + (new Date).toLocaleTimeString());</script>>Duration:</p>
-                		<p style="float: right !important; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
+                		<p style="text-align: right !important; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
                     </div>
                	</a>
             </li> 
