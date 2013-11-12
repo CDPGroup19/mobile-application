@@ -3,7 +3,7 @@
 	<div data-role="content" data-theme="a">
     	<!--Begin header-->
     	<div data-role="header" data-theme="a" data-position="fixed">
-        	<a href="userinfo.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+        	<a href="#" onclick="goBack()" data-theme="a" class="back" data-icon="arrow-l">Back</a>
             <h1>Settings</h1>
         </div>
         <!--End header-->
@@ -23,6 +23,11 @@ $(document).one('pagebeforeshow', function() {
 	});
 
 });
+
+function goBack() {
+	history.back();
+	return false;
+}
 
         </script>
         <div data-role="fieldcontain">
@@ -74,7 +79,7 @@ $(document).one('pagebeforeshow', function() {
                 <p>This action can not be undone</p>
                 <div id="dialogButtons">
                 	<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Cancel</a>
-                    <a onclick="app.receivedEvent('deleteuser');" href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="a">Delete</a>
+                    <a onClick="app.receivedEvent('deleteuser');" href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="a">Delete</a>
                 </div>
             </div>
         </div>
