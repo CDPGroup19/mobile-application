@@ -8,7 +8,7 @@ $(document).one("pageinit", function() {
 
 	var logs = app.session.userData.logs;
 
-	for(var i = 0; i < logs.length; i++) {
+	for(var i = logs.length-1; i >= 0; i--) {
 	
 		var log_id = logs[i];
 		var datestr = (new Date(log_id)).toLocaleDateString();

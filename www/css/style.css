@@ -167,6 +167,7 @@ div#logOut{
 	padding: 10px, 10px, 10px, 10px;
 	float:right;
 }
+@media screen and (min-width: 640px){
 #paymentPref .ui-btn-inner{
 	padding: 8px;
 	font-size: 0.95em;
@@ -175,6 +176,16 @@ div#logOut{
 	width: 33%;
 	font-size:0.9em;
 }
+}
+#paymentPref .ui-btn-inner{
+	padding: 7px;
+	font-size: 0.9em;
+}
+#paymentPref .ui-radio{
+	width: 33%;
+	font-size: 0.8em;
+}
+
 
 .ui-popup-screen{
 	pointer-events: none;
