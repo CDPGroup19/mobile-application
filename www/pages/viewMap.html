@@ -4,6 +4,11 @@
 
 $(document).one("pageshow", function() {
 	
+	if(!app.isOnline()) {
+		app.popup.warn("Internet connection required!");
+		return;
+	}
+	
 	var entry = app.session.getLocalLog(app.session.getActiveLogId());
 	var log = entry.log;
 	

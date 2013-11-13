@@ -69,6 +69,11 @@ var app = {
 			
 			case "deleteuser":
 			
+				if(!app.isOnline()) {
+					app.popup.warn("Ensure that your internet connection is working and try again.");
+					return;
+				}
+			
 				app.server.deleteUser({
 					user: {
 						userName: app.session.userData.username,
@@ -85,7 +90,7 @@ var app = {
 					} else {
 						console.error("Delete user failed ...");
 						
-						app.popup.warn("User deletion failed. " + e.DeleteUserRESTResult);
+						app.popup.warn("We couldn't delete you. " + e.DeleteUserRESTResult);
 						
 					}
 				
@@ -219,7 +224,11 @@ var app = {
 			case "loginsuccess":
 				
 				console.log("Login was OK");
-				$.mobile.changePage("../pages/tracking.html");
+				
+				if(window.location.pathname.indexOf("pages") < 0)
+					$.mobile.changePage("pages/tracking.html");
+				else 
+					$.mobile.changePage("../pages/tracking.html");
 				
 				break;
 			
@@ -411,6 +420,11 @@ var app = {
     },
     
     deleteTrip: function(id) {
+		
+		if(!app.isOnline()) {
+			app.popup.warn("You need to an internet connection to delete trips.");
+			return;
+		}
 		
 		app.server.deleteTrip({
 		

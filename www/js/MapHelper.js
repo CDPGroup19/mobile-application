@@ -1,29 +1,14 @@
 var MapHelper = function() {
-
+	
 	this._running = false;
+	this._initialized = false;
 	
 	this.map = null;
 	
-	//sets default position to Trondheim
-	this.center = new google.maps.LatLng(63,4305, 10,3951);
-	
-	this.marker = new google.maps.Marker ({ 
-		animation: google.maps.Animation.DROP,
-		position: this.center
-	});
-	
-	this.line = new google.maps.Polyline({ 
-		path: [],
-		strokeColor: "#ff0000",
-		strokeOpacity: 1.0,
-		strokeWeight: 3,
-		editable: !true,
-		draggable: !true
-	});
-	
-	this.lineCoords = this.line.getPath();
-	
 	var update = function(position) {
+		
+		if(!this._running)
+			return;
 		
 		var lat = position.coords.latitude;
 		var lng = position.coords.longitude;
@@ -43,7 +28,13 @@ var MapHelper = function() {
 	
 	var create = function() {
 	
-		console.warn("Creation called");
+		if(window.google === undefined) {
+			this._running = false;
+			return;
+		}
+	
+		if(!this._initialized)
+			this.init();
 		
 		var $content = $("#map");
 		
@@ -65,13 +56,32 @@ var MapHelper = function() {
 	
 	var init = function() {
 		
-		//$(document).bind("pageinit", (function() {
-		//	if(app.isTracking) {
-		//		this.create();
-		//	} else {
-		//		$("#start").click(this.create);
-		//	}
-		//}).bind(this));
+		if(window.google === undefined) {
+			this._running = false;
+			this._initialized = false;
+			return;
+		}
+		
+		//sets default position to Trondheim
+		this.center = new google.maps.LatLng(63.4305, 10.3951);
+		
+		this.marker = new google.maps.Marker ({ 
+			animation: google.maps.Animation.DROP,
+			position: this.center
+		});
+		
+		this.line = new google.maps.Polyline({ 
+			path: [],
+			strokeColor: "#ff0000",
+			strokeOpacity: 1.0,
+			strokeWeight: 3,
+			editable: !true,
+			draggable: !true
+		});
+		
+		this.lineCoords = this.line.getPath();
+		
+		this._initialized = true;
 	
 	};
 
