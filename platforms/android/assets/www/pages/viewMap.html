@@ -1,0 +1,52 @@
+<div id="viewMap" data-role="page" data-theme="a">
+
+<script>
+
+$(document).one("pageshow", function() {
+	
+	if(!app.isOnline()) {
+		app.popup.warn("Internet connection required!");
+		return;
+	}
+	
+	var entry = app.session.getLocalLog(app.session.getActiveLogId());
+	var log = entry.log;
+	
+	var map = new MapHelper;
+	
+	map.init();
+	map.create();
+	
+	for(var i = 0; i < log.entries.length; i++) {
+		var e = log.entries[i];
+		map.update({
+			coords: e
+		});
+	}
+	
+});
+
+</script>
+
+    <div data-role="header" data-theme="a">
+		<a href="manageTrackingList.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+		<p id="tripTime">Map View</p>
+    </div>
+        
+    <div data-role="content">
+    	
+    	<div id="map"></div>
+    	    
+    </div>
+        
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+          <div id="menuButtons"data-inline="true" data-type="horizontal">
+              <a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
+              <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2selected.png"/></a>
+              <a href="history.html" data-role="button" data-inline="true"><img src="../images/book2.png"/></a>
+              <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
+          </div>
+    	
+    </div>
+        
+</div>

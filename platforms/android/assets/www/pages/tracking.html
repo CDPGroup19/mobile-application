@@ -1,0 +1,157 @@
+<div id="tracking" data-role="page" data-theme="a"> 
+  <script>
+
+	
+	 $(document).one("pagebeforeshow", function() {
+		
+		var divPurpose = $("#selectDestination");
+		var divMode = $("#selectMode");
+		
+		divPurpose.hide();
+		divMode.hide();
+		
+		var startButton = $("#start");
+		var stopButton = $("#stop");
+		
+		stopButton.hide();
+		
+		startButton.click(function(){
+			stopButton.show();
+			startButton.hide();
+		});
+		
+		
+		stopButton.click(function(){
+			startButton.show();
+			stopButton.hide();
+		});
+		
+		if(app.isTracking) {
+			
+			app.restoreListValue('destination', app.log.Purpose)
+			app.restoreListValue('tripMode', app.log.getActiveMode());
+			
+		}
+		
+		$('#tripMode').change(function() {
+			
+			if(!app.isTracking) {
+				return;
+			}
+			
+			
+			var value = Number($('#tripMode').children("option:selected").val());
+			
+			console.log('updating mode to ' + value);
+			app.log.updateMode(value);
+			
+		});
+		
+		//$(document).bind("pageinit", (function() {
+			//console.log("asssasdds");
+			if(app.isTracking) {
+			
+				console.log("isTracking=true");
+				divPurpose.show();
+				divMode.show();
+			
+				// Restore
+				console.log("restore");
+				stopButton.show();
+				startButton.hide();
+				
+				app.restoreListValue("destination", app.log.Purpose)
+				
+				app.map.create();
+				
+				// For some reason Google maps is broken
+				// Send resize event to trick it into fixing itself
+				$(document).one("pageshow", function() {
+					var evt = document.createEvent('HTMLEvents');
+					evt.initEvent('resize', true, false);
+					window.dispatchEvent(evt);				
+				});
+					
+			} else {
+				$("#start").click(function() {
+					
+					console.log("clicked start button");
+					app.map.create();
+					divPurpose.show();
+					divMode.show();
+					
+				});
+			}
+		//}).bind(this));
+
+	 });
+	 
+	</script>
+  <div data-role="header" data-position="fixed" data-theme="a">
+  	<a href="help.html" data-theme="a" class="back" data-icon="info">Info</a>
+    <h3>Tracking</h3>
+    <a href="settings.html" id="gear" data-role="button" data-inline="true" class="customButton"><img src="../images/gear.png" alt="gear"/>
+    </a> 
+  </div>
+  <div data-role="content" id="trackingContent" data-theme="a">
+  
+    <div style="width:100%;" id="selectPurposeMode" data-role="fieldcontain" data-inset="false"> 
+      <!--<label for="destination" class="select"></label>-->
+          <div id="selectDestination">
+            <select name="destination" id="destination">
+                <option value="0">Purpose?</option>
+                <option value="1">Work</option>
+                <option value="2">Business</option>
+                <option value="3">School</option>
+                <option value="4">Accompany others</option>
+                <option value="5">Shopping/service</option>
+                <option value="6">Leisure</option>
+                <option value="7">Home</option>
+              </select>
+          </div>
+      
+          <div id="selectMode">
+            <select name="tripMode" id="tripMode">
+                <option value="0">Travel mode?</option>
+                <option value="1">Bus</option>
+                <option value="2">Tram</option>
+                <option value="3">Subway</option>
+                <option value="4">Walk</option>
+                <option value="5">Bicycle</option>
+                <option value="6">Boat</option>
+                <option value="7">Car</option>
+              </select>
+          </div>
+    </div>
+    <div id="durationLength">
+      <div id="duration">
+        <p>Duration:</p>
+        <h3 id="totalduration">0:0</h3>
+      </div>
+      <div id="length">
+        <p>Distance:</p>
+        <h3 id="totaldistance">0 m</h3>
+      </div>
+    </div>
+    
+    <div id="trackingButtons">
+      <div id="start" onclick="app.receivedEvent('ontrackstart');" class="startButton"> <a data-role="button"></a> </div>
+      <div id="stop" onclick="app.receivedEvent('ontrackend');" class="stopButton"> <a data-role="button"></a> </div>
+    </div>
+    
+    <div id="map" style="position: fixed; background-size:cover;"> <img src="../images/Map.png"/> </div>
+    
+  </div>
+  
+  <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+    
+    <div id="menuButtons" data-inline="true" data-type="horizontal">
+		<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
+		<a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2selected.png"/></a>
+		<a href="history.html" data-role="button" data-inline="true"><img src="../images/book2.png"/></a>
+		<a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
+	</div>
+	
+  </div>
+	
+</div>

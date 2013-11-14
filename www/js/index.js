@@ -32,7 +32,13 @@ var app = {
     bindEvents: function() {
         
         //document.addEventListener('deviceready', this.onDeviceReady, false);
-        window.addEventListener('load', this.onDeviceReady, false);
+        
+        
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+			document.addEventListener("deviceready", this.onDeviceReady, false);
+		} else {
+			window.addEventListener('load', this.onDeviceReady, false);
+		}
         
         //this.onDeviceReady();
         //window.addEventListener("load", this.onDeviceReady, false);

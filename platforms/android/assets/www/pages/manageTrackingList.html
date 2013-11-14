@@ -1,0 +1,160 @@
+<div id="manageTripPage" data-role="page" data-theme="a">
+
+  <script>
+
+var timeStr = function(time) {
+
+	var zeroPad = function(str, n) {
+		var l = String(str).length;
+		if(l < n) {
+			return Array(n - l + 1).join("0") + str;
+		}
+		return str;
+	}
+	
+	var timestr = new Date(time);
+	var hour = timestr.getHours();
+	var minute = timestr.getMinutes();
+	var str = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
+	
+	return str;
+};
+
+		
+
+// Add history
+$(document).one("pagebeforeshow", function() {
+	
+	var elem = $('#manageTrackingList');
+	var entry = app.session.getLocalLog(app.session.getActiveLogId());
+	
+	if(!entry)
+		return;
+	
+	var log = entry.log;
+	var synched = entry.synched;
+	
+	if(synched) {
+		$('#uploadBtn').text("Already uploaded");
+		//$('#uploadBtn').button();
+	} else {
+		$('#uploadBtn').text("Upload");
+		$('#uploadBtn').click(function() {
+			app.uploadTrip(app.session.getActiveLogId());
+		});
+	}
+	
+	var d = log.meta.distance;
+	var unit = "km";
+					
+	if(d < 1) {
+		unit = "m";
+		// Convert to meters
+		d = Math.round(d * 1000);
+	} else {
+		// Round to two decimal precision
+		d = Math.round(d * 100) / 100;
+	}
+					
+					
+	
+	$("#tripLength").html("Distance: " + d  +" "+ unit);
+	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
+	
+	elem.listview();
+	
+	if(!log || !log.entries || log.entries.length <= 0)
+		return;
+	
+	for(var i = 0; i < log.modes.length; i++) {
+		
+		var mode = log.modes[i];
+		
+		var modeId = mode.mode;
+		var time = mode.time;
+		
+		var nextTime = log.entries[log.entries.length - 1].timestamp;
+		
+		if(i + 1 < log.modes.length) {
+			nextTime = log.modes[i+1].time;
+		}
+		
+		if(modeId <= 0)
+			continue;
+		
+		var modestr = Logger.MODE[modeId];
+		var d = mode.startDistance || 0;
+		var unit = "km";
+					
+		if(d < 1) {
+			unit = "m";
+			// Convert to meters
+			d = Math.round(d * 1000);
+		} else {
+			// Round to two decimal precision
+			d = Math.round(d * 100) / 100;
+		}
+		elem.append("<li>\
+				<a class=\"trackingListEntry\" href=\"#\">\
+				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + unit +"</h1>\
+				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
+				</a>\
+				<!--<a data-role=\"button\">Change</a>-->\
+			</li>"
+		);
+		
+	}
+	
+	elem.listview('refresh');
+
+});
+
+</script>
+
+
+    <div data-role="header" data-theme="a">
+        	<a href="history.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+         		<p id="tripTime">Trip view</p>
+            <a href="viewMap.html" id="mapIcon" data-role="button" data-inline="true" class="customButton">
+    			<img src="../images/mapIcon.png"/>
+    		</a> 
+    </div>
+        
+    <div data-role="content">
+    	<div id="manageTripButtons">
+                      
+                <div id="saveDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                     <!--<a data-role="button" data-theme="a" onclick="" id="saveChanges">Save changes</a>-->
+                     <a data-role="button" data-theme="d" id="uploadBtn">Upload</a>
+                     <a data-role="button" data-theme="a" onclick="app.deleteTrip(app.session.getActiveLogId())" id="deleteTrip">Delete</a>
+                </div>
+                    
+        </div>
+                
+		<ul id="manageTrackingList" class="trackingList" data-icon="" data-role="listview" data-inset="true" data-theme="a">
+            <li>
+            	<a href="#" class="headerTrackingList">
+            		<div style="float: left;">
+                    	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
+                    </div>
+                    <div style="float: right; width: 40%">
+                    	<!--<p style="float: right; font-size:0.9em; margin: 0;">Duration: 12.04</p>-->
+                		<p style="text-align: right; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
+                    </div>
+               	</a>
+            </li> 
+		</ul>
+            
+    </div>
+        
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+          <div id="menuButtons"data-inline="true" data-type="horizontal">
+              <a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
+              <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2selected.png"/></a>
+              <a href="history.html" data-role="button" data-inline="true"><img src="../images/book2.png"/></a>
+              <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
+          </div>
+    	
+    </div>
+        
+</div>

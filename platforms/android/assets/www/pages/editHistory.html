@@ -1,0 +1,76 @@
+<div data-role="page" data-theme="a"> 
+  
+<script>
+// Add history
+
+$(document).one("pageinit", function() {
+
+	var logs = app.session.userData.logs;
+
+	for(var i = 0; i < logs.length; i++) {
+	
+		var log_id = logs[i];
+		var datestr = (new Date(log_id)).toLocaleDateString();
+		
+		var zeroPad = function(str, n) {
+			var l = String(str).length;
+			if(l < n) {
+				return Array(n - l + 1).join("0") + str;
+			}
+			return str;
+		}
+		
+		var timestr = new Date(log_id);
+		var hour = timestr.getHours();
+		var minute = timestr.getMinutes();
+		var time = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
+		
+		var data = app.session.getLocalLog(log_id);
+		
+		var p = data.log.meta.purpose || -1;
+		
+		var uploadElement = "<a id=\"sync_log_" + log_id + "\" href=\"#\"><img src=\"../images/upload.png\" /></a>";
+		
+		uploadElement = data.synched ? "" : uploadElement;
+		
+		$("#logview").append("\
+			<li><a href=\"#\">\
+			<h3>" + datestr +" "+ time +"</h3>\
+			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
+			<p class=\"ui-li-aside\">" + uploadElement + " <img style=\"width: 50px; height: 50px\" src=\"../images/Map.png\"/></p>\
+			</a></li>"
+		);
+		
+		$("#sync_log_" + log_id).click((function(id) {
+			return function() {
+				app.uploadTrip(id, function() {
+					$("#sync_log_" + id).remove();
+				});			
+			}
+		})(log_id));
+	
+	};
+	
+	$('#logview').listview('refresh');
+
+});
+
+</script>
+
+  <div data-role="content" data-theme="b">
+    <div data-role="header" data-position="fixed" data-theme="a">
+      <h3>History</h3>
+      	<a href="history.html" id="done" data-role="button" class="customButton" data-inline="true">Done</a>
+    </div>
+    <ol id="logview" data-role="listview" data-inset="false" data-theme="a">
+    </ol>
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+      <div id="menuButtons" data-inline="true" data-type="horizontal"> 
+      	<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a> 
+        <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2.png"/></a> 
+        <a href="history.html"	data-role="button" data-inline="true"><img src="../images/book2selected.png"/></a> 
+        <a href="#" 			data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a> 
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<body> 
+
+
+
+<div id="signUp" data-role="page" data-theme="a">
+	<div data-role="header" data-theme="a">
+    	<a href="main.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+    	<h3>Sign up<h3>
+	</div>
+    
+	<div id="createAccount" data-role="content" data-theme="a">
+    
+		<div data-role="fieldcontain" id="username">
+	    	<label for="textinput">E-mail:</label>
+	    	<input name="textinput" type="text" id="usernameInput" value="" data-theme="b"  />
+      	</div>
+	  	<div data-role="fieldcontain" id="password">
+	    	<label for="passwordinput">Password:</label>
+	    	<input name="passwordinput" type="password" id="passwordInput" value="" data-theme="b"  />
+      	</div>
+    	<div data-role="fieldcontain" id="confirmPassword">
+	    	<label for="passwordinput">Confirm password:</label>
+	    	<input name="passwordinput" type="password" id="passwordInputConfirm" value="" data-theme="b"  />
+      	</div>
+    	
+        <div id="createAccountButton">
+        	<!--<a href="UserInfo.html" data-role="button" data-theme="d">Create new account</a>-->
+        	<a onClick="app.receivedEvent('onusercreation');" data-role="button" data-theme="d">Create new account</a>
+    	</div>
+    </div>
+	
+    
+</div>
+
+
+
+    
+
+</body>

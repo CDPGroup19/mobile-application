@@ -1,1 +1,1 @@
-adb.exe install -r ./platforms/android/bin/HelloWorld-debug.apk
+adb.exe install -r ./platforms/android/bin/SMIO-debug.apk

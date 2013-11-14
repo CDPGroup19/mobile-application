@@ -1,0 +1,97 @@
+<body>
+<div data-role="page" data-theme="a">
+	<div data-role="content" data-theme="a">
+    	<!--Begin header-->
+    	<div data-role="header" data-theme="a" data-position="fixed">
+        	<a href="#" onclick="goBack()" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+            <h1>Settings</h1>
+        </div>
+        <!--End header-->
+        <!--Begin page content-->
+        <script>
+
+$(document).one('pagebeforeshow', function() {
+
+	app.restoreListValue('loginf', app.session.AutoLoginConf);
+	
+	$('#loginf').change(function() {
+	
+		console.log('autologin is now', $('#loginf').val());
+		
+		app.session.setAutoLogin($('#loginf').val());
+	
+	});
+
+});
+
+function goBack() {
+	history.back();
+	return false;
+}
+
+        </script>
+        <div data-role="fieldcontain">
+        	<label for="loginF" class="select">Login Preferences</label>
+            <select id="loginf" onChange="#" name="loginF" id="loginF">
+            	<option value="0">Always require password</option>
+            	<option value="1">Never require password</option>
+            </select>
+        </div>
+        <label>Account Management</label>
+        <div data-inline="true" data-type="horizontal">
+        	<a href="#changePassword" data-rel="popup" data-position-to="window" data-role="button" data-theme="a" data-inline="true" style="width:100%;">Change Password</a>
+        </div>
+        <!--Start Popup-->
+        <div data-role="popup" id="changePassword" class="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+        	<div data-role="header" data-theme="a" class="ui-corner-top">
+        		<h1>Password</h1>
+            </div>
+            <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+            	<form>
+          			<label for="un" class="ui-hidden-accessible">Old password:</label>
+          			<input type="text" name="user" id="un" value="" placeholder="Old password" data-theme="a" />
+          			<label for="npw" class="ui-hidden-accessible">New Password:</label>
+          			<input type="password" name="npass" id="npw" value="" placeholder="New password" data-theme="a" />
+          			<label form="cpw" class="ui-hidden-accessible">Confirm Password:</label>
+          			<input type="password" name="cpass" id="cpw" value="" placeholder="Confirm password" data-theme="a" />
+          			<button type="submit" data-theme="a">Confirm Change</button>
+        		</form>
+           </div>
+        </div>
+        <!--End popup-->
+        <!--Start Logout button-->
+        <div onClick="app.receivedEvent('onlogout');" data-inline="true" data-type="horizontal"> 
+        	<a href="main.html" data-role="button" data-theme="a" data-inline="true" style="width:100%;">Log Out</a> 
+        </div>
+        <!--End Logout button-->
+        <!--Start delete account button-->
+        <div data-inline="true" data-type="horizontal"> 
+        	<a href="#deleteAccount" data-rel="popup" data-position-to="window" data-role="button" data-theme="a" data-inline="true" style="width:100%;">Delete Account</a> 
+        </div>
+        <!--End delete account button-->
+        <!--Start popup delete account-->
+        <div data-role="popup" id="deleteAccount" class="popupDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+        	<div data-role="header" data-theme="a" class="ui-corner-top">
+            	<h1>Delete Account?</h1>
+            </div>
+            <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+            	<h3 class="ui-title">Are you sure you want to delete your account?</h3>
+                <p>This action can not be undone</p>
+                <div id="dialogButtons">
+                	<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Cancel</a>
+                    <a onClick="app.receivedEvent('deleteuser');" href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="a">Delete</a>
+                </div>
+            </div>
+        </div>
+        <!--End popup delete account-->
+        <div data-role="footer" data-theme="a" data-position="fixed" id="mainmenu">
+        	<div id="menuButtons" data-inline="true" data-type="horizontal"> 
+            	<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a> 
+                <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2.png"/></a> 
+                <a href="history.html" data-role="button" data-inline="true"><img src="../images/book2.png"/></a> 
+                <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a> 
+            </div>
+        </div>
+    </div>
+</div>
+</body>

@@ -1,0 +1,80 @@
+<div data-role="page" id="historyPage" data-theme="a"> 
+  <script>
+
+// Add history
+$(document).one("pageinit", function() {
+
+	console.log('asdasdsa');
+
+	var logs = app.session.userData.logs;
+
+	for(var i = logs.length-1; i >= 0; i--) {
+	
+		var log_id = logs[i];
+		var datestr = (new Date(log_id)).toLocaleDateString();
+		
+		var zeroPad = function(str, n) {
+			var l = String(str).length;
+			if(l < n) {
+				return Array(n - l + 1).join("0") + str;
+			}
+			return str;
+		}
+		
+		var timestr = new Date(log_id);
+		var hour = timestr.getHours();
+		var minute = timestr.getMinutes();
+		var time = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
+		
+		var data = app.session.getLocalLog(log_id);
+		
+		var p = data.log.meta.purpose || -1;
+		
+		var uploadElement = "<img id=\"sync_log_" + log_id + "\" class=\"uploadIcon\" src=\"../images/upload.png\" />";
+		
+		uploadElement = data.synched ? "" : uploadElement;
+		
+		$("#logview").append("\
+			<li id=\"trip_" + log_id + "\" onclick=\"app.viewLog(" + log_id + ")\"><a href=\"#\">\
+			<h3>" + datestr +" "+ time +"</h3>\
+			<p>" + (Logger.TRIP_PURPOSE[p])  + "</p>\
+			<p class=\"ui-li-aside\">" + uploadElement + " <img style=\"width: 50px; height: 50px\" src=\"../images/Map.png\"/></p>\
+			</a></li>"
+		);
+		
+		$("#sync_log_" + log_id).click((function(id) {
+			return function(e) {
+				e.stopPropagation();
+				app.uploadTrip(id, function() {
+					$("#sync_log_" + id).remove();
+				});	
+				return false;		
+			}
+		})(log_id));
+	
+	};
+	
+	$('#logview').listview('refresh');
+
+});
+
+</script>
+
+  <div data-role="content" data-theme="b">
+    <div data-role="header" data-position="fixed" data-theme="a">
+    	<a href="help.html" data-theme="a" class="back" data-icon="info">Info</a>
+      	<h3>History</h3>
+     	<a href="settings.html" id="gear" data-role="button" data-inline="true" class="customButton"><img src="../images/gear.png" alt="gear"/></a>
+    </div>
+    <ul id="logview" data-role="listview" data-inset="false" data-theme="a">
+    </ul>
+    <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+      <div id="menuButtons" data-inline="true" data-type="horizontal"> 
+      	<a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a> 
+        <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2.png"/></a> 
+        <a href="history.html"	data-role="button" data-inline="true"><img src="../images/book2selected.png"/></a> 
+        <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a> 
+      </div>
+    </div>
+  </div>
+</div>

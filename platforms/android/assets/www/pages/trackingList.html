@@ -1,0 +1,147 @@
+<div data-role="page" data-theme="a">
+
+  <script>
+
+var timeStr = function(time) {
+
+	var zeroPad = function(str, n) {
+		var l = String(str).length;
+		if(l < n) {
+			return Array(n - l + 1).join("0") + str;
+		}
+		return str;
+	}
+	
+	var timestr = new Date(time);
+	var hour = timestr.getHours();
+	var minute = timestr.getMinutes();
+	var str = (zeroPad(hour, 2) + ":" + zeroPad(minute, 2));
+	
+	return str;
+};
+
+		
+
+// Add history
+$(document).one("pagebeforeshow", function() {
+
+	var elem = $('#trackingList');
+	var log = app.log;
+	
+	var synched = app.synched;
+	if(synched) {
+		$('#uploadBtn').text("Already uploaded");
+		//$('#uploadBtn').button();
+	} else {
+		$('#uploadBtn').text("Upload");
+		$('#uploadBtn').click(function() {
+			app.uploadTrip(app.session.getActiveLogId());
+		});
+	}
+	
+	var d = log.meta.distance;
+	var unit = "km";
+					
+	if(d < 1) {
+		unit = "m";
+		// Convert to meters
+		d = Math.round(d * 1000);
+	} else {
+		// Round to two decimal precision
+		d = Math.round(d * 100) / 100;
+	}
+					
+					
+	
+	$("#tripLength").html("Distance: " + d  +" "+ unit);
+	$("#tripPurpose").html(Logger.TRIP_PURPOSE[log.meta.purpose]);
+	elem.listview();
+	
+	for(var i = 0; i < log.modes.length; i++) {
+		
+		var time = log.modes[i].time;
+		var mode = log.modes[i].mode;
+		var nextTime = log.entries[log.entries.length - 1].timestamp;
+		
+		if(i + 1 < log.modes.length) {
+			nextTime = log.modes[i+1].time;
+		}
+		
+		if(mode <= 0)
+			continue;
+		
+		var modestr = Logger.MODE[mode];
+		
+		elem.append("<li>\
+				<a class=\"trackingListEntry\"href=\"#\">\
+				  <h1>" + timeStr(time) + " - " + timeStr(nextTime) + ", at " + d + unit +"</h1>\
+				  <div class=\"ui-li-aside\"><img src=\"../images/" + modestr + ".png\" /></div>\
+				</a>\
+				<!--<a data-role=\"button\">Change</a>-->\
+			</li>"
+		);
+		
+	}
+	
+	elem.listview('refresh');
+
+});
+
+</script>
+
+    	<div data-role="header" data-theme="a">
+         <p id="tripTime"><script>$('#tripTime').html((new Date).toLocaleDateString());</script></p>
+        </div>
+        
+        <div data-role="content" data-theme="a">
+            <div id="uploadDeleteButtons" data-role="controlgroup" data-type="horizontal">
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('savetrip');" id="save">Save</a>
+                    <a data-role="button" data-theme="d" onclick="app.receivedEvent('uploadtrip');" id="upload">Upload</a>
+                    <a data-role="button" data-theme="a" onclick="app.receivedEvent('discardtrip');" id="delete">Discard</a>
+          	</div>
+            
+          <ul id="trackingList" data-icon="" class="trackingList" data-role="listview" data-inset="true">
+          	
+            <li>
+            	<a href="#" class="headerTrackingList">
+            		<div style="float: left;">
+                    	<h3 style="margin: 0;" id="tripPurpose">Accompany others</h3>
+                    </div>
+                    <div style="float: right;">
+                		<p style="text-align: right !important; font-size:0.9em; margin: 0;" id="tripLength">Length: 2000 m</p>
+                    </div>
+               	</a>
+            </li> 
+            <!--
+            <li>
+            	<a href="#">
+                  <p>Trip1</p>
+                  <h1>11:34 - 11:59</h1>
+                  <div class="ui-li-aside"><img src="../images/walk.png"/></div>
+            	</a>
+                <a data-role="button">Change</a>
+         	</li>
+            -->
+            
+          </ul>
+          
+            
+        </div>
+        
+        <div id="mainmenu" data-role="footer" data-position="fixed" data-theme="a">
+          <div id="menuButtons"data-inline="true" data-type="horizontal">
+              <a href="userinfo.html" data-role="button" data-inline="true"><img src="../images/person2.png"/></a>
+              <a href="tracking.html" data-role="button" data-inline="true"><img src="../images/tracking2selected.png"/></a>
+              <a href="history.html" data-role="button" data-inline="true"><img src="../images/book2.png"/></a>
+              <a href="#" data-role="button" data-inline="true"><img src="../images/achievements2.png"/></a>
+          </div>
+    	
+    	</div>
+        
+</div>
+
+<div id="mapPage" data-role="page">
+	<div id="mapView">
+    <img src="../images/map.png"/>
+    </div>
+</div>

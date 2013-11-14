@@ -1,0 +1,61 @@
+<script>
+		$(document).on("click", ".show-page-loading-msg", function() {
+			var $this = $( this ),
+				theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+				msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+				textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+				textonly = !!$this.jqmData("textonly");
+				html = $this.jqmData("html") || "";
+			$.mobile.loading( 'show', {
+					text: msgText,
+					textVisible: textVisible,
+					theme: theme,
+					textonly: textonly,
+					html: html
+			});
+		})
+		.on("click", ".hide-page-loading-msg", function() {
+			$.mobile.loading( 'hide' );
+		});
+	</script>
+
+<div id="signUp" data-role="page" data-theme="a">
+	
+	<div data-role="header" data-theme="a">
+    	<a href="main.html" data-theme="a" class="back" data-icon="arrow-l">Back</a>
+        <h3>Log in</h3>
+	</div>
+    
+	<div id="createAccount" data-role="content" data-theme="a">
+    
+		<div data-role="fieldcontain" id="username">
+	    	<label for="textinput">E-mail:</label>
+	    	<input name="textinput" type="text" id="usernameInput" value="" data-theme="b"  />
+      	</div>
+	  	<div data-role="fieldcontain" id="password">
+	    	<label for="passwordinput">Password:</label>
+	    	<input name="passwordinput" type="password" id="passwordInput" value="" data-theme="b"  />
+      	</div>
+        <!--<div id="popupBar">
+    		<a data-rel="popup" data-role="button"href="#popupDialog">POP</a>
+        	<div id="popupDialog" data-role="popup">
+        		<p> blabla</p>
+        	</div>
+    	</div>-->
+        <div id="createAccountButton">
+        	<a onclick="app.receivedEvent('onloginrequest');" data-role="button" class="show-page-loading-msg"  data-overlay-theme="c" data-textonly="false" data-textvisible="true" data-msgtext="Logging in.." data-theme="d">Log in</a>
+    	</div>
+        
+        <div data-role="fieldcontain" id="forgotPassword">
+	  	  <label for="forgotPasswordinput">Forgot your password? Please enter your e-mail here:</label>
+	  	  <input type="text" name="forgotPasswordinput" id="forgotPasswordInput" value="" data-theme="b" />
+  	  	
+            <div id="forgotPasswordButton">
+                <a onclick="app.receivedEvent('resetpasswordrequest');" href="resetPassword.html" data-role="button" data-theme="c">Get new password</a>
+            </div>
+        </div>
+        
+    </div>
+	
+    
+</div>

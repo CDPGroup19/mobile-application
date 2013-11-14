@@ -1,0 +1,519 @@
+/*//////////////////////////////////////
+				GENERAL 
+//////////////////////////////////////*/
+body{
+	min-height: 100%;
+}
+
+input.ui-text-input{
+	background-color: whitesmoke;
+	}
+	
+@media screen and (min-width: 450px){
+.ui-field-contain .ui-input-text{
+	 width: 100% !important;
+	}
+}
+.ui-btn, .ui-btn-inner{
+	border-radius: 5px;
+	}
+	
+.ui-header{
+	height: 45px;
+}
+.ui-header p{
+	text-align:center;
+}
+.ui-header img{
+	height: 30px;
+}
+/*settings button*/
+a#gear img{
+	height: 30px;	
+}
+#mapIcon .ui-btn-inner{
+	padding: 0;
+}
+a#gear .ui-btn-inner{
+	padding: 5px;
+}
+
+.customButton{
+	background: transparent;
+	border: none;
+	-webkit-box-shadow: none !important;
+	box-shadow: none;
+	text-shadow: none;
+	padding: 0;
+	font-weight: lighter;
+	color: white;
+}
+.customButton .ui-btn-inner{
+	color: white;
+	border: none;
+	font-size:1em;
+}
+
+/*back button*/
+.back{
+	background: transparent;
+	border: none;
+	-webkit-box-shadow: none !important;
+	box-shadow: none;
+	text-shadow: none;
+	padding: 0;
+	font-weight: lighter;
+}
+.back .ui-btn-inner{
+	color: white;
+	border: none;
+	font-size:1em;
+	
+}
+
+.ui-footer{
+	position:fixed; 
+	bottom:0px;
+	left:0;
+	right:0; 
+	width: 100%;
+	height:48px;
+}
+
+.footerMenu a{
+	background:0;
+	border:0;
+	box-shadow:none;
+}
+
+div#menuButtons{
+	text-align:center;
+}
+div#mainmenu a{
+	background: none; 
+	width: 20%; 
+	border: 0; 
+	box-shadow: none;
+}
+div#mainmenu .ui-btn-inner{
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+}
+div#menuButtons img{
+	
+	height: 30px;
+}
+.uploadIcon{
+	width: 30px;
+	margin-bottom: 20px;
+}
+
+.ui-li-aside{
+	width: auto !important;
+}
+/*//////////////////////////////////////
+				LOG IN 
+//////////////////////////////////////*/
+
+#logoFront img{
+	position:absolute;
+	margin-left: 9%;
+	width: 80%;
+	vertical-align:central;
+	margin-top:20%;
+}
+
+#loginSignup .ui-footer .ui-btn{
+	width: 40%;
+	}
+
+#forgotPassword label{
+	font-size: 0.9em;
+}
+
+
+/*//////////////////////////////////////
+				SIGN UP 
+//////////////////////////////////////*/
+#confirmPassword{
+	margin-bottom: 100px;
+}
+ 
+#createAccountButton a{
+	bottom: 5px;
+}
+/*//////////////////////////////////////
+				USER INFO 
+//////////////////////////////////////*/
+#userinfo h3{
+	margin-bottom: 40px;
+	
+}
+
+#birthYear{
+	margin-bottom: 40px;
+}
+
+#travelcard{
+	margin-bottom:20px;
+}
+#occupation{
+	margin-bottom:20px;
+}
+
+div#logOut{
+	margin-top:: 70px;
+	padding: 10px, 10px, 10px, 10px;
+	float:right;
+}
+@media screen and (min-width: 640px){
+#paymentPref .ui-btn-inner{
+	padding: 8px;
+	font-size: 0.95em;
+}
+#paymentPref .ui-radio{
+	width: 33%;
+	font-size:0.9em;
+}
+}
+#paymentPref .ui-btn-inner{
+	padding: 7px;
+	font-size: 0.9em;
+}
+#paymentPref .ui-radio{
+	width: 33%;
+	font-size: 0.8em;
+}
+
+
+.ui-popup-screen{
+	pointer-events: none;
+	z-index: 99;
+	position:absolute;
+}
+
+/*//////////////////////////////////////
+				TRACKING
+//////////////////////////////////////*/
+
+@media screen and (min-width: 450px){
+#selectPurposeMode{
+	 margin:0 !important;
+	}
+#selectPurposeMode .ui-select{
+	width: 100% !important;
+	}
+}
+
+div#trackingContent .ui-btn-inner{
+	border:none;
+}
+div#tracking .ui-content{
+	padding: 0;
+}
+
+div#selectPurposeMode{
+	width: inherit;
+	position: absolute;
+	z-index: 99;
+	padding: 0;
+	font-size: 0.9em;
+	
+}
+
+div#selectPurposeMode .ui-btn-inner{
+	font-size: 0.9em;
+	height: 21px;
+	padding: 8px 13px;
+	text-align: left;
+}
+div#selectDestination{
+	width: 50%;
+	float: left;
+}
+div#selectMode{
+	width: 50%; 
+	float: right;
+}
+
+div#trackingButtons{
+	position: absolute;
+	z-index: 99;
+	bottom: 80px;
+	
+}
+
+div#start .ui-btn-inner{
+	padding: 0;
+	border: 0;
+}
+div#start a{
+	height: inherit;
+	box-shadow: none;
+	border: none;
+	}
+	
+div#stop a{
+	height: inherit;
+	box-shadow: none;
+	border: none;
+	}
+div#stop .ui-btn-inner{
+	padding: 0;
+	border: 0;
+}
+
+div#start .ui-btn-up-a{
+	background:0;
+}
+div#stop .ui-btn-up-a{
+	background:0;
+}
+div#start{
+	background-image: url(../images/play.png) !important;
+	}
+
+div#stop{
+	background-image: url(../images/stop.png) !important;
+			
+}
+
+div#start, div#stop{
+	margin-left: 10px;
+	background: transparent;
+	border-radius: 100px;
+            width: 70px;
+            height: 70px;
+            padding: 0px;
+            border: none;
+			box-shadow: none;	
+	}
+div#start .ui-btn-hover-a, div#start .ui-btn-down-a{
+	background-image: url(../images/play.png) !important;
+	border-radius: 100px;
+            width: 70px;
+            height: 70px;
+            padding: 0px;
+            border: none;
+}
+
+
+
+div#stop .ui-btn-hover-a, div#stop .ui-btn-down-a{
+	background-image: url(../images/stop.png) !important;
+	border-radius: 100px;
+            width: 70px;
+            height: 70px;
+            padding: 0px;
+            border: none;
+}
+
+div#durationLength{
+position: absolute;
+z-index:99;
+width: 100%;
+color: #333;
+text-shadow:none;
+margin-top: 25px;
+}
+
+div#durationLength h3{
+	font-size: 30px;
+	font-weight:lighter;
+	margin: 0;
+	box-shadow:none;
+	
+}
+div#durationLength p{
+	margin: 0;
+}
+div#duration{
+	margin:20px 10px 10px 20px;
+	float: left;
+}
+div#length{
+	margin:20px 10px 10px 20px;
+	float: right;
+}
+div#length p{
+	float: right;
+}
+
+div#map{
+	position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%-104px;
+  min-height: 100%;	
+}
+
+/*///////////////////////////////////
+			TRACKING LIST
+///////////////////////////////////*/
+.trackingList h1{
+	font-size: 1em;
+	color: black;
+}
+
+li#manageTripButtons{
+	padding: 0;
+}
+#saveDeleteButtons{
+	width: 100%;
+	margin: 0;
+}
+#saveDeleteButtons #uploadBtn{
+	margin: 0;
+	width: 49%;
+	font-size: 0.8em;
+	padding: 7px 0px;
+}
+
+#saveDeleteButtons .ui-btn-inner{
+	padding: 5px 3px;
+}
+a#deleteTrip, a#saveChanges{
+	width: 49%;
+	font-size: 0.8em;
+	
+}
+@media screen and (min-width: 450px){
+a#uploadBtn{
+	padding: 7px;
+}
+}
+
+a#uploadBtn{
+	margin: 0;
+	width: 31%;
+	font-size: 0.8em;
+	
+}
+
+div#uploadDeleteButtons, .ui-controlgroup-controls{
+	width:100%;
+	margin: 0 auto; 
+	bottom:0;
+	text-align:center;
+}
+div#uploadDeleteButtons .ui-btn-inner{
+	padding: 5px 3px;
+	font-size: 0.9em;
+}
+div#manageTripButtons .ui-btn-text{
+	font-size: 0.9em !important;
+}
+a#save, a#delete{
+	width: 28%;
+	}
+a#upload{
+	width: 40%;
+	}
+.trackingList p, .trackingList h1{
+	width: 80%;
+	float: left;
+}
+
+.trackingList .headerTrackingList p{
+	width: 100%;
+}
+
+.trackingList .ui-li-aside{
+	width: 40%;
+	float: right;
+}
+ul#manageTrackingList .ui-btn-inner{
+	padding: 0px!important;
+}
+#manageTrackingList a{
+	padding-right: 15px !important;
+}
+.trackingListEntry{
+	padding: 0px 10px !important;
+}
+.trackingListEntry img{
+	height: 35px;
+}
+
+#logView a{
+	padding-right: 40px !important;
+}
+.headerTrackingList{
+	padding: 10px !important;
+}
+
+/*///////////////////////////////////
+			MANAGE TRIPS
+///////////////////////////////////*/
+div#managetrips .ui-content{
+	padding: 0;
+}
+div#dateSide{
+	margin:20px 10px 10px 10px;
+	float: none;
+	color:black;
+}
+div#durationSide{
+	margin:20px 10px 10px 10px;
+	float: none;
+	color:black;
+}
+div#lengthSide{
+	margin:20px 10px 10px 10px;
+	float: none;
+	color:black;
+}
+div#tripContent{
+	float:left;
+	border:none;
+}
+h1 {color:white;}
+
+div#bottomSummary{
+	float:none;
+	border:none;
+}
+div#tripList{
+	margin:10px 10px 55px 10px;
+}
+div#kart{
+	border:none;
+	float:right;
+}
+div#addStops{
+	margin:10px 10px 10px 10px;
+	color: white;
+}
+div#right{
+	float:right;
+	text-align:right;
+}
+
+/*/////////////////////////////////////
+			MAP VIEW
+/////////////////////////////////////*/
+
+#viewMap .ui-content{
+	padding: 0;
+}
+
+
+/*/////////////////////////////////////
+			POPUPS
+/////////////////////////////////////*/
+
+.popupDialog .ui-header{
+	height: 30px;
+}
+
+.popupDialog #dialogButtons{
+	text-align: center;
+	width: 100%;
+}
+
+.popupDialog a{
+	width: 40%;
+}
