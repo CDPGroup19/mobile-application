@@ -3,7 +3,7 @@ var GeoLocation = function( options, callback ) {
 	options = options || {};
 	
 	options.enableHighAccuracy = options.enableHighAccuracy || true;
-	options.maximumAge = options.maximumAge || 1000;
+	options.maximumAge = options.maximumAge || 3000;
 	options.timeout = options.timeout || 1000 * 60 * 4;
 	
 	var lastUpdateTime = Date.now();

@@ -47,43 +47,46 @@
 			
 		});
 		
-		//$(document).bind("pageinit", (function() {
-			//console.log("asssasdds");
-			if(app.isTracking) {
+		if(app.isTracking) {
+		
+			console.log("isTracking=true");
+			divPurpose.show();
+			divMode.show();
+		
+			// Restore
+			console.log("restore");
+			stopButton.show();
+			startButton.hide();
 			
-				console.log("isTracking=true");
+			app.restoreListValue("destination", app.log.Purpose)
+			
+			app.map.create();
+			
+			// For some reason Google maps is broken
+			// Send resize event to trick it into fixing itself
+			$(document).one("pageshow", function() {
+				var evt = document.createEvent('HTMLEvents');
+				evt.initEvent('resize', true, false);
+				window.dispatchEvent(evt);
+			});
+				
+		} else {
+			$("#start").click(function() {
+				
+				console.log("clicked start button");
+				
+				if(!app.isOnline()) {
+					app.popup.warn("You do not have an internet connection. The map will not be updated.");
+				} else {
+					app.map.create();
+				}
+				
 				divPurpose.show();
 				divMode.show();
-			
-				// Restore
-				console.log("restore");
-				stopButton.show();
-				startButton.hide();
 				
-				app.restoreListValue("destination", app.log.Purpose)
-				
-				app.map.create();
-				
-				// For some reason Google maps is broken
-				// Send resize event to trick it into fixing itself
-				$(document).one("pageshow", function() {
-					var evt = document.createEvent('HTMLEvents');
-					evt.initEvent('resize', true, false);
-					window.dispatchEvent(evt);				
-				});
-					
-			} else {
-				$("#start").click(function() {
-					
-					console.log("clicked start button");
-					app.map.create();
-					divPurpose.show();
-					divMode.show();
-					
-				});
-			}
-		//}).bind(this));
-
+			});
+		}
+		
 	 });
 	 
 	</script>
