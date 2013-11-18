@@ -1,27 +1,79 @@
+var encryptedStorage = {
+	
+	init: function(key) {
+		
+		console.log("INITIALIZING ENCRYPTION");
+		
+		encryptedStorage.decrypt = function(data) {
+			return sjcl.decrypt(key, data);
+		};
+		
+		encryptedStorage.encrypt = function(data) {
+			return sjcl.encrypt(key, data);
+		};
+		
+	},
+
+	removeItem: function(id) {
+		window.localStorage.removeItem(id);
+	},
+	
+	setItemUnencrypted: function(id, value) {
+		value = (typeof value != 'string') ? JSON.stringify(value) : value;
+		return window.localStorage.setItem(id, value);
+	},
+	
+	getItemUnencrypted: function(id) {
+		var value = window.localStorage.getItem(id);
+		try {
+			value = JSON.parse(value);
+		} catch(e) {
+			console.log("Failed to parse value: " + value);
+		}
+		return value;
+	},
+	
+	setItem: function(id, value) {
+		value = (typeof value != 'string') ? JSON.stringify(value) : value;
+		return window.localStorage.setItem(id, encryptedStorage.encrypt(value));
+	},
+	
+	getItem: function(id) {
+		var value = encryptedStorage.decrypt(window.localStorage.getItem(id));
+		try {
+			value = JSON.parse(value);
+		} catch(e) {
+			console.log("Failed to parse value: " + value);
+		}
+		return value;
+	}
+
+};
+
 var Session = function() {
 
 	this.isAuthenticated = false;
 	this.userData = null;
 	this.logId = null;
-	this.storage = window.localStorage;
+	this.storage = encryptedStorage;
 
 };
 
 Session.prototype.__defineGetter__('AutoLoginConf', function() {
-	return Number(this.storage.getItem('autoconfig'));
+	return Number(this.storage.getItemUnencrypted('autoconfig'));
 });
 
 Session.prototype.removeAutoLogin = function() {
-	this.storage.setItem('autouser', '{}');
-	this.storage.setItem('autoconfig', 0);
+	this.storage.setItemUnencrypted('autouser', '{}');
+	this.storage.setItemUnencrypted('autoconfig', 0);
 };
 
 Session.prototype.setAutoLogin = function(option) {
-	this.storage.setItem('autouser', JSON.stringify({
+	this.storage.setItemUnencrypted('autouser', {
 		username: this.userData.username,
 		password: this.userData.password
-	}));
-	this.storage.setItem('autoconfig', option);
+	});
+	this.storage.setItemUnencrypted('autoconfig', option);
 	return true;
 };
 
@@ -30,7 +82,7 @@ Session.prototype.tryAutoLogin = function() {
 	if(!this.AutoLoginConf)
 		return false;
 
-	var autouser = JSON.parse(this.storage.getItem('autouser'));
+	var autouser = this.storage.getItemUnencrypted('autouser');
 	
 	if(autouser.username && autouser.password) {
 		return this.login(autouser.username, autouser.password);
@@ -66,8 +118,7 @@ Session.prototype.addLocalLog = function(log) {
 		synched: false,
 		log: log.toSerializableObject()
 	};
-
-	var logDataJSON = JSON.stringify(sessionLog);
+	
 	var id = Date.now();
 	
 	// Push ID to user's logs
@@ -78,7 +129,7 @@ Session.prototype.addLocalLog = function(log) {
 	
 	this.storage.setItem(
 		this.getUserLogKey(this.userData.username, id),
-		logDataJSON
+		sessionLog
 	);
 	
 	return id;
@@ -89,8 +140,7 @@ Session.prototype.addLocalLog = function(log) {
 Session.prototype.setLogSynched = function(id) {
 	
 	var logID = this.getUserLogKey(this.userData.username, id);
-	var logDataJSON = this.storage.getItem(logID);
-	var logData = JSON.parse(logDataJSON);
+	var logData = this.storage.getItem(logID);
 	
 	if(logData.synched === true) {
 		console.warn("Session: Synched a log which already was marked as synched.");
@@ -98,7 +148,7 @@ Session.prototype.setLogSynched = function(id) {
 	
 	logData.synched = true;
 	
-	this.storage.setItem(logID, JSON.stringify(logData));
+	this.storage.setItem(logID, logData);
 	
 
 };
@@ -107,8 +157,7 @@ Session.prototype.setLogSynched = function(id) {
 Session.prototype.getLocalLog = function(id) {
 
 	var logID = this.getUserLogKey(this.userData.username, id);
-	var logDataJSON = this.storage.getItem(logID);
-	var logData = JSON.parse(logDataJSON);
+	var logData = this.storage.getItem(logID);
 	
 	return logData;
 
@@ -206,7 +255,7 @@ Session.prototype.updateLocalUser = function(username, data) {
 	
 	this.storage.setItem(
 		this.getUserKey(username), 
-		JSON.stringify(data)
+		data
 	);
 	
 };
@@ -235,9 +284,9 @@ Session.prototype.deleteLocalUser = function(username) {
 
 Session.prototype.hasUser = function(username) {
 
-	var userDataJSON = this.storage.getItem(this.getUserKey(username));
+	var userDataEncrypted = this.storage.getItemUnencrypted(this.getUserKey(username));
 	
-	if(userDataJSON !== undefined && userDataJSON !== null) {
+	if(userDataEncrypted !== undefined && userDataEncrypted !== null) {
 		return true;
 	}
 	
@@ -267,6 +316,9 @@ Session.prototype.createLocalUser = function(username, password) {
 		return false;
 	}
 	
+	// Sign data with password
+	encryptedStorage.init(password);
+	
 	var userData = {
 		username: username,
 		password: password,
@@ -274,7 +326,7 @@ Session.prototype.createLocalUser = function(username, password) {
 		info: {}
 	};
 	
-	this.storage.setItem(this.getUserKey(username), JSON.stringify(userData));
+	this.storage.setItem(this.getUserKey(username), userData);
 	
 	return true;
 
@@ -301,13 +353,11 @@ Session.prototype.setUserPassword = function(username, password) {
 
 Session.prototype.getStoredUserData = function(username) {
 
-	var userDataJSON = this.storage.getItem(this.getUserKey(username));
+	var userData = this.storage.getItem(this.getUserKey(username));
 
-	if(!userDataJSON) {
+	if(!userData) {
 		return null;
 	}
-
-	var userData = JSON.parse(userDataJSON);
 	
 	return userData;
 
@@ -334,6 +384,8 @@ Session.prototype.getActiveUser = function() {
 };
 
 Session.prototype.login = function(username, password) {
+
+	encryptedStorage.init(password);
 
 	if(!this.hasUser(username))
 		return false;
