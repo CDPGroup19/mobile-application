@@ -356,10 +356,7 @@ var app = {
 		
 		el.val(value).attr("selected", true).siblings('option').removeAttr('selected');
 		el.selectmenu('refresh', true);
-    
-		//$(id).attr("value", app.session.getLocalUserInfo(fields[i]));
-		//$(id).selectmenu();
-		//$(id).selectmenu('refresh', true);
+		
     },
     
     // Restore user info from local data

@@ -29,8 +29,19 @@ $( document ).bind( "pageinit", function( event, data ) {
 			
 			// Restore
 			
+			if(app.session.getLocalUserInfo('residence') == 1) // Oslo
+				$('#area-wrapper').show();
+			
+			$('#residence').change(function(e) {
+				if(this.value == 1) // Oslo
+					$('#area-wrapper').show();
+				else 
+					$('#area-wrapper').hide();
+			});
+			
 			console.log("Restoring data");
 			app.restoreUserInfo();
+			
 			
 			// Add listeners for radio select button
 			
@@ -149,7 +160,7 @@ $( document ).bind( "pageinit", function( event, data ) {
       <!-- Show only if Oslo is selected as residence -->
       <div id="area-wrapper" style="display:none">
         <label for="area" class="select">Administration area:</label>
-        <select onChange="app.onUserInfoChanged(this)" name="area" id="area">
+        <select onChange="app.onUserInfoChanged(this);" name="area" id="area">
           <option value="none">I prefer not to tell</option>
           <option value="1">Alna</option>
           <option value="2">Bjerke</option>
