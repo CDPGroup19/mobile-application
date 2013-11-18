@@ -141,10 +141,12 @@ var app = {
 					if(response.ResetPasswordRESTResult == "ok") {
 						
 						if(app.session.hasUser(app.session.getActiveUser())) {
-							app.session.setUserPassword(app.session.getActiveUser(), password);
-						} else {
-							app.session.createLocalUser(app.session.getActiveUser(), password);
+							app.popup.warn("Your account is recovered, but we can't recover the data on the device.");
+							//app.session.setUserPassword(app.session.getActiveUser(), password);
+							app.session.deleteLocalUserForced(app.session.getActiveUser());
 						}
+						
+						app.session.createLocalUser(app.session.getActiveUser(), password);
 						
 						if(app.session.login(app.session.getActiveUser(), password)) {
 							app.receivedEvent('loginsuccess');

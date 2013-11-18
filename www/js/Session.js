@@ -260,8 +260,15 @@ Session.prototype.updateLocalUser = function(username, data) {
 	
 };
 
+// Delete a user locally without requiring password
 
-// Delete a user locally
+Session.prototype.deleteLocalUserForced = function(username) {
+	
+	this.storage.removeItem(this.getUserKey(username));
+	
+};
+
+// Delete a user locally, remove all trips (assumes user is signed in)
 
 Session.prototype.deleteLocalUser = function(username) {
 	
@@ -334,6 +341,8 @@ Session.prototype.createLocalUser = function(username, password) {
 
 Session.prototype.setUserPassword = function(username, password) {
 	
+	// Assumes user is already signed in with his old password
+	
 	var data = this.getStoredUserData(username);
 	
 	if(data == null) {
@@ -342,6 +351,8 @@ Session.prototype.setUserPassword = function(username, password) {
 	}
 	
 	data.password = password;
+	
+	encryptedStorage.init(password);
 	
 	this.updateLocalUser(username, data);
 	
@@ -390,7 +401,13 @@ Session.prototype.login = function(username, password) {
 	if(!this.hasUser(username))
 		return false;
 	
-	var userData = this.getStoredUserData(username);
+	var userData;
+	
+	try {
+		userData = this.getStoredUserData(username);
+	} catch(e) {
+		throw "Invalid password!";
+	}
 	
 	this.checkUserData(userData);
 	
