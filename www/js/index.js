@@ -194,7 +194,10 @@ var app = {
 				password = $("#passwordInput")[0].value;
 				password2 = $("#passwordInputConfirm")[0].value;
 				
-				// @TODO validate input
+				if(password.length < 4) {
+					app.popup.warn("You need at least 4 characters in your password.");
+					return;
+				}
 				
 				if(password != password2) {
 					app.popup.warn("Please reconfirm your password.");
