@@ -130,9 +130,9 @@ Logger.prototype.toSerializableObject = function() {
 	
 		var outEntry = {};
 		
-		for(var i in entry) {
-			if(entry[i] !== undefined && entry[i] !== null)
-				outEntry[i] = entry[i];
+		for(var k in entry) {
+			if(entry[k] !== undefined && entry[k] !== null)
+				outEntry[k] = entry[k];
 		}
 	
 		out.push(outEntry);

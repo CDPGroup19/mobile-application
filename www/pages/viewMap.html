@@ -18,10 +18,17 @@ $(document).one("pageshow", function() {
 	map.create();
 	
 	for(var i = 0; i < log.entries.length; i++) {
+		
 		var e = log.entries[i];
-		map.update({
-			coords: e
-		});
+		
+		var mapcoord = {
+			coords: {
+				longitude: e.longitude,
+				latitude: e.latitude
+			}
+		};
+		
+		map.update(mapcoord);
 	}
 	
 });

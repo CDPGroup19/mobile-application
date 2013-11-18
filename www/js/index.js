@@ -141,7 +141,7 @@ var app = {
 					if(response.ResetPasswordRESTResult == "ok") {
 						
 						if(app.session.hasUser(app.session.getActiveUser())) {
-							app.popup.warn("Your account is recovered, but we can't recover the data on the device.");
+							app.popup.warn("Your account is recovered, but we can't recover the encrypted data on this device.");
 							//app.session.setUserPassword(app.session.getActiveUser(), password);
 							app.session.deleteLocalUserForced(app.session.getActiveUser());
 						}
